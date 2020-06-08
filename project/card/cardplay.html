@@ -5,7 +5,7 @@
 	<title>nct 카드 맞추기</title>
 </head>
 <style>
-#wrap{
+.card__list{
 	display:flex;
 	flex-wrap:wrap;
 }
@@ -16,6 +16,9 @@
 	margin: 5px;
 	border: 1px solid #000;
 	font-size: 0;
+	transform-style:preserve-3d;
+	transform-origin:center right;
+	transition:transform 1s;
 }
 .card > div{
 	position: absolute;
@@ -23,28 +26,33 @@
 	top: 0;
 	bottom: 0;
 	right: 0;
+	backface-visibility:hidden;
 }
 .card .front{
 	z-index: 2;
 	background: #58fd00;
 }
 .card .back{
+	transform:rotateY(180deg);
 	background-color: rgb(0,0,0);
 }
 .card img{width: 100%;}
 
 .card.flip{
-	
+	transform:translateX(-100%) rotateY(-180deg);
 }
 </style>
 <body>
 	<div id="wrap">
-		<div class="card" id="card">
-			<div class="front">앞</div>
-			<div class="back"></div>
-		</div>
-	</div>
+	
+		<ul class="card__list" id="cardList">
+			<li class="card">
+				<div class="front">앞</div>
+				<div class="back"></div>
+			</li>
+		</ul>
 
+	</div>
 </body>
 <script src="cardplay.js"></script>
 
