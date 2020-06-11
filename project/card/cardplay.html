@@ -3,91 +3,13 @@
 <head>
 	<meta charset="UTF-8">
 	<title>nct 카드 맞추기</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="css/basic.css">
+	<link rel="stylesheet" href="css/cardplay.css">
 </head>
 <style>
-.card__list{
-	display:flex;
-	flex-wrap:wrap;
-}
-.card{
-	position: relative;
-	width: 120px;
-	height: 150px;
-	margin: 5px;
-	border: 1px solid #000;
-	font-size: 0;
-	transform-style:preserve-3d;
-	transform-origin:center right;
-	transition:transform 1s;
-}
-.card > div{
-	position: absolute;
-	left: 0;
-	top: 0;
-	bottom: 0;
-	right: 0;
-	backface-visibility:hidden;
-}
-.card .front{
-	z-index: 2;
-	background: #58fd00;
-}
-.card .back{
-	transform:rotateY(180deg);
-	background-color: rgb(0,0,0);
-}
-.card img{width: 100%;}
 
-.card.flip{
-	transform:translateX(-100%) rotateY(-180deg);
-}
-.favorite{
-	position: absolute;
-	left: 0;
-	top: 0;
-	z-index: 3;
-	width: 100%;
-	height: 100%;
-	text-align: center;
-	font-size: 20px;
-}
-
-.favorite span {
-  position: absolute;
-  top: -45px;
-  left: 0;
-  width: 33.33%;
-  overflow: hidden;
-}
-.favorite span{
-  display: inline-block;
-  animation: up 2.5s infinite;
-  position: relative;
-  top: 0;
-}
-.favorite span:nth-child(2) {
-  left: 0;
-  right: 0;
-  margin: auto;
-  animation: up 2.5s infinite 0.1s;
-}
-.favorite span:nth-child(3) {
-  left: auto;
-  right: 0;
-  animation: up 2.5s infinite 0.2s;
-}
-
-
-@keyframes up {
-  30%,
-	80% {
-    top: 0;
-  }
-  40%,
-	70% {
-    top: 10px;
-  }
-}
 
 </style>
 <body>
@@ -105,8 +27,12 @@
 			<span>&#x1F49A;</span>
 			<span>&#x1F49B;</span>
 		</div> -->
+
+		
+		<button id="btnplay" type="button">다시 섞기</button>
+		
 	</div>
 </body>
-<script src="cardplay.js"></script>
+<script src="js/cardplay.js"></script>
 
 </html>
