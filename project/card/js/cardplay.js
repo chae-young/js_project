@@ -10,7 +10,7 @@
 4.2개의 카드를 클릭하고 카드가 맞으면 뒤집어놓고 안맞으면 다시 덮기.
 * 마크사진을 짝맞출경우 하트추가.
 
-5.카드 다 뽑으면 처음부터하기 버튼 fade
+5.다시섞기
 버튼 클릭시
 - flip 제거
 - 처음부터 게임 시작(초기화)
@@ -18,7 +18,7 @@
 
 */
 
-var memberNum = 18 * 2; //사람 명 수 * 2
+var memberNum = 16 * 2; //사람 명 수 * 2
 var imgarr = [];
 var img = [];
 var selectedCard = [];
@@ -59,8 +59,6 @@ for(var k = 0; k < memberNum; k++ ){
 		imgpush(k,imgAlt[k])
 	}
 }
-
-
 for(var j = 0; j < memberNum; j++ ){
 	
 	//이미지 랜덤으로 넣기
@@ -69,6 +67,7 @@ for(var j = 0; j < memberNum; j++ ){
 	imgContainer[j].innerHTML = img[j];
 
 	(function cardflip(k){
+		
 		//카드 보여줬다가 숨기기
 		flag = false;
 		setTimeout(function(){
@@ -96,27 +95,21 @@ for(var j = 0; j < memberNum; j++ ){
 				if(pullbox.c.length == 2 && pullbox.i.length == 2){//카드 2장 뽑히면	
 					if(pullbox.i[0] === pullbox.i[1] && this.classList.value.includes('flip')){//카드가 서로 맞고 뒤집혀 있는경우
 
-						//카드 다 맞추면
-						if(selectedCard.length == memberNum){
-							allCard()
-						}else{//아직 못맞춘 상태
-							selectedCard.push ( pullbox.c[0],pullbox.c[1] )
-
-							selectedCard.forEach(function(el){
-								selectedCardAlt = [];
-								selectedCardAlt.push(el.children[1].firstChild.getAttribute('alt'))
+						selectedCard.push ( pullbox.c[0],pullbox.c[1] )
+						//* 마크 일경우
+						selectedCard.forEach(function(el){
+							selectedCardAlt = [];
+							selectedCardAlt.push(el.children[1].firstChild.getAttribute('alt'))
+								console.log(selectedCardAlt)
+						})
+						if(selectedCardAlt[0] == '마크'){
+							pullbox.c.forEach(function(el){
+								var favoriteBox = document.createElement('div');//하트이모지 추가
+								favoriteBox.className += 'favorite';
+								favoriteBox.innerHTML = favorite;
+								el.children[1].appendChild(favoriteBox);
 							})
-							//마크 일경우
-							if(selectedCardAlt[0] == '마크'){
-								pullbox.c.forEach(function(el){
-									var favoriteBox = document.createElement('div');//하트이모지 추가
-									favoriteBox.className += 'favorite';
-									favoriteBox.innerHTML = favorite;
-									el.children[1].appendChild(favoriteBox);
-								})
-							}
 						}
-
 						pullbox.c = [];
 						pullbox.i = [];
 						clicknum = 0;
@@ -136,12 +129,49 @@ for(var j = 0; j < memberNum; j++ ){
 		});
 	})(j)
 }
-function allCard(){
-	document.getElementById('btnplay').addEventListener('click',function(){
-		cardAll.forEach(function(c,i,el){
-			el.classList.remove('flip');
-		})
-		selectedCard = [];
-		flag = false;
+var reset;
+document.getElementById('btnplay').addEventListener('click',function(){
+	reset = true;
+	cardAll.forEach(function(c,i,el){
+		c.classList.remove('flip');
+		console.log(i)
+		//imgContainer[i].innerHTML = '';
 	})
-}
+	imgarr = [];
+	imgContainer = [];
+	img = [];
+	selectedCard = [];
+	//selectedCardAlt = [];
+	for(var k = 0; k < memberNum; k++ ){
+		function imgpush(num,name){
+			imgarr.push('<img src="' + 'images/nct'+num+'.jpg' + '" alt="' + name + '">');
+		}
+		if(k >= hlafVal){
+			imgpush(k - hlafVal,imgAlt[k - hlafVal])
+		}else{
+			imgpush(k,imgAlt[k])
+		}
+	}
+	for(var j = 0; j < memberNum; j++ ){
+		
+		//이미지 랜덤으로 넣기
+		var imgContainer = document.querySelectorAll('.back');
+		img = img.concat( imgarr.splice( Math.floor(Math.random() * imgarr.length) ,1) );
+		imgContainer[j].innerHTML = img[j];
+
+		(function cardflip(k){
+			
+			//카드 보여줬다가 숨기기
+			flag = false;
+			setTimeout(function(){
+				cardAll[k].classList.add('flip');
+			},100*j)
+			setTimeout(function(){
+				cardAll[k].classList.remove('flip');
+				flag = true;
+			},10000)
+
+
+		})(j)
+	}
+})
