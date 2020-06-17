@@ -39,7 +39,11 @@ var favorite = '<span>&#x1F499;</span>';
 favorite += '<span>&#x1F49A;</span>';
 favorite += '<span>&#x1F49B;</span>';
 
+var openFlip;
+var removeFlip;
 var resetOn = false;
+var refresh = true;
+
 
 //하나의 원본으로 카드리스트 복제
 for(var i = 0; i < memberNum - 1; i++ ){
@@ -64,6 +68,7 @@ function imgCreat(){
 		}
 	}
 }
+var timeArr = [];
 function cardGame(resetOn){
 	for(var j = 0; j < memberNum; j++ ){
 		
@@ -74,11 +79,20 @@ function cardGame(resetOn){
 
 		(function cardflip(k){
 			flag = false;
-			var openFlip = setTimeout(function(){
-				cardAll[k].classList.add('flip');
-			},100*j)
-			var removeFlip = setTimeout(function(){
-				cardAll[k].classList.remove('flip');
+
+			timeArr.push (setTimeout(function(){
+				if(refresh){
+					//console.log(k)
+					cardAll[k].classList.add('flip');
+				}
+				console.log('끝')
+			},100*k) )
+
+			removeFlip = setTimeout(function(){
+				if(refresh){
+					console.log('시작')
+					cardAll[k].classList.remove('flip');
+				}
 				flag = true;
 			},10000)
 			
@@ -140,6 +154,33 @@ function cardGame(resetOn){
 imgCreat();
 cardGame();
 
+function timestop(){
+	timeArr.forEach(function(timer) {
+       clearTimeout(timer);
+    });
+}
+
+document.getElementById('btnplay').addEventListener('click',function(){
+	refresh = false;
+	timestop();
+	cardAll.forEach(function(c,i,el){
+		c.classList.remove('flip');
+
+	})
+	imgarr = [];
+	imgContainer = [];
+	img = [];
+	selectedCard = [];
+	//selectedCardAlt = [];
+
+	setTimeout(function(){	
+		refresh = true;
+		imgCreat();
+		cardGame(true)
+	},1000)
+
+})
+/*
 document.getElementById('btnplay').addEventListener('click',function(){
 	var ing = document.querySelectorAll('.flip').length;
 
@@ -159,6 +200,6 @@ document.getElementById('btnplay').addEventListener('click',function(){
 		cardGame(true)
 	},100*ing)
 })
-
+*/
 //리셋이 true일경우 실행 x
 //카드가 뒤집힌 수만큼 초를 세고 그뒤에실행
