@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+ 
+  <title>🐘🐉🐬포켓몬 배틀🙉🐸🐍</title>
+
+  <link rel="stylesheet" href="css/basic.css">
+ </head>
+ <style>
+	#wrap{
+		display:flex;
+	}
+	#btn-turn{
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+	.area{
+		margin-top: 40px;
+		padding: 20px;
+		overflow: hidden;
+		border: 1px solid #000;
+	}
+	.monster{
+		position: relative;
+		float: left;
+		display: flex;
+		flex-direction:column-reverse;
+		width: 150px;
+		height: 200px;
+		margin: 5px;
+		padding: 10px;
+		border: 1px solid #000;
+		box-sizing: border-box;
+	}
+
+	.stage .hp,
+	.stage .exp{
+		width: calc(100% - 10px);
+		margin: 0 auto;
+		font-size: 13px;
+
+	}
+	.stage .hp{
+		order:1;
+		margin-bottom:5px;
+	}
+	.stage span{
+		display: block;
+	}
+	.stage .bar{
+		height: 2px;
+		margin-top: 5px;
+		border: 1px solid rgb(0,0,0);	
+	}
+	.stage .bar .in{
+		width: 0;
+		height: 100%;
+	}
+	.stage .hp .in{
+		background: red;
+	}
+	.stage .exp .in{
+		background: green;
+	}
+	.fighter{
+		flex: 1;
+	}
+	.pocket-ball{
+		flex-basis:250px;
+	}
+ </style>
+ <body>
+  
+	<div id="wrap">
+		<section class="stage fighter">
+			<h1>포켓몬 배틀</h1>
+			<!--트레이너-->
+			<div id="trainner" class="area">
+				<h2>트레이너</h2>
+				<div class="back">
+					<!--div class="monster">
+						<div class="name"></div>
+						<div class="hp"><p>체력</p><span class="bar"><span class="in"></span></span></div>
+						<div class="exp"><p>경험치</p><span class="bar"><span class="in"></span></span></div>
+					</div>
+					<div class="monster">
+						<div class="name"></div>
+						<div class="hp"><p>체력</p><span class="bar"><span class="in"></span></span></div>
+						<div class="exp"><p>경험치</p><span class="bar"><span class="in"></span></span></div>
+					</div-->
+				</div>
+				<div class="front"></div>
+			</div>
+			<!--나-->
+			<div id="me" class="area">
+				<h2>나</h2>
+				<div class="front"></div>
+				<div class="back">
+				
+				</div>		
+			</div>
+		</section>
+
+
+<button type="button" id="btn-turn">턴</button>
+
+
+		<section class="stage pocket-ball">
+			<h1>포켓몬 뽑기</h1>
+			<button type="button" id="btn-random">포켓몬 뽑기</button>
+		</section>
+	</div>
+
+ </body>
+ <script src="js/pocketmonster.js"></script>
+</html>
+
+
+
+
