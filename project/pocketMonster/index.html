@@ -15,10 +15,18 @@
 	#wrap{
 		display:flex;
 	}
+	.hidden{display: none !important;}
 	#btn-turn{
 		position: absolute;
-		left: 0;
+		left: 50%;
 		top: 0;
+		width: 100px;
+		height: 40px;
+		line-height: 40px;
+		text-align: center;
+		background: #000;
+		color: #fff;
+		cursor: pointer;
 	}
 	.area{
 		margin-top: 40px;
@@ -26,11 +34,14 @@
 		overflow: hidden;
 		border: 1px solid #000;
 	}
+	.ball-box{
+		display: flex;
+	}
 	.monster{
 		position: relative;
-		float: left;
 		display: flex;
-		flex-direction:column-reverse;
+		flex-direction:column;
+		justify-content:flex-end;
 		width: 150px;
 		height: 200px;
 		margin: 5px;
@@ -38,16 +49,18 @@
 		border: 1px solid #000;
 		box-sizing: border-box;
 	}
-
+	.stage .name,
 	.stage .hp,
-	.stage .exp{
+	.stage .exp,
+	.stage .attack{
 		width: calc(100% - 10px);
 		margin: 0 auto;
 		font-size: 13px;
 
 	}
-	.stage .hp{
-		order:1;
+	.stage .name,
+	.stage .hp,
+	.stage .exp{
 		margin-bottom:5px;
 	}
 	.stage span{
@@ -63,13 +76,25 @@
 		height: 100%;
 	}
 	.stage .hp .in{
+		background: green;
+	}
+	.stage .hp.down .in{
 		background: red;
 	}
 	.stage .exp .in{
-		background: green;
+		background: blue;
+	}
+	.stage .attack .in{
+		background: purple;
 	}
 	.fighter{
 		flex: 1;
+	}
+	#trainner .selected-stage .monster{
+		margin: 40px auto 0;
+	}
+	#me .selected-stage .monster{
+		margin: 0 auto 40px;
 	}
 	.pocket-ball{
 		flex-basis:250px;
@@ -83,27 +108,22 @@
 			<!--트레이너-->
 			<div id="trainner" class="area">
 				<h2>트레이너</h2>
-				<div class="back">
-					<!--div class="monster">
-						<div class="name"></div>
-						<div class="hp"><p>체력</p><span class="bar"><span class="in"></span></span></div>
-						<div class="exp"><p>경험치</p><span class="bar"><span class="in"></span></span></div>
-					</div>
-					<div class="monster">
-						<div class="name"></div>
-						<div class="hp"><p>체력</p><span class="bar"><span class="in"></span></span></div>
-						<div class="exp"><p>경험치</p><span class="bar"><span class="in"></span></span></div>
-					</div-->
+				<div class="ball-box">
+
 				</div>
-				<div class="front"></div>
+				<div class="selected-stage">
+			
+				</div>
 			</div>
 			<!--나-->
 			<div id="me" class="area">
 				<h2>나</h2>
-				<div class="front"></div>
-				<div class="back">
-				
-				</div>		
+				<div class="selected-stage">
+					
+				</div>
+				<div class="ball-box">
+
+				</div>
 			</div>
 		</section>
 
@@ -117,6 +137,26 @@
 		</section>
 	</div>
 
+
+	<div class="hidden">
+		<div class="monster">
+			<div class="name"></div>
+			<div class="hp">
+				<p>체력</p>
+				<span class="bar"><span class="in"></span></span>
+			</div>
+			<div class="exp">
+				<p>경험치</p>
+				<span class="bar"><span class="in"></span></span>
+			</div>
+			<div class="attack">
+				<p>경험치</p>
+				<span class="bar"><span class="in"></span></span>
+			</div>
+		</div>	
+	</div>
+
+
  </body>
  <script src="js/pocketmonster.js"></script>
 </html>
@@ -124,3 +164,18 @@
 
 
 
+					<!--div class="monster hidden">
+						<div class="name"></div>
+						<div class="hp"><p>체력</p><span class="bar"><span class="in"></span></span></div>
+						<div class="exp"><p>경험치</p><span class="bar"><span class="in"></span></span></div>
+					</div-->
+					<!--div class="monster">
+						<div class="name"></div>
+						<div class="hp"><p>체력</p><span class="bar"><span class="in"></span></span></div>
+						<div class="exp"><p>경험치</p><span class="bar"><span class="in"></span></span></div>
+					</div>
+					<div class="monster">
+						<div class="name"></div>
+						<div class="hp"><p>체력</p><span class="bar"><span class="in"></span></span></div>
+						<div class="exp"><p>경험치</p><span class="bar"><span class="in"></span></span></div>
+					</div-->
