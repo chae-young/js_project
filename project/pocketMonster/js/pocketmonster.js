@@ -76,6 +76,7 @@ function Factory(me,i){
 //그리기
 var myputCard;
 var trputCard;
+var replay = false;
 function draw(member,data,i){
 
 	var card = document.querySelector('.hidden .monster').cloneNode(true);
@@ -83,10 +84,16 @@ function draw(member,data,i){
 	card.querySelector('.monster .name').textContent = data.name;
 	card.querySelector('.monster .hp .in').style.width = data.hp + '%';
 	card.querySelector('.monster .attack .in').style.width = data.attack + '%';
-	member.querySelector('.ball-box').appendChild(card);
+	card.querySelector('.monster .exp .level').textContent = 'LV.1'
+	
+	if(!replay){
+		member.querySelector('.ball-box').appendChild(card);
+	}else{
+		member.querySelector('.selected-stage').appendChild(card);		
+	}
+
 
 	card.addEventListener('click',function(){
-
 		if(member.querySelector('.selected-stage').children.length == 0){
 			console.log('1')
 			if(member==me){
@@ -100,12 +107,20 @@ function draw(member,data,i){
 			member.querySelector('.selected-stage').appendChild(card)
 		}else{	
 			if(!turn && member == trainer){//내차례인데 상대방 클릭했을때
-				console.log('상대방',trputCard.hp - myputCard.attack)
-				trputCard.hp = trputCard.hp - myputCard.attack
+				console.log('상대방')
+
+				trputCard.hp = trputCard.hp - myputCard.attack;
+				//다시그려주기
+				cardDraw(member)
+
+			}else if(turn && member == me){//상대방차례인데 나 클릭했을때
+				console.log('나')
+
+				myputCard.hp = myputCard.hp - trputCard.attack;
+				//다시그려주기
+				cardDraw(member)
 			}
 		}
-
-
 	})
 
 
@@ -147,6 +162,21 @@ function stageDraw(member){
 		draw(member,data,i)
 	})
 }
+
+//뽑힌몬스터 다시 그리기.
+function cardDraw(member){
+	var mbArr;
+	if(member==me){
+		mbArr = myputCard;
+	}else{
+		mbArr = trputCard;
+	}
+	console.log(mbArr)
+	member.querySelector('.selected-stage').innerHTML = '';
+	replay = true;	
+	draw(member,mbArr);
+}
+
 document.getElementById('btn-random').addEventListener('click',function(){
 	//random()
 	alert('포켓몬 5마리가 뽑혔습니다.')
@@ -156,8 +186,8 @@ document.getElementById('btn-random').addEventListener('click',function(){
 
 
 document.getElementById('btn-turn').addEventListener('click',function(){
-
-
+	
+	turn = !turn
 })
 
 meBall();
