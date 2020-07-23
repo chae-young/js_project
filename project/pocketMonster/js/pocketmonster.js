@@ -77,6 +77,7 @@ function Factory(me,i){
 var myputCard;
 var trputCard;
 var replay = false;
+var mbArr = [];
 function draw(member,data,i){
 
 	var card = document.querySelector('.hidden .monster').cloneNode(true);
@@ -95,9 +96,10 @@ function draw(member,data,i){
 
 	card.addEventListener('click',function(){
 		if(member.querySelector('.selected-stage').children.length == 0){
-			console.log('1')
+			
 			if(member==me){
 				myputCard = myMon.splice(i,1)[0];
+
 			}else{
 				trputCard = trainerMon.splice(i,1)[0];
 			}
@@ -105,10 +107,14 @@ function draw(member,data,i){
 			stageDraw(member);
 
 			member.querySelector('.selected-stage').appendChild(card)
+			mbArr.push(card)
+			if(mbArr.length == 2){
+				alert(timeOB.timeF()+' 차례 입니다. 공격하세요')
+			}
+
 		}else{	
 			if(!turn && member == trainer){//내차례인데 상대방 클릭했을때
 				console.log('상대방')
-
 				trputCard.hp = trputCard.hp - myputCard.attack;
 				//다시그려주기
 				cardDraw(member)
@@ -184,7 +190,13 @@ document.getElementById('btn-random').addEventListener('click',function(){
 	//trainerBall()
 })
 
-
+var timeOB = {
+	time:turn,
+	subject:null,
+	timeF:function(){
+		return this.time ? this.subject = '트레이너' : this.subject = '나'
+	}
+}
 document.getElementById('btn-turn').addEventListener('click',function(){
 	
 	turn = !turn
