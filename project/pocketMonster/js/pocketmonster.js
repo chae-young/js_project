@@ -44,7 +44,16 @@ var choiceMon = [];
 var myMon = [];
 var trainerMon = [];
 
+
 var turn = false; //false면 나 true 상대방
+
+var timeOB = {
+	time:false,
+	subject:null,
+	timeF:function(){
+		return this.time ? this.subject = '트레이너' : this.subject = '나'
+	}
+}
 
 //포켓몬 랜덤뽑기
 function random(who){	
@@ -81,9 +90,10 @@ var mbArr = [];
 function draw(member,data,i){
 
 	var card = document.querySelector('.hidden .monster').cloneNode(true);
-
+	console.log(card)
 	card.querySelector('.monster .name').textContent = data.name;
 	card.querySelector('.monster .hp .in').style.width = data.hp + '%';
+	card.querySelector('.monster .exp .in').style.width = data.exp + '%';
 	card.querySelector('.monster .attack .in').style.width = data.attack + '%';
 	card.querySelector('.monster .exp .level').textContent = 'LV.1'
 	
@@ -95,8 +105,9 @@ function draw(member,data,i){
 
 
 	card.addEventListener('click',function(){
+
 		if(member.querySelector('.selected-stage').children.length == 0){
-			
+
 			if(member==me){
 				myputCard = myMon.splice(i,1)[0];
 
@@ -108,18 +119,29 @@ function draw(member,data,i){
 
 			member.querySelector('.selected-stage').appendChild(card)
 			mbArr.push(card)
+
 			if(mbArr.length == 2){
 				alert(timeOB.timeF()+' 차례 입니다. 공격하세요')
 			}
 
 		}else{	
-			if(!turn && member == trainer){//내차례인데 상대방 클릭했을때
-				console.log('상대방')
+			if(!timeOB.time && member == trainer){//내차례인데 상대방 클릭했을때
+				console.log('상대방',myputCard.attack)
 				trputCard.hp = trputCard.hp - myputCard.attack;
+				if(trputCard.hp < 0){
+	
+					alert('체력이 떨어져서 죽었어요 ,, YOU WIN')
+					trputCard = null;
+					myputCard.exp = data.attack;
+					member.querySelector('.selected-stage').innerHTML = '';
+					replay = false;
+					me.querySelector('.selected-stage .monster .exp .in').style.width = myputCard.exp + '%';
+					return
+				}
 				//다시그려주기
 				cardDraw(member)
 
-			}else if(turn && member == me){//상대방차례인데 나 클릭했을때
+			}else if(timeOB.time && member == me){//상대방차례인데 나 클릭했을때
 				console.log('나')
 
 				myputCard.hp = myputCard.hp - trputCard.attack;
@@ -177,7 +199,6 @@ function cardDraw(member){
 	}else{
 		mbArr = trputCard;
 	}
-	console.log(mbArr)
 	member.querySelector('.selected-stage').innerHTML = '';
 	replay = true;	
 	draw(member,mbArr);
@@ -190,16 +211,9 @@ document.getElementById('btn-random').addEventListener('click',function(){
 	//trainerBall()
 })
 
-var timeOB = {
-	time:turn,
-	subject:null,
-	timeF:function(){
-		return this.time ? this.subject = '트레이너' : this.subject = '나'
-	}
-}
+
 document.getElementById('btn-turn').addEventListener('click',function(){
-	
-	turn = !turn
+	timeOB.time = !timeOB.time
 })
 
 meBall();
