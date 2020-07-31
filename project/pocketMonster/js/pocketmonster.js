@@ -87,23 +87,26 @@ var myputCard;
 var trputCard;
 var replay = false;
 var mbArr = [];
+var myExpArr=[];
+var sum = 0;
 function draw(member,data,i){
 
 	var card = document.querySelector('.hidden .monster').cloneNode(true);
-	console.log(card)
+
 	card.querySelector('.monster .name').textContent = data.name;
 	card.querySelector('.monster .hp .in').style.width = data.hp + '%';
 	card.querySelector('.monster .exp .in').style.width = data.exp + '%';
 	card.querySelector('.monster .attack .in').style.width = data.attack + '%';
 	card.querySelector('.monster .exp .level').textContent = 'LV.1'
-	
+
+
 	if(!replay){
 		member.querySelector('.ball-box').appendChild(card);
 	}else{
 		member.querySelector('.selected-stage').appendChild(card);		
 	}
 
-
+	
 	card.addEventListener('click',function(){
 
 		if(member.querySelector('.selected-stage').children.length == 0){
@@ -128,14 +131,24 @@ function draw(member,data,i){
 			if(!timeOB.time && member == trainer){//내차례인데 상대방 클릭했을때
 				console.log('상대방',myputCard.attack)
 				trputCard.hp = trputCard.hp - myputCard.attack;
+				
 				if(trputCard.hp < 0){
 	
 					alert('체력이 떨어져서 죽었어요 ,, YOU WIN')
 					trputCard = null;
-					myputCard.exp = data.attack;
+					console.log(data.attack)
+
+					myExpArr.push(data.attack);
+					for(var i = 0;i < myExpArr.length;i++){  
+						sum += myExpArr[i]
+					}
 					member.querySelector('.selected-stage').innerHTML = '';
 					replay = false;
-					me.querySelector('.selected-stage .monster .exp .in').style.width = myputCard.exp + '%';
+					me.querySelector('.selected-stage .monster .exp .in').style.width = sum + '%';
+					if(sum >= 100){
+						sum = sum - 100;
+						me.querySelector('.selected-stage .monster .exp .in').style.width = sum + '%';
+					}
 					return
 				}
 				//다시그려주기
