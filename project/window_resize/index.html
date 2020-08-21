@@ -30,24 +30,24 @@
 <script>
 	var DeskTop = document.getElementById('desktop');
 	var Mobile = document.getElementById('mobile');
-	var pointWidth = 1199;
+	var breakWidth = 1199;
 
 	function factory(){
 		var windowWidth = window.outerWidth;
-		if(windowWidth >= pointWidth){
+		if(windowWidth >= breakWidth){
 			console.log('pc')
-			DeskTop.classList.add('red');
+			//DeskTop.classList.add('red');
 		}else{
 			console.log('m')			
 		}
 	}
 
-	//factory()
+	factory()
 	
-	var test;
+	var once;
 	window.addEventListener('resize',function(){
-		clearTimeout(test)
-		test = setTimeout(factory,500)
+		clearTimeout(once)
+		once = setTimeout(factory,500)
 	})
 
 	console.log(  )
