@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+ 
+  <title>웇놀이</title>
+
+  <link rel="stylesheet" href="css/basic.css">
+  <link rel="stylesheet" href="css/yutnori.css">
+
+  <style>
+/* 	#yutList li {display: none;}
+	#yutList li.block{display: block;} */
+	.yut-board{
+		position: relative;
+		width: 100px;
+		height: 100px;
+		margin: 40px;
+		border: 1px solid #000;
+		box-sizing: border-box;
+	}
+
+	[class^='line--']{
+		position: absolute;
+		margin: 0 auto;
+		/* background: red; */
+	}
+	.line--left{
+		left: -5px;
+	}
+	.line--right{
+		right: 2px;
+	}
+	.line--top{
+		top: -5px;
+		left: 0;
+		right: 0;
+	}
+	.line--bottom{
+		bottom: 3px;
+		left: 0;
+		right: 0;
+	}
+	.line--center{
+		left: 50%;
+		top: 50%;
+		transform:translate(-50%,-50%);
+	}
+	.line--center a{
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform:translate(-50%,-50%);	
+	}
+	.hor,.ver{
+		display: flex;
+		justify-content:space-around;	
+	}
+
+	.hor{
+		width: calc(100% - 30px);
+		height: 1px;
+	}
+
+	.ver{
+		flex-direction:column;
+		width: 1px;
+		height: calc(100% - 30px);
+		top: 50%;
+		transform:translateY(-50%);
+	}
+
+	.yut-board a{
+		display: block;
+		width: 10px;
+		height: 10px;
+		border-radius:100%;
+		border: 1px solid #000;	
+		box-sizing: border-box;
+	}
+	.line--dia-left,
+	.line--dia-right{
+		top: -15px;
+		left: 50%;
+		height: 135px;
+	}
+	.line--dia-left{
+		transform:rotate(45deg) translateX(-50%);
+	}
+	.line--dia-right{
+		transform:rotate(-45deg) translateX(-50%);
+	}
+
+	.line--dia-left a:nth-child(2){
+		margin-bottom: 15px;
+	}
+
+	.line--dia-right a:nth-child(2){
+		margin-top: -30px;
+	}
+	.line--dia-right a:nth-child(3){
+		margin-bottom: -30px;
+	}
+
+	.line--top-left{
+		left: -5px;
+		top: -5px;
+	}
+	.line--top-right{
+		right: -5px;
+		top: -5px;
+	}
+	.line--bt-right{
+		right: -5px;
+		bottom: -5px;
+	}
+	.line--bt-left{
+		left: -5px;
+		bottom: -5px;
+	}
+  </style>
+ </head>
+
+
+ <body>
+<!--
+
+도	앞뒤뒤뒤	앞이 하나인 경우 말을 한 칸 전진시킨다.
+개	앞앞뒤뒤	앞이 둘인 경우 말을 두 칸 전진시킨다.
+걸	앞앞앞뒤	앞이 셋인 경우 말을 세 칸 전진시킨다.
+윷	앞앞앞앞	모두 앞면인 경우 말을 네 칸 전진시키며, 윷을 다시 한 번 던질 수 있다.
+모	뒤뒤뒤뒤	모두 뒷면인 경우 말을 다섯 칸 전진시키며, 윷을 다시 한 번 던질 수 있다.
+뒷도 또는 백도(빽도) 또는 후도	앞뒤뒤뒤	앞이 하나이나 '뒤'가 표시되어 있는 것인 경우 말을 한 칸 후퇴(뒤로 보냄)시킨다. 좌측 그림에서 점이 찍힌 앞면이 뒷도가 표시된 윷 가락을 나타내는 예이다.
+(그러나 꼭 '점'을 뒷도로 사용할 필요는 없다.)
+
+낙		윷가락 중 하나 이상이 멍석을 나갈 경우 그대로 차례가 넘어간다.  
+
+
+1.윷뽑기 클릭
+	-> 윷이 나왔는가? Y > 그 윶이 무슨윶인가? 
+
+ var yutData = [
+	{
+		name:'도',
+		img:'images/yut_01.png',
+		cell:1
+	},
+	{
+		name:'개',
+		img:'images/yut_02.png',
+		cell:2
+	},
+	{
+		name:'걸',
+		img:'images/yut_03.png',
+		cell:3
+	},
+	{
+		name:'윷',
+		img:'images/yut_04.png',
+		cell:4
+	},
+	{
+		name:'모',
+		img:'images/yut_05.png',
+		cell:5
+	},
+	{
+		name:'백',
+		img:'images/yut_06.png',
+		cell:-1
+	}
+]
+
+stageA.addEventListener('click',function(e){
+	e.preventDefault()
+	console.log(e)
+})
+
+0 1 2 3 4 5
+-->
+
+	<div id="wrap">
+
+		<ul id="yutList">
+			<li><img src="" id="yutImg" alt=""></li>
+		</ul>
+
+		<button id="startBtn">윷뽑기</button>
+
+		<div class="yut-board">
+			<div class="line--left ver">
+				<a href="#">1</a>
+				<a href="">2</a>
+				<a href="">3</a>
+				<a href="">4</a>
+			</div>
+			<div class="line--bottom hor">
+				<a href="">1</a>
+				<a href="">2</a>
+				<a href="">3</a>
+				<a href="">4</a>
+			</div>
+			<div class="line--right ver">
+				<a href="">1</a>
+				<a href="">2</a>
+				<a href="">3</a>
+				<a href="">4</a>
+			</div>
+			<div class="line--top hor">
+				<a href="">1</a>
+				<a href="">2</a>
+				<a href="">3</a>
+				<a href="">4</a>
+			</div>
+			<div class="line--center">
+				<a href="">1</a>
+			</div>
+			<div class="line--dia-left ver">
+				<a href="">1</a>
+				<a href="">2</a>
+				<a href="">3</a>
+				<a href="">4</a>
+			</div>
+			<div class="line--dia-right ver">
+				<a href="">1</a>
+				<a href="">2</a>
+				<a href="">3</a>
+				<a href="">4</a>
+			</div>
+			<div class="line--top-left">
+				<a href="">1</a>
+			</div>
+			<div class="line--top-right">
+				<a href="">1</a>
+			</div>
+			<div class="line--bt-right">
+				<a href="">1</a>
+			</div>
+			<div class="line--bt-left">
+				<a href="">1</a>
+			</div>
+		</div>
+
+	</div>
+
+ </body>
+ <script src="js/solo.js"></script>
+
+ <script>
+
+ var yutImg = document.getElementById('yutImg');
+	
+ var yutData = [
+	{
+		name:'도',
+		img:'images/yut_01.png',
+		cell:1
+	},
+	{
+		name:'개',
+		img:'images/yut_02.png',
+		cell:2
+	},
+	{
+		name:'걸',
+		img:'images/yut_03.png',
+		cell:3
+	},
+	{
+		name:'윷',
+		img:'images/yut_04.png',
+		cell:4
+	},
+	{
+		name:'모',
+		img:'images/yut_05.png',
+		cell:5
+	},
+	{
+		name:'백',
+		img:'images/yut_06.png',
+		cell:-1
+	}
+]
+
+ var stageA = document.querySelectorAll('.yut-board a');
+
+document.getElementById('startBtn').addEventListener('click',function(){
+	var nowYut = yutData[ Math.floor( Math.random() * yutData.length ) ];
+	yutImg.src = nowYut.img;
+	yutImg.alt = nowYut.name;
+
+	console.log('현재:' ,nowYut.name)
+})
+
+	for(var a = 0;a < stageA.length;a++){
+		(function(j){
+			stageA[j].addEventListener('click',function(e){
+				e.preventDefault()
+				console.log(e)
+			})
+		}(a))
+	}
+
+ </script>
+</html>
+
+
+
