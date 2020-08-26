@@ -82,6 +82,12 @@
 		border: 1px solid #000;	
 		box-sizing: border-box;
 	}
+	.yut-board a.on{
+		background: red;
+		color: rgb(255,255,255);
+	}
+
+
 	.line--dia-left,
 	.line--dia-right{
 		top: -15px;
@@ -143,6 +149,8 @@
 1.윷뽑기 클릭
 	-> 윷이 나왔는가? Y > 그 윶이 무슨윶인가? 
 
+클릭으로 말 옮기는걸로,,
+
  var yutData = [
 	{
 		name:'도',
@@ -181,7 +189,7 @@ stageA.addEventListener('click',function(e){
 	console.log(e)
 })
 
-0 1 2 3 4 5
+
 -->
 
 	<div id="wrap">
@@ -239,7 +247,7 @@ stageA.addEventListener('click',function(e){
 				<a href="">1</a>
 			</div>
 			<div class="line--bt-right">
-				<a href="">1</a>
+				<a href="" id="startPoint">1</a>
 			</div>
 			<div class="line--bt-left">
 				<a href="">1</a>
@@ -254,7 +262,8 @@ stageA.addEventListener('click',function(e){
  <script>
 
  var yutImg = document.getElementById('yutImg');
-	
+ var firstFlag = false;
+ var horsArr = [];
  var yutData = [
 	{
 		name:'도',
@@ -289,26 +298,45 @@ stageA.addEventListener('click',function(e){
 ]
 
  var stageA = document.querySelectorAll('.yut-board a');
-
+ var nowYut;
 document.getElementById('startBtn').addEventListener('click',function(){
-	var nowYut = yutData[ Math.floor( Math.random() * yutData.length ) ];
+	nowYut = yutData[ Math.floor( Math.random() * yutData.length ) ];
 	yutImg.src = nowYut.img;
 	yutImg.alt = nowYut.name;
 
-	console.log('현재:' ,nowYut.name)
+	console.log('현재:' ,nowYut.name,nowYut.cell)
 })
 
 	for(var a = 0;a < stageA.length;a++){
 		(function(j){
 			stageA[j].addEventListener('click',function(e){
 				e.preventDefault()
-				console.log(e)
+				console.log(this)
+				if(this.id == 'startPoint' || firstFlag){
+					firstFlag = true;
+					this.classList.add('on');
+					if(!horsArr.includes(this)){				
+						horsArr.push(this)
+					}
+					
+				}else{
+					alert('스타트 지점에서 시작해주세요')
+
+				}
+
+				
 			})
 		}(a))
 	}
 
+document.getElementById('startPoint').addEventListener('click',function(){
+	//firstFlag = true;
+	//this.classList.add('on')
+})
  </script>
 </html>
+
+
 
 
 
