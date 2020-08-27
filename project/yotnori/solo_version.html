@@ -10,62 +10,39 @@
   <title>웇놀이</title>
 
   <link rel="stylesheet" href="css/basic.css">
-  <link rel="stylesheet" href="css/yutnori.css">
+  <link rel="stylesheet" href="css/yutnori.css">애플
 
   <style>
 
 	.yut-board{
 		position: relative;
+		display: flex;
+		justify-content: space-between;
+		flex-direction: column;
 		width: 100px;
 		height: 100px;
 		margin: 40px;
 		border: 1px solid #000;
 		box-sizing: border-box;
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
-		align-content: space-between;
 	}
-
+	.yut-board li {
+		display:flex;
+		justify-content:space-between;
+	}
+	.yut-board li.center{
+		justify-content:center;
+	}
 	.yut-board a{
-		position: relative;
 		display: block;
 		width: 10px;
 		height: 10px;
 		line-height: 10px;
-		margin: 0 3px;
 		text-align: center;
 		border-radius:100%;
 		border: 1px solid #000;
 		box-sizing: border-box;
-		flex: 0 1 auto;
 	}
-	.yut-board a:nth-child(9),
-	.yut-board a:nth-child(10),
-	.yut-board a:nth-child(14),
-	.yut-board a:nth-child(17),
-	.yut-board a:nth-child(20),
-	.yut-board a:nth-child(23),
-	.yut-board a:nth-child(27),
-	.yut-board a:nth-child(28){
-		visibility: hidden;
-	}
-	.yut-board a:nth-child(15){
-		top: -5px;
-		left: -5px;
-	}
-	.yut-board a:nth-child(16){
-		top: -5px;
-		right: -5px;
-	}
-	.yut-board a:nth-child(21){
-		bottom: -5px;
-		left: -5px;
-	}
-	.yut-board a:nth-child(22){
-		bottom: -5px;
-		right: -5px;
-	}
+
 
 	.yut-board #center{
 		position: absolute;
@@ -104,15 +81,23 @@ var status = {
 var Adata = Array(6*6).fill().map(function(el,i){
 	return el
 });
-for(var z = 0; z < 6;z++){
-	Adata.push([]);
-}
+Adata.
+ var Adata = [
+	[0,0,0,0,0,0],
+	[0,0,0,0],
+	[0,0,0,0],
+	[0],
+	[0,0,0,0],
+	[0,0,0,0],
+	[0,0,0,0,0,0]
 ]
-
+console.log(this.parentNode)
 1.윷뽑기 클릭
 	-> 윷이 나왔는가? Y > 그 윶이 무슨윶인가? 
 
-클릭으로 말 옮기는걸로,,
+클릭했을때 그 요소의 인덱스값 저장..
+데이터에서 클릭한요소는 1로변경,,하고
+그인덱스값의 6킨ㅆ;ㄱ,,
 
  var yutData = [
 	{
@@ -147,8 +132,7 @@ for(var z = 0; z < 6;z++){
 	}
 ]
 
-Adata[6][0] = mark.center
-
+console.log(li)
 
 -->
 
@@ -160,46 +144,63 @@ Adata[6][0] = mark.center
 
 		<button id="startBtn">윷뽑기</button>
 
-		<div class="yut-board">
-			<a href="">1</a>
-			<a href="">2</a>
-			<a href="">3</a>
-			<a href="">4</a>
-			<a href="">5</a>
-			<a href="">6</a>
-			<a href="">7</a>
-			<a href="">8</a>
-			<a href="">9</a>
-			<a href="">10</a>
-			<a href="">11</a>
-			<a href="">12</a>
-			<a href="">13</a>
-			<a href="">14</a>
-			<a href="">15</a>
-			<a href="">16</a>
-			<a href="">17</a>
-			<a href="">18</a>
-			<a href="">19</a>
-			<a href="">20</a>
-			<a href="">21</a>
-			<a href="">22</a>
-			<a href="">23</a>
-			<a href="">24</a>
-			<a href="">25</a>
-			<a href="">26</a>
-			<a href="">27</a>
-			<a href="">28</a>
-			<a href="">29</a>
-			<a href="">30</a>
-			<a href="">31</a>
-			<a href="">32</a>
-			<a href="">33</a>
-			<a href="">34</a>
-			<a href="">35</a>
-			<a href="" id="start">36</a>
-			<a href="" id="center">37</a>
-		</div>
-
+		<ul class="yut-board">
+			<li>
+				<a href="">1</a>
+				<a href="">2</a>
+				<a href="">3</a>
+				<a href="">4</a>
+				<a href="">5</a>
+				<a href="">6</a>			
+			</li>
+			<li>
+				<a href="">7</a>
+				<a href="">8</a>
+				<span class="x">x</span>
+				<span class="x">x</span>
+				<a href="">9</a>
+				<a href="">10</a>
+			</li>
+			<li>
+				<a href="">11</a>
+				<span class="x">x</span>
+				<a href="">12</a>
+				<a href="">13</a>
+				<span class="x">x</span>
+				<a href="">14</a>
+			</li>
+			<li class="center">
+				<span class="x">x</span>
+				<span class="x">x</span>
+				<a href="">15</a>
+				<span class="x">x</span>
+				<span class="x">x</span>
+			</li>
+			<li>
+				<a href="">16</a>
+				<span class="x">x</span>
+				<a href="">17</a>
+				<a href="">18</a>
+				<span class="x">x</span>
+				<a href="">19</a>		
+			</li>
+			<li>
+				<a href="">20</a>
+				<a href="">21</a>
+				<span class="x">x</span>
+				<span class="x">x</span>
+				<a href="">22</a>
+				<a href="">23</a>
+			</li>
+			<li>
+				<a href="">24</a>
+				<a href="">25</a>
+				<a href="">26</a>
+				<a href="">27</a>
+				<a href="">28</a>
+				<a href="" id="startPoint">29</a>
+			</li>
+		</ul>
 	</div>
 
  </body>
@@ -209,6 +210,7 @@ Adata[6][0] = mark.center
 
  var yutImg = document.getElementById('yutImg');
  var firstFlag = false;
+ var yutList = Array.prototype.slice.call(document.querySelector('.yut-board').children);
  var horsArr = [];
  var yutData = [
 	{
@@ -242,21 +244,26 @@ Adata[6][0] = mark.center
 		cell:-1
 	}
 ]
-var mark = {
+var m = {
 	before:0,
-	after:1,
-	center:2
+	wait:1,
+	ing:2,
+	cross:3
 }
- var stageA = document.querySelectorAll('.yut-board a');
- var Adata = [];
- for(var z = 0; z < 7;z++){
-	Adata.push([]);
-	for(var g = 0; g < 6;g++){
-		Adata[z].push(mark.before);
-	}
-  }
 
-  Adata[6][0] = mark.center
+ var stageA = document.querySelectorAll('.yut-board a');
+ var stageAarr = [];
+ var Adata = [
+	[m.cross,0,0,0,0,m.cross],
+	[0,0,'x','x',0,0],
+	[0,0,'x','x',0,0],
+	['x','x',0,'x','x'],
+	[0,0,'x','x',0,0],
+	[0,0,'x','x',0,0],
+	[m.cross,0,0,0,0,m.cross]
+]
+
+
 
 
  var nowYut;
@@ -273,16 +280,47 @@ document.getElementById('startBtn').addEventListener('click',function(){
 			stageA[j].addEventListener('click',function(e){
 				e.preventDefault()
 
-				var elStyle= window.getComputedStyle(this);
-				var elMleft = parseInt(elStyle.getPropertyValue('margin-left').substring(0));
-				var elMright = parseInt(elStyle.getPropertyValue('margin-right').substring(0));
+				//var elStyle= window.getComputedStyle(this);
+				//var elMleft = parseInt(elStyle.getPropertyValue('margin-left').substring(0));
+				//var elMright = parseInt(elStyle.getPropertyValue('margin-right').substring(0));
+				//var idx = Adata[stageAarr.indexOf(this)] = 1 
+				/*stageAarr[stageAarr.indexOf(this) - 5] = 1
+				Adata[stageAarr.indexOf(this) - 6] = 1
+				Adata[stageAarr.indexOf(this) - 7] = 1
+				Adata[stageAarr.indexOf(this) + 5] = 1
+				Adata[stageAarr.indexOf(this) + 6] = 1
+				Adata[stageAarr.indexOf(this) + 7] = 1
+				Adata[stageAarr.indexOf(this) + 1] = 1
+				Adata[stageAarr.indexOf(this) - 1] = 1*/
+				var li = yutList.indexOf(this.parentNode);
+				var abox = Array.prototype.slice.call(yutList[li].children);
+				var a = abox.indexOf(this);
+				
+				//3이면 대각선으로 갈수있고 아니면 앞으로 또는 뒤로 전진
+				if(Adata[li][a] == m.cross){				
+					if(yutList[li-1]){
+						console.log(
+							yutList[li-1].children[a-1],yutList[li-1].children[a],yutList[li-1].children[a+1],'/n',
+							Adata[li][a]
+						)
+					}
+					if(yutList[li]){
+						console.log(yutList[li].children[a-1],yutList[li].children[a],yutList[li].children[a+1])
+					}
+					if(yutList[li+1]){
+						console.log(yutList[li+1].children[a-1],yutList[li+1].children[a],yutList[li+1].children[a+1])
+					}
+				}else{
+					if(yutList[li]){
+						console.log(yutList[li].children[a-1],yutList[li].children[a],yutList[li].children[a+1])
+					}
+				}
 
-				console.log(this.offsetTop)
 				if(this.id == 'startPoint' || firstFlag){
 					firstFlag = true;
 					this.classList.add('on');
 					if(!horsArr.includes(this)){				
-						horsArr.push(this)
+						horsArr.push(this,this.parentNode)
 					}
 					
 				}else{
