@@ -10,7 +10,7 @@
   <title>웇놀이</title>
 
   <link rel="stylesheet" href="css/basic.css">
-  <link rel="stylesheet" href="css/yutnori.css">애플
+  <link rel="stylesheet" href="css/yutnori.css">
 
   <style>
 
@@ -98,6 +98,8 @@ console.log(this.parentNode)
 클릭했을때 그 요소의 인덱스값 저장..
 데이터에서 클릭한요소는 1로변경,,하고
 그인덱스값의 6킨ㅆ;ㄱ,,
+
+
 
  var yutData = [
 	{
@@ -248,18 +250,19 @@ var m = {
 	before:0,
 	wait:1,
 	ing:2,
-	cross:3
+	cross:3,
+	diagonal:4
 }
 
  var stageA = document.querySelectorAll('.yut-board a');
  var stageAarr = [];
  var Adata = [
 	[m.cross,0,0,0,0,m.cross],
-	[0,0,'x','x',0,0],
-	[0,0,'x','x',0,0],
-	['x','x',0,'x','x'],
-	[0,0,'x','x',0,0],
-	[0,0,'x','x',0,0],
+	[0,4,'x','x',4,0],
+	[0,'x',4,4,'x',0],
+	['x','x',4,'x','x'],
+	[0,'x',4,4,'x',0],
+	[0,4,'x','x',4,0],
 	[m.cross,0,0,0,0,m.cross]
 ]
 
@@ -295,40 +298,110 @@ document.getElementById('startBtn').addEventListener('click',function(){
 				var li = yutList.indexOf(this.parentNode);
 				var abox = Array.prototype.slice.call(yutList[li].children);
 				var a = abox.indexOf(this);
+			
+				//시작점과 처음클릭했을때만,,알럿창 뜨도록
+				if(this.id == 'startPoint'){
+					firstFlag = true;
+					this.classList.add('on');
+					//if(!horsArr.includes(this)){				
+						//horsArr.push(this,this.parentNode)
+					//}
+					Adata[li][a] = m.wait;
+					return
+				}else{
+					if(!firstFlag){
+						alert('스타트 지점에서 시작해주세요')
+					}
+				}
 				
 				//3이면 대각선으로 갈수있고 아니면 앞으로 또는 뒤로 전진
 				if(Adata[li][a] == m.cross){				
 					if(yutList[li-1]){
 						console.log(
-							yutList[li-1].children[a-1],yutList[li-1].children[a],yutList[li-1].children[a+1],'/n',
-							Adata[li][a]
+							Adata[li-1][a-1],Adata[li-1][a],Adata[li-1][a+1],'/n',
 						)
+						
+
+						//주위의 값이 1인지 확인
+						if(
+							Adata[li-1][a-1] == 1 ||
+							Adata[li-1][a] == 1 ||
+							Adata[li-1][a+1] == 1
+						){
+							console.log('전줄1있음')
+							Adata[li][a] = m.wait;
+						}
 					}
 					if(yutList[li]){
 						console.log(yutList[li].children[a-1],yutList[li].children[a],yutList[li].children[a+1])
+						
+						//주위의 값이 1인지 확인
+						if(
+							Adata[li][a-1] == 1 ||
+							Adata[li][a] == 1 ||
+							Adata[li][a+1] == 1
+						){
+							console.log('현줄1있음')
+							Adata[li][a] = m.wait;
+						}
 					}
 					if(yutList[li+1]){
 						console.log(yutList[li+1].children[a-1],yutList[li+1].children[a],yutList[li+1].children[a+1])
+						
+						//주위의 값이 1인지 확인
+						if(
+							Adata[li+1][a-1] == 1 ||
+							Adata[li+1][a] == 1 ||
+							Adata[li+1][a+1] == 1
+						){
+							console.log('후줄1있음')
+							Adata[li][a] = m.wait;
+						}
 					}
-				}else{
-					if(yutList[li]){
+				}else if(Adata[li][a] == m.before){
+					if(yutList[li-1] || yutList[li+1]){ //앞뒤줄
 						console.log(yutList[li].children[a-1],yutList[li].children[a],yutList[li].children[a+1])
+						//console.log(yutList[li-1].children[a] , yutList[li+1].children[a])
+
+
+						//주위의 값이 1인지 확인
+						if(
+							Adata[li-1][a] == 1 ||
+							Adata[li+1][a] == 1
+						){
+							console.log('현줄1있음',Adata[li-1][a],Adata[li+1][a])
+							Adata[li][a] = m.wait;
+
+							//주위에 1이 있느 상태에서
+							//클릭했을때 주위에 X 가 있다,,!
+							//그럼 1로변경
+							if(
+								Adata[li-1][a] == undefined ||
+								Adata[li+1][a] == undefined
+							){
+								var xArr=[];
+							}
+						}
+					}
+				}else if(Adata[li][a] == m.diagonal){
+					if(yutList[li-1] || yutList[li+1]){ //앞뒤줄
+						console.log(yutList[li].children[a-1],yutList[li].children[a],yutList[li].children[a+1])
+						//console.log(yutList[li-1].children[a] , yutList[li+1].children[a])
+						//주위에 1이 있느 상태에서
+						//클릭했을때 주위에 X 가 있다,,!
+						//그럼 1로변경
+
+						//주위의 값이 1인지 확인
+						if(
+							Adata[li-1][a-1] == 1 ||
+							Adata[li+1][a+1] == 1
+						){
+							console.log('현줄1있음')
+							Adata[li][a] = m.wait;
+						}
 					}
 				}
-
-				if(this.id == 'startPoint' || firstFlag){
-					firstFlag = true;
-					this.classList.add('on');
-					if(!horsArr.includes(this)){				
-						horsArr.push(this,this.parentNode)
-					}
-					
-				}else{
-					alert('스타트 지점에서 시작해주세요')
-
-				}
-
-				
+							
 			})
 		}(a))
 	}
