@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+ 
+  <title>웇놀이</title>
+
+  <link rel="stylesheet" href="css/basic.css">
+  <link rel="stylesheet" href="css/yutnori.css">
+
+  <style>
+
+	.yut-board{
+		position: relative;
+		display: flex;
+		justify-content: space-between;
+		flex-direction: column;
+		width: 100px;
+		height: 100px;
+		margin: 40px;
+		border: 1px solid #000;
+		box-sizing: border-box;
+	}
+	.yut-board li {
+		display:flex;
+		justify-content:space-between;
+	}
+	.yut-board li.center{
+		justify-content:center;
+	} 
+	.yut-board .x,
+	.yut-board a{
+		display: block;
+		width: 10px;
+		height: 10px;
+		line-height: 10px;
+		text-align: center;
+		border-radius:100%;
+		border: 1px solid #000;
+		box-sizing: border-box;
+	}
+	.yut-board a.on{background: red;color: #fff;}
+	.yut-board .x{
+		border: none;
+	}
+
+	.yut-board #center{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		width: 20px;
+		height: 20px;
+		line-height: 20px;
+		border-color:red;
+	}
+  </style>
+ </head>
+
+
+ <body>
+<!--
+[
+	0,0,0,0,0
+]
+
+도	앞뒤뒤뒤	앞이 하나인 경우 말을 한 칸 전진시킨다.
+개	앞앞뒤뒤	앞이 둘인 경우 말을 두 칸 전진시킨다.
+걸	앞앞앞뒤	앞이 셋인 경우 말을 세 칸 전진시킨다.
+윷	앞앞앞앞	모두 앞면인 경우 말을 네 칸 전진시키며, 윷을 다시 한 번 던질 수 있다.
+모	뒤뒤뒤뒤	모두 뒷면인 경우 말을 다섯 칸 전진시키며, 윷을 다시 한 번 던질 수 있다.
+뒷도 또는 백도(빽도) 또는 후도	앞뒤뒤뒤	앞이 하나이나 '뒤'가 표시되어 있는 것인 경우 말을 한 칸 후퇴(뒤로 보냄)시킨다. 좌측 그림에서 점이 찍힌 앞면이 뒷도가 표시된 윷 가락을 나타내는 예이다.
+(그러나 꼭 '점'을 뒷도로 사용할 필요는 없다.)
+
+낙		윷가락 중 하나 이상이 멍석을 나갈 경우 그대로 차례가 넘어간다.  
+var status = {
+	before:0,
+	after:1,
+	cetner:2
+}
+var Adata = Array(6*6).fill().map(function(el,i){
+	return el
+});
+Adata.
+ var Adata = [
+	[0,0,0,0,0,0],
+	[0,0,0,0],
+	[0,0,0,0],
+	[0],
+	[0,0,0,0],
+	[0,0,0,0],
+	[0,0,0,0,0,0]
+]
+console.log(this.parentNode)
+1.윷뽑기 클릭
+	-> 윷이 나왔는가? Y > 그 윶이 무슨윶인가? 
+
+클릭했을때 그 요소의 인덱스값 저장..
+데이터에서 클릭한요소는 1로변경,,하고
+그인덱스값의 6킨ㅆ;ㄱ,,
+
+
+var xArr=[];
+xArr.push(Adata[li+1][a],Adata[li-1][a])
+ var yutData = [
+	{
+		name:'도',
+		img:'images/yut_01.png',
+		cell:1
+	},
+	{
+		name:'개',
+		img:'images/yut_02.png',
+		cell:2
+	},
+	{
+		name:'걸',
+		img:'images/yut_03.png',
+		cell:3
+	},
+	{
+		name:'윷',
+		img:'images/yut_04.png',
+		cell:4
+	},
+	{
+		name:'모',
+		img:'images/yut_05.png',
+		cell:5
+	},
+	{
+		name:'백',
+		img:'images/yut_06.png',
+		cell:-1
+	}
+]
+
+console.log(li)
+
+-->
+
+	<div id="wrap">
+
+		<ul id="yutList">
+			<li><img src="" id="yutImg" alt=""></li>
+		</ul>
+
+		<button id="startBtn">윷뽑기</button>
+
+		<ul class="yut-board">
+			<li>
+				<a href="">1</a>
+				<a href="">2</a>
+				<a href="">3</a>
+				<a href="">4</a>
+				<a href="">5</a>
+				<a href="">6</a>			
+			</li>
+			<li>
+				<a href="">7</a>
+				<a href="">8</a>
+				<span class="x">x</span>
+				<span class="x">x</span>
+				<a href="">9</a>
+				<a href="">10</a>
+			</li>
+			<li>
+				<a href="">11</a>
+				<span class="x">x</span>
+				<a href="">12</a>
+				<a href="">13</a>
+				<span class="x">x</span>
+				<a href="">14</a>
+			</li>
+			<li class="center">
+				<a href="">15</a>
+			</li>
+			<li>
+				<a href="">16</a>
+				<span class="x">x</span>
+				<a href="">17</a>
+				<a href="">18</a>
+				<span class="x">x</span>
+				<a href="">19</a>		
+			</li>
+			<li>
+				<a href="">20</a>
+				<a href="">21</a>
+				<span class="x">x</span>
+				<span class="x">x</span>
+				<a href="">22</a>
+				<a href="">23</a>
+			</li>
+			<li>
+				<a href="">24</a>
+				<a href="">25</a>
+				<a href="">26</a>
+				<a href="">27</a>
+				<a href="">28</a>
+				<a href="" id="startPoint">29</a>
+			</li>
+		</ul>
+	</div>
+
+ </body>
+ <script src="js/solo.js"></script>
+
+ <script>
+
+ var yutImg = document.getElementById('yutImg');
+ var firstFlag = false;
+ var yutList = Array.prototype.slice.call(document.querySelector('.yut-board').children);
+ var horsArr = [];
+ var yutData = [
+	{
+		name:'도',
+		img:'images/yut_01.png',
+		cell:1
+	},
+	{
+		name:'개',
+		img:'images/yut_02.png',
+		cell:2
+	},
+	{
+		name:'걸',
+		img:'images/yut_03.png',
+		cell:3
+	},
+	{
+		name:'윷',
+		img:'images/yut_04.png',
+		cell:4
+	},
+	{
+		name:'모',
+		img:'images/yut_05.png',
+		cell:5
+	},
+	{
+		name:'백',
+		img:'images/yut_06.png',
+		cell:-1
+	}
+]
+var m = {
+	before:0,
+	wait:1,
+	ing:2,
+	cross:3,
+	diagonal:4,
+	center:5
+}
+
+ var stageA = document.querySelectorAll('.yut-board a');
+ var stageAarr = [];
+ var Adata = [
+	[m.cross,0,0,0,0,m.cross],
+	[0,4,'x','x',4,0],
+	[0,'x',4,4,'x',0],
+	[m.center,m.center,m.center,m.center,m.center,m.center],
+	[0,'x',4,4,'x',0],
+	[0,4,'x','x',4,0],
+	[m.cross,0,0,0,0,m.cross]
+]
+
+
+
+
+ var nowYut;
+document.getElementById('startBtn').addEventListener('click',function(){
+	nowYut = yutData[ Math.floor( Math.random() * yutData.length ) ];
+	yutImg.src = nowYut.img;
+	yutImg.alt = nowYut.name;
+
+	console.log('현재:' ,nowYut.name,nowYut.cell)
+})
+
+	for(var a = 0;a < stageA.length;a++){
+		(function(j){
+			stageA[j].addEventListener('click',function(e){
+				e.preventDefault()
+				
+				//var elStyle= window.getComputedStyle(this);
+				//var elMleft = parseInt(elStyle.getPropertyValue('margin-left').substring(0));
+				//var elMright = parseInt(elStyle.getPropertyValue('margin-right').substring(0));
+				//var idx = Adata[stageAarr.indexOf(this)] = 1 
+				/*stageAarr[stageAarr.indexOf(this) - 5] = 1
+				Adata[stageAarr.indexOf(this) - 6] = 1
+				Adata[stageAarr.indexOf(this) - 7] = 1
+				Adata[stageAarr.indexOf(this) + 5] = 1
+				Adata[stageAarr.indexOf(this) + 6] = 1
+				Adata[stageAarr.indexOf(this) + 7] = 1
+				Adata[stageAarr.indexOf(this) + 1] = 1
+				Adata[stageAarr.indexOf(this) - 1] = 1*/
+				var li = yutList.indexOf(this.parentNode);
+				var abox = Array.prototype.slice.call(yutList[li].children);
+				var a = abox.indexOf(this);
+			
+				//시작점과 처음클릭했을때만,,알럿창 뜨도록
+				if(this.id == 'startPoint'){
+					firstFlag = true;
+					this.classList.add('on');
+					//if(!horsArr.includes(this)){				
+						//horsArr.push(this,this.parentNode)
+					//}
+					Adata[li][a] = m.wait;
+					return
+				}else{
+					if(!firstFlag){
+						alert('스타트 지점에서 시작해주세요')
+					}
+				}
+
+				//3이면 대각선으로 갈수있고 아니면 앞으로 또는 뒤로 전진
+				if(Adata[li][a] == m.cross){				
+					if(yutList[li-1]){
+						console.log(
+							Adata[li-1][a-1],Adata[li-1][a],Adata[li-1][a+1],'/n',
+						)
+						
+
+						//주위의 값이 1인지 확인
+						if(
+							Adata[li-1][a-1] == 1 ||
+							Adata[li-1][a] == 1 ||
+							Adata[li-1][a+1] == 1
+						){
+							console.log('전줄1있음')
+							Adata[li][a] = m.wait;
+						}
+					}
+					if(yutList[li]){
+						console.log(yutList[li].children[a-1],yutList[li].children[a],yutList[li].children[a+1])
+						
+						//주위의 값이 1인지 확인
+						if(
+							Adata[li][a-1] == 1 ||
+							Adata[li][a] == 1 ||
+							Adata[li][a+1] == 1
+						){
+							console.log('현줄1있음')
+							Adata[li][a] = m.wait;
+						}
+					}
+					if(yutList[li+1]){
+						console.log(yutList[li+1].children[a-1],yutList[li+1].children[a],yutList[li+1].children[a+1])
+						
+						//주위의 값이 1인지 확인
+						if(
+							Adata[li+1][a-1] == 1 ||
+							Adata[li+1][a] == 1 ||
+							Adata[li+1][a+1] == 1
+						){
+							console.log('후줄1있음')
+							Adata[li][a] = m.wait;
+						}
+					}
+				}else if(Adata[li][a] == m.before){
+
+
+					if(yutList[li-1] || yutList[li+1]){ //앞뒤줄
+
+						//주위의 값이 1인지 확인
+						if(
+							Adata[li-1][a] == 1 ||
+							Adata[li+1][a] == 1
+						){
+							console.log('현줄1있음',Adata[li+1][a+1],Adata[li-1][a-1])
+							Adata[li][a] = m.wait;
+
+							//주위에 1이 있느 상태에서	
+							//클릭했을때 주위에 5 가 있다,,!
+							//그럼 1로변경
+							if(Adata[li-1][a] == 5 || Adata[li+1][a] == 5){
+
+							Adata[li-1][a] =1;
+							Adata[li+1][a] = 1
+
+							}
+
+						}
+					}
+					if(yutList[li+1]){ //앞뒤줄
+						//주위의 값이 1인지 확인
+						if(
+							Adata[li-1][a] == 1 ||
+							Adata[li+1][a] == 1
+						){
+							console.log('현줄1있음',Adata[li+1][a+1],Adata[li-1][a-1])
+							Adata[li][a] = m.wait;
+
+							//주위에 1이 있느 상태에서	
+							//클릭했을때 주위에 5 가 있다,,!
+							//그럼 1로변경
+							if(Adata[li-1][a] == 5 || Adata[li+1][a] == 5){
+
+							Adata[li-1][a] =1;
+							Adata[li+1][a] = 1
+
+							}
+
+						}
+					}
+				}else if(Adata[li][a] == m.diagonal){
+					console.log(
+						yutList[li+1].children[a-1],yutList[li+1].children[a+1],
+						yutList[li-1].children[a-1],yutList[li-1].children[a+1]
+					)
+
+					var xArr = [ Adata[li+1][a-1],Adata[li+1][a+1],Adata[li-1][a-1],Adata[li-1][a+1]]
+					if(xArr.includes(1)){
+						Adata[li][a] = m.wait;
+						console.log('주변1')
+					}
+				}else if(Adata[li][a] == m.center){
+					Adata[li].forEach(function(a,i){
+						Adata[li][i] = 1
+					})
+				}
+
+				if(Adata[li][a] == m.wait){
+					this.classList.add('on')
+				}
+							
+			})
+		}(a))
+	}
+
+//document.getElementById('startPoint').addEventListener('click',function(){
+	//firstFlag = true;
+	//this.classList.add('on')
+//})
+ </script>
+</html>
+
+
+
+
+

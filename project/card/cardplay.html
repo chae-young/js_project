@@ -3,49 +3,34 @@
 <head>
 	<meta charset="UTF-8">
 	<title>nct 카드 맞추기</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="css/basic.css">
+	<link rel="stylesheet" href="css/cardplay.css">
 </head>
 <style>
-#wrap{
-	display:flex;
-	flex-wrap:wrap;
-}
-.card{
-	position: relative;
-	width: 120px;
-	height: 150px;
-	margin: 5px;
-	border: 1px solid #000;
-	font-size: 0;
-}
-.card > div{
-	position: absolute;
-	left: 0;
-	top: 0;
-	bottom: 0;
-	right: 0;
-}
-.card .front{
-	z-index: 2;
-	background: #58fd00;
-}
-.card .back{
-	background-color: rgb(0,0,0);
-}
-.card img{width: 100%;}
 
-.card.flip{
-	
-}
+
 </style>
 <body>
 	<div id="wrap">
-		<div class="card" id="card">
-			<div class="front">앞</div>
-			<div class="back"></div>
-		</div>
-	</div>
+	
+		<ul class="card__list" id="cardList">
+			<li class="card">
+				<div class="front">앞</div>
+				<div class="back"></div>
+			</li>
+		</ul>
 
+ 		<!--div class="favorite">
+			<span>&#x1F499;</span>
+			<span>&#x1F49A;</span>
+			<span>&#x1F49B;</span>
+		</div> -->
+
+		<button id="btnplay" type="button">다시 섞기</button>	
+	</div>
 </body>
-<script src="cardplay.js"></script>
+<script src="js/cardplay.js"></script>
 
 </html>

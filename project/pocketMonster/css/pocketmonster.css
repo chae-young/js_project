@@ -1,0 +1,91 @@
+	#wrap{
+		display:flex;
+	}
+	.hidden{display: none !important;}
+	#btn-turn{
+		position: absolute;
+		left: 50%;
+		top: 0;
+		width: 100px;
+		height: 40px;
+		line-height: 40px;
+		text-align: center;
+		background: #000;
+		color: #fff;
+		cursor: pointer;
+	}
+	.area{
+		margin-top: 40px;
+		padding: 20px;
+		overflow: hidden;
+		border: 1px solid #000;
+	}
+	.ball-box{
+		display: flex;
+	}
+	.monster{
+		position: relative;
+		display: flex;
+		flex-direction:column;
+		justify-content:flex-end;
+		width: 150px;
+		height: 200px;
+		margin: 5px;
+		padding: 10px;
+		border: 1px solid #000;
+		box-sizing: border-box;
+	}
+	.stage .name,
+	.stage .hp,
+	.stage .exp,
+	.stage .attack{
+		width: calc(100% - 10px);
+		margin: 0 auto;
+		font-size: 13px;
+
+	}
+	.stage .name,
+	.stage .hp,
+	.stage .exp{
+		margin-bottom:5px;
+	}
+	.stage span{
+		display: block;
+	}
+	.stage .bar{
+		height: 2px;
+		margin-top: 5px;
+		border: 1px solid rgb(0,0,0);	
+	}
+	.stage .bar .in{
+		width: 0;
+		height: 100%;
+	}
+	.stage .hp .in{
+		background: green;
+	}
+	.stage .hp.down .in{
+		background: red;
+	}
+	.stage .exp .in{
+		background: blue;
+	}
+	.stage .exp .level{
+		display: inline-block;
+		vertical-align: middle;
+	}
+	.stage .attack .in{
+		background: purple;
+	}
+	.fighter{
+		flex: 1;
+	}
+	#trainner .selected-stage .monster{
+		margin: 40px auto 0;
+	}
+	#me .selected-stage .monster{
+		margin: 0 auto 40px;
+	}
+	.pocket-ball{
+		flex-basis:250px;
+	}

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+<style>
+
+#desktop{background: blue;color: #fff;}
+#mobile{background: yellow;color: #000;} 
+
+@media only all and (min-width:1200px) {
+	#mobile{display: none;}
+
+	#desktop{
+		
+	}
+}
+
+@media only all and (max-width:1199px) {
+	#mobile{display: block;}
+	#desktop{display: none;}
+
+	#mobile{
+	
+	}
+}
+
+</style>
+</head>
+<body>
+<!--
+
+리사이징.
+
+-->
+
+<!-- basic -->
+<div id="desktop">
+	DESKTOP ~
+</div>
+
+<div id="mobile">
+	MOBILE ~ 
+</div>
+
+</body>
+<script>
+	var DeskTop = document.getElementById('desktop');
+	var Mobile = document.getElementById('mobile');
+	var breakWidth = 1199;
+
+	function factory(){
+		var windowWidth = window.outerWidth;
+		if(windowWidth >= breakWidth){
+			console.log('pc')
+			DeskTop.classList.add('red');
+		}else{
+			console.log('m')			
+		}
+	}
+
+	factory()
+	
+	var once;
+	window.addEventListener('resize',function(){
+		clearTimeout(once)
+		once = setTimeout(factory,500)
+	})
+
+	console.log(  )
+</script>
+<script src="js/banila.js"></script>
+</html>
