@@ -24,6 +24,7 @@ answers	return
 function solution(answers) {
     var person1 = [];
     var person2 = [];
+    //
     var person3 = [];
 
     for(var i = 1;i <= answers.length;i++){
