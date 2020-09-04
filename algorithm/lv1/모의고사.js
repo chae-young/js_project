@@ -22,22 +22,18 @@ answers	return
 */
 
 function solution(answers) {
-    var person1 = [];
-    var person2 = [];
-    //
-    var person3 = [];
 
-    for(var i = 1;i <= answers.length;i++){
-        person1.push(i);
-        if(i!=2){
-            person2.push(2,i-5);
-        }
-            
-        person1.push(i);
+    var person1 = [1,2,3,4,5];
+    var person2 = [2,1,2,3,2,4,2,5];
+    var person3 = [3,3,1,1,2,2,4,4,5,5];
+
+    //답의 길이만큼 답 제출
+    for(var i = 0;i < answers.length;i++){
+        console.log(person1[i%5],person2[i%8],person3[i%9])
     }
 
-    console.log(person2)
+
     //return person1
 }
 
-console.log(solution([1,2,3,4,5]))
+console.log(solution([1,2,3,4,5,6]))
