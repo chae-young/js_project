@@ -35,12 +35,12 @@ function solution(answers) {
     for(var i = 0;i < answers.length;i++){
 		person1Arr.push(person1[i%5])
 		person2Arr.push(person2[i%8])
-		person3Arr.push(person3[i%9])
+        person3Arr.push(person3[i%9])
     }
-     //console.log(person1Arr,person2Arr,person3Arr)
-	var ans1 = [];
-	var ans2 = [];
-	var ans3 = [];
+
+	var ans1 = [],
+        ans2 = [],
+	    ans3 = [];
 
     var sum1 = 0,
         sum2 = 0,
@@ -48,32 +48,52 @@ function solution(answers) {
 
 	//답 서로 맞는지 확인. 맞으면 1 틀리면 0
 	for(var j = 0;j < answers.length;j++){
-			ans1.push( Number(answers[j] == person1Arr[j]) || Number(answers[j] == person1Arr[j]) )
-			ans2.push( Number(answers[j] == person2Arr[j]) || Number(answers[j] == person2Arr[j]) )
-            ans3.push( Number(answers[j] == person3Arr[j]) || Number(answers[j] == person3Arr[j]) )
-            sum1 += ans1[j];
-            sum2 += ans2[j];
-            sum3 += ans3[j];
+        ans1.push( Number(answers[j] == person1Arr[j]) || Number(answers[j] == person1Arr[j]) )
+        ans2.push( Number(answers[j] == person2Arr[j]) || Number(answers[j] == person2Arr[j]) )
+        ans3.push( Number(answers[j] == person3Arr[j]) || Number(answers[j] == person3Arr[j]) )
+        sum1 += ans1[j]
+        sum2 += ans2[j]
+        sum3 += ans3[j]
     }
-    
+
     var obj = {
         sum1:['1',sum1],
         sum2:['2',sum2],
-        sum3:['3',sum3]
+        sum3:['3',sum3],
     }
    
     //제일큰값을 리턴해라
-    var  all = [sum1,sum2,sum3];
+    var all = [sum1,sum2,sum3];
+    var max = all.splice( all.indexOf(Math.max.apply(null,all)) , 1 )[0];
+
+    var everyNum = all.every(function(el){
+        return max => el
+    })
+    
+    if(!everyNum){//큰값이 하나면
+
+    }else{//여러개면,,
+
+    }
+    console.log(everyNum)
+
     var answer = [];
+ 
+
+    //가장큰값을 먼저 뽑고..같은값이면 오름차순으로..
+    for(var val in obj){
+        if( obj[val].indexOf(max) == 1 ){
+            console.log('있음')
+        }
+    }
+    /*
     for(var val in obj){
         if( obj[val].indexOf(Math.max.apply(null,all)) == 1 ){
             answer.push(parseInt(obj[val][0]))
         }
-    }
-	
-
+    }*/
 
     return answer
 }
 
-console.log(solution([2,1,2,3,2]))
+console.log(solution([1,3,2,4,2]))
