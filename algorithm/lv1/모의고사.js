@@ -61,31 +61,29 @@ function solution(answers) {
         sum2:['2',sum2],
         sum3:['3',sum3],
     }
-   
+
     //제일큰값을 리턴해라
     var all = [sum1,sum2,sum3];
     var max = all.splice( all.indexOf(Math.max.apply(null,all)) , 1 )[0];
 
-    var everyNum = all.every(function(el){
-        return max => el
-    })
-    
-    if(!everyNum){//큰값이 하나면
-
-    }else{//여러개면,,
-
-    }
-    console.log(everyNum)
-
     var answer = [];
- 
+    
+    function maxobj(){
+        for(var val in obj){
+            if(obj[val].indexOf(max) == 1){
+                 answer.push(parseInt(obj[val][0]))
+            }
+         }       
+    }
+
+    if(!all.includes(max)){//큰값이 하나면
+        maxobj()
+    }else{//여러개면,,
+        maxobj()
+    }
 
     //가장큰값을 먼저 뽑고..같은값이면 오름차순으로..
-    for(var val in obj){
-        if( obj[val].indexOf(max) == 1 ){
-            console.log('있음')
-        }
-    }
+
     /*
     for(var val in obj){
         if( obj[val].indexOf(Math.max.apply(null,all)) == 1 ){
@@ -96,4 +94,4 @@ function solution(answers) {
     return answer
 }
 
-console.log(solution([1,3,2,4,2]))
+console.log(solution([2,1,2,3,2]))
