@@ -20,7 +20,6 @@ function solution(s) {
 	}
 	st.sort().reverse()
     var answer = st.join('');
-
 	return answer 
 }
 	solution('bdcsAE')
