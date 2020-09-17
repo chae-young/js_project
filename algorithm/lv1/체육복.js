@@ -22,6 +22,9 @@ n	 lost	   reserve	    return
 5	 [2, 4]	   [1, 3, 5]	5
 5	 [2, 4]	   [3]	        4
 3	 [3]	   [1]	        2
+5            1,2,3,4,5 1,2,3,4,5    5
+5	[4, 5]	[3, 4]	4
+
 
 입출력 예 설명
 예제 #1
@@ -74,7 +77,10 @@ lost에서 빌려줄수있는애 값을 뺀다.
 못빌려줌.
 도난당할경우 lost로 이동하니까
 
-reserve애들이 lost에 있는지 체크..
+
+체육복 잃어버려서 lost에 추가된경우.
+그원소 찾아서 체크.
+삭제.ㅋㅋㅋ
 
 >>>
 */
@@ -82,68 +88,76 @@ reserve애들이 lost에 있는지 체크..
 
 
 function solution(n, lost, reserve) {
+
     var answer = 0;
 	var sequence = [];
 	var ing = false;
-	
-	for(var i = 0;i < reserve.length;i++){
-		if(lost.includes(reserve[i])){
 
-			lost.splice(lost.indexOf( reserve[i] ),1)
+	for(var i = 0;i < reserve.length;i++){
+	console.log(reserve.length)
+		if(lost.includes(reserve[i])){
+			lost.splice(lost.indexOf( reserve.indexOf( reserve[i] ) ),1)
 			reserve.splice( reserve.indexOf( reserve[i] ),1 )
 			
 		}
 	}
 
+
 	//function check(){
-		lost.forEach(function(el){
-		  sequence.push( el+1,el-1 )
-		})
+	lost.forEach(function(el){
+	  sequence.push( el+1,el-1 )
+	})
 
-		var move = [];
-		sequence.forEach(function(el){
-			if(move.indexOf(el) == -1){
-				move.push(el)
-			}
-		})
-
-
-		var num = 0;
-
-		move.forEach(function(el){
-			if(reserve.includes(el)){
-				++num
-			}
-		})
-
-		if( Math.sign( lost.length - num ) == -1 ){
-			answer = n;
-		}else{
-			answer = n- (lost.length - num);
+	var move = [];
+	sequence.forEach(function(el){
+		if(move.indexOf(el) == -1){
+			move.push(el)
 		}
+	})
+
+
+	var num = 0;
+
+	move.forEach(function(el){
+		if(reserve.includes(el)){
+			++num
+		}
+	})
+
+	if( Math.sign( lost.length - num ) == -1 ){
+		answer = n;
+	}else{
+		answer = n- (lost.length - num);
+	}
 	//}
 
 	console.log(answer)
 	return answer
-   /*lost.filter(function(el){
-		if( reserve.indexOf(el-1) != -1 ){
-			reserve.splice( reserve.indexOf(el-1),1 )
-			if(dress.indexOf(el) == -1){
-				dress.push(el)
-			}
-		}
-		if( reserve.indexOf(el+1) != -1 ){
-			reserve.splice( reserve.indexOf(el+1),1 )
-			if(dress.indexOf(el) == -1){
-				dress.push(el)
-			}
-		}
-	})
 
-	answer = n - (lost.length - dress.length)
-
-	return answer
-	*/
 
 }
-console.log(solution(5,[2,3,5],[2,4]))
+console.log(solution(15,[1,2,3,4,5,7,8,9,10],[6,11,12]))
+
+
+   /*
+반타작 코드
+
+lost.filter(function(el){
+	if( reserve.indexOf(el-1) != -1 ){
+		reserve.splice( reserve.indexOf(el-1),1 )
+		if(dress.indexOf(el) == -1){
+			dress.push(el)
+		}
+	}
+	if( reserve.indexOf(el+1) != -1 ){
+		reserve.splice( reserve.indexOf(el+1),1 )
+		if(dress.indexOf(el) == -1){
+			dress.push(el)
+		}
+	}
+})
+
+answer = n - (lost.length - dress.length)
+
+return answer
+	*/
