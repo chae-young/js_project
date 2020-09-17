@@ -38,12 +38,14 @@ n	 lost	   reserve	    return
 ※ 공지 - 2019년 2월 27일, 28일 테스트케이스가 추가되었습니다.
 
 >>>
+전체학생     잃어버린애     빌려줄수있는애(2벌(도난당할경우 1벌))     수업들을수 있는 학생수.
 
-체육수업을 들을 수 있는 학생의 최댓값?
 
-lost의 앞번호,뒷번호 배열 만들기.
-겹치는 번호 제거.
+수업 못듣는애
+빌려줄수있는 애들이 못빌려주는 애들.
+1.빌려줄수있는 애들 중에 속하지않음
 
+전체학생 - 수업 못듣는애
 
 
 입출력 예
@@ -52,9 +54,7 @@ n	 lost	   reserve	    return
 5	 [2, 4]	   [3]	        4
 3	 [3]	   [1]	        2
 
-move lost의 길이를 더한값에 맞는값을
-전체수에서 못듣는애 값을 빼야함.
-빌려줄수 있는애 > move에서 reserve 속하면 체크.
+
 
 못듣는애 
 3-3 0
@@ -69,95 +69,49 @@ move   reserve           빌려줄수있는애
 5 2 1  /  2-1 = 1
 3 1 0  /  1-0=1
 
-lost에서 빌려줄수있는애 값을 뺀다.
-음수면 전체 수 반환
-양수면 전체수에서 못듣느애값 빼기,,?
 
-여벌을 가져온 학생이 도난당했을경우.
-못빌려줌.
-도난당할경우 lost로 이동하니까
-
-
-체육복 잃어버려서 lost에 추가된경우.
-그원소 찾아서 체크.
-삭제.ㅋㅋㅋ
 
 >>>
 */
 
-
-
-function solution(n, lost, reserve) {
+function solution(n, lost, reserve){
 
     var answer = 0;
-	var sequence = [];
-	var ing = false;
 
-	for(var i = 0;i < reserve.length;i++){
-	console.log(reserve.length)
-		if(lost.includes(reserve[i])){
-			lost.splice(lost.indexOf( reserve.indexOf( reserve[i] ) ),1)
-			reserve.splice( reserve.indexOf( reserve[i] ),1 )
-			
+	var clothes = []
+
+	for(var i = 0;i < n;i++){
+		clothes.push(1)
+	}
+	for(var h = 0;h < lost.length;h++){
+		if(!reserve.includes( lost[h] )){
+			clothes[lost[h]-1] = clothes[lost[h]-1] - 1
 		}
 	}
-
-
-	//function check(){
-	lost.forEach(function(el){
-	  sequence.push( el+1,el-1 )
-	})
-
-	var move = [];
-	sequence.forEach(function(el){
-		if(move.indexOf(el) == -1){
-			move.push(el)
+	for(var j = 0;j < reserve.length;j++){
+		if(!lost.includes( reserve[j] )){
+			clothes[reserve[j]-1] = clothes[reserve[j]-1] + 1
 		}
-	})
+	}
 
 
 	var num = 0;
+	lost.forEach(function(el,i){
 
-	move.forEach(function(el){
-		if(reserve.includes(el)){
+		if( clothes[ clothes[el-2] ] != 2 || clothes[ clothes[el+2] ] != 2){
 			++num
 		}
+		if( clothes[ clothes[el-1] ] == 1 || clothes[ clothes[el+1] ] == 1){
+			--num
+		}
 	})
+	console.log(clothes,num)
+	answer = n - num;
 
-	if( Math.sign( lost.length - num ) == -1 ){
-		answer = n;
-	}else{
-		answer = n- (lost.length - num);
-	}
-	//}
-
-	console.log(answer)
-	return answer
-
-
+	return answer;
+	//console.log(num)
 }
-console.log(solution(15,[1,2,3,4,5,7,8,9,10],[6,11,12]))
+
+console.log(solution(5,[4,5],[3,4]))
 
 
-   /*
-반타작 코드
-
-lost.filter(function(el){
-	if( reserve.indexOf(el-1) != -1 ){
-		reserve.splice( reserve.indexOf(el-1),1 )
-		if(dress.indexOf(el) == -1){
-			dress.push(el)
-		}
-	}
-	if( reserve.indexOf(el+1) != -1 ){
-		reserve.splice( reserve.indexOf(el+1),1 )
-		if(dress.indexOf(el) == -1){
-			dress.push(el)
-		}
-	}
-})
-
-answer = n - (lost.length - dress.length)
-
-return answer
-	*/
