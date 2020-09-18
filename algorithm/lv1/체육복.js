@@ -75,7 +75,7 @@ move   reserve           빌려줄수있는애
 */
 
 function solution(n, lost, reserve){
-
+	lost=[4,5,3]
     var answer = 0;
 
 	var clothes = []
@@ -93,25 +93,32 @@ function solution(n, lost, reserve){
 			clothes[reserve[j]-1] = clothes[reserve[j]-1] + 1
 		}
 	}
+	
 
+	var num = 0,mynum = 0;
 
-	var num = 0;
 	lost.forEach(function(el,i){
 
-		if( clothes[ clothes[el-2] ] != 2 || clothes[ clothes[el+2] ] != 2){
+		if( clothes[ clothes[el-2] ] == 2 || clothes[ clothes[el] + 1] == 2){ //lost 에서 빌릴수 있는 애들
 			++num
-		}
-		if( clothes[ clothes[el-1] ] == 1 || clothes[ clothes[el+1] ] == 1){
-			--num
+		}else{		
+			if( clothes[el-1] == 1){//양옆이 2가 아닌데 자기자신이 1인경우.
+				++mynum
+			}
 		}
 	})
-	console.log(clothes,num)
-	answer = n - num;
+
+	console.log(clothes,num,mynum)
+	answer = (n - (lost.length - num)) + mynum; //(전체수 - 못빌리는애)+자기자신
 
 	return answer;
-	//console.log(num)
+
 }
 
 console.log(solution(5,[4,5],[3,4]))
+//console.log(solution(5,[1,2,3,4,5],[1,2,3,4,5]))
+//console.log(solution(3,[3],[1]))
+//console.log(solution(5,[2,4],[1,3,5]))
+//console.log(solution(5,[2,4],[3]))
 
 
