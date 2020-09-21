@@ -75,20 +75,20 @@ move   reserve           빌려줄수있는애
 */
 
 function solution(n, lost, reserve){
-	lost=[4,5,3]
+	//lost = [2,4,3]
     var answer = 0;
 
 	var clothes = []
 
-	for(var i = 0;i < n;i++){
+	for(var i = 0;i < n;i++){ //하나씩 체육복넣기
 		clothes.push(1)
 	}
-	for(var h = 0;h < lost.length;h++){
+	for(var h = 0;h < lost.length;h++){//잃어버린애들이 여유있는애들에 포함되있지 않으면 0
 		if(!reserve.includes( lost[h] )){
 			clothes[lost[h]-1] = clothes[lost[h]-1] - 1
 		}
 	}
-	for(var j = 0;j < reserve.length;j++){
+	for(var j = 0;j < reserve.length;j++){//여유있는애들이 잃어버리지 않는다면 1추가.
 		if(!lost.includes( reserve[j] )){
 			clothes[reserve[j]-1] = clothes[reserve[j]-1] + 1
 		}
@@ -96,29 +96,31 @@ function solution(n, lost, reserve){
 	
 
 	var num = 0,mynum = 0;
+	var resultarr = [];
 
 	lost.forEach(function(el,i){
-
-		if( clothes[ clothes[el-2] ] == 2 || clothes[ clothes[el] + 1] == 2){ //lost 에서 빌릴수 있는 애들
+		//console.log(clothes[el]  == 2)
+		if( clothes[el-2]  == 2){ //lost 에서 빌릴수 있는 애들
 			++num
-		}else{		
-			if( clothes[el-1] == 1){//양옆이 2가 아닌데 자기자신이 1인경우.
-				++mynum
-			}
+			clothes[el-2] = clothes[el-2]+1
 		}
+		if( clothes[el]  == 2 ){
+			++num			
+			clothes[el] = clothes[el]+1
+		}	
 	})
 
-	console.log(clothes,num,mynum)
-	answer = (n - (lost.length - num)) + mynum; //(전체수 - 못빌리는애)+자기자신
+	console.log(clothes,num,mynum)// 빌릴수있는애들,자기자신이 체육복 갖고있음
+	answer = n - (Math.abs(reserve.length - (num + mynum))); //(전체수 - 못빌리는애)+자기자신
 
 	return answer;
 
 }
 
-console.log(solution(5,[4,5],[3,4]))
-//console.log(solution(5,[1,2,3,4,5],[1,2,3,4,5]))
-//console.log(solution(3,[3],[1]))
-//console.log(solution(5,[2,4],[1,3,5]))
-//console.log(solution(5,[2,4],[3]))
+console.log(solution(5,[2,4],[1,3,5])) //5
+console.log(solution(5,[2,4],[3])) //4
+console.log(solution(3,[3],[1])) //2
+console.log(solution(5,[1,2,3,4,5],[1,2,3,4,5])) //5
+console.log(solution(5,[4,5],[3,4])) //4
 
 

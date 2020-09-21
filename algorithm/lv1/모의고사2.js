@@ -85,3 +85,6 @@ function solution(answers) {
 }
 
 console.log(solution([0]))
+
+
+/*슈발 */
