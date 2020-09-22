@@ -96,18 +96,16 @@ function solution(n, lost, reserve){
 	
 
 	var num = 0,mynum = 0;
-	var resultarr = [];
+	var resultarr = clothes.slice();
 
 	lost.forEach(function(el,i){
 		//console.log(clothes[el]  == 2)
-		if( clothes[el-2]  == 2){ //lost 에서 빌릴수 있는 애들
+		if( clothes[el-2]  !== 2 || clothes[el]  !== 2 ){ //lost 에서 빌릴수 있는 애들
 			++num
-			clothes[el-2] = clothes[el-2]+1
 		}
-		if( clothes[el]  == 2 ){
-			++num			
-			clothes[el] = clothes[el]+1
-		}	
+		if( clothes[el]  == 2 || clothes[el]  == 2 ){
+			--num
+		}
 	})
 
 	console.log(clothes,num,mynum)// 빌릴수있는애들,자기자신이 체육복 갖고있음
