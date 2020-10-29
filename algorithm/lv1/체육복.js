@@ -70,12 +70,11 @@ move   reserve           빌려줄수있는애
 3 1 0  /  1-0=1
 
 
-
 >>>
 */
 
 function solution(n, lost, reserve){
-	lost=[4,5,3]
+	lost=[2,4,3]
     var answer = 0;
 
 	var clothes = []
@@ -115,10 +114,10 @@ function solution(n, lost, reserve){
 
 }
 
-console.log(solution(5,[4,5],[3,4]))
+//console.log(solution(10,[1,2,3,4,5,6,7],[1,2,3,4,5,6]))
 //console.log(solution(5,[1,2,3,4,5],[1,2,3,4,5]))
 //console.log(solution(3,[3],[1]))
-//console.log(solution(5,[2,4],[1,3,5]))
+console.log(solution(5,[2,4],[1,3,5]))
 //console.log(solution(5,[2,4],[3]))
 
 
