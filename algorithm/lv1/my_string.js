@@ -44,30 +44,35 @@ function solution(strings, n) {
 O -> 그 문자열끼리 비교해서 정렬 
 X -> 문자열 반환 
 
-*/
 
+
+*/
 function solution(strings, n) {
     var answer = [];
-    //return answer;
 	var obj = {};
 	var stringArr = [];
 
+
 	strings.forEach(function(e){
-		//obj[e] = e.charAt(n);
 		stringArr.push( [e,e.charAt(n)] )
 	})
-	stringArr.forEach(function(e,i){
-		console.log(e[1])
-		e.forEach(function(j){
-			//console.log(j)
-		})	
-	})
-	/*for(var p in obj){
-		stringArr.push( [p,obj[p]] )
-	}*/
 
-	console.log(stringArr)
-	//return answer
+	stringArr.sort(function(a,b){
+		if (a[1] === b[1]) {
+			return (a[0] > b[0]) ? 1 : -1;
+		}else{
+		
+			return (a[1] < b[1]) ? -1 : 1;
+		}
+	})
+
+	stringArr.forEach(function(e){
+		answer.push( e[0] )
+	})
+	//console.log(stringArr)
+	return answer
 }
 
 console.log( solution(['sun', 'bed', 'car'], 1) )
+console.log( solution(['abce', 'abcd', 'cdx'], 2) )
+
