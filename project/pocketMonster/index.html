@@ -71,6 +71,35 @@
 
 
  </body>
+ <script>              //la.rightImg.d ,
+	function imgAction(direcImg,direc,n){
+		if(direcImg.d == direc){
+			if(ssq(direcImg.i).attr('style').substr(47,6).indexOf('-') == -1){ // -1
+				direcImg.ins();
+				if(!ssq(direcImg.i).parents('li').hasClass('active')){
+					la.parall.img(direc,'.ev__list li:nth-child(' +n+ ') .effect__img',true)
+				}
+			}
+		}	
+	}
+				if(la.rightImg.d == 'right'){
+					if(ssq(la.rightImg.i).attr('style').substr(47,6).indexOf('-') == -1){ // -1
+						la.rightImg.ins();
+						if(!ssq(la.rightImg.i).parents('li').hasClass('active')){
+							la.parall.img('right','.ev__list li:nth-child(2) .effect__img',true)
+						}
+					}
+				}
+				if(la.leftImg.d == 'left'){						
+					if(ssq(la.leftImg.i).attr('style').substr(47,6).indexOf('-') == -1){ // -1
+						la.leftImg.ins();
+						if(!ssq(la.leftImg.i).parents('li').hasClass('active')){
+							la.parall.img('left','.ev__list li:nth-child(1) .effect__img',true)
+						}
+					}
+				}
+
+ </script>
  <script src="js/pocketmonster.js"></script>
 </html>
 
