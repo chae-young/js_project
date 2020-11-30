@@ -1,4 +1,16 @@
 /*
+테스트 케이스 작성할 때 아래의 경우를 꼭 생각해 보면 좋을 것 같아요.
+
+체육복을 잃어 버린 학생과 여벌을 가져온 학생이 같은 경우 solution(3, new int[] {2}, new int[] {2})
+체육복을 잃어 버린 학생, 여벌을 가져온 학생이 같고, 앞사람이 그 학생에게 빌려 줄 수 있을 때 solution(5, new int[] {3}, new int[] {2,3})
+체육복을 잃어 버린 학생, 여벌을 가져온 학생이 같고, 뒷 사람이 그 학생에게 빌려 줄 수 있을 때 solution(5, new int[] {3}, new int[] {3,4})
+체육복 여벌을 가져온 학생의 배열이 정렬되지 않았을 경우
+채점할 때 조금 난의도 있는 테스트 케이스는 저정도 일 것 같습니다.
+
+
+체육복 여벌이 있어도 본인이 잃어버린 사람은 빌려줄 수 없습니다.
+때문에 누구에게 빌릴 수 있을지 확인 하는 순서가 중요합니다.
+
 
 점심시간에 도둑이 들어, 일부 학생이 체육복을 도난당했습니다. 
 다행히 여벌 체육복이 있는 학생이 이들에게 체육복을 빌려주려 합니다. 
@@ -90,8 +102,7 @@ function solution(n, lost, reserve) {
 			if(arr[i-1] === 0){
 				arr[i-1]++
 				arr[i]--
-			}
-			if(arr[i+1] === 0){
+			}else if(arr[i+1] === 0){
 				arr[i+1]++
 				arr[i]--
 			}
@@ -101,7 +112,7 @@ function solution(n, lost, reserve) {
 	num = num.filter(function(el){
 		return el > 0
 	})
-	
+
 	return num.length
 }
-console.log( solution(5, [4,5], [3,4]) )
+console.log( solution(5, [1,2,3,4,5], [1,2,3,4,5]) )
