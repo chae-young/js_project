@@ -2,6 +2,9 @@
 
 
 
+숫자로만 구성돼있는지!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
 
 문자열 s의 길이가 4 혹은 6이고, 
 숫자로만 구성돼있는지 확인해주는 함수, solution을 완성하세요. 
@@ -24,6 +27,9 @@ function solution(s) {
 
 
 
+
+
+
 */
 
 
@@ -32,13 +38,16 @@ function solution(s) {
 
 function solution(s) {
   var answer;
-	console.log(s)
-   if(s.length === 4 || s.length === 6) {
-	   answer = parseInt( Number(s) );
-	   return answer ? true:false
-   }else{
-		return false   
+  s = Number(s);
+  if( Number.isInteger(s) ){
+	if(s.toString().length === 4 || s.toString().length === 6){
+		return true
+	}else{
+		return false;
 	}
+  }else{
+	return false;
+  }
 }
 
-console.log( solution('1.11234') )
+console.log( solution('12234') )
