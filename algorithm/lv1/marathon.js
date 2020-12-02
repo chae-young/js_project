@@ -75,12 +75,12 @@ function solution(participant, completion) {
 
 	participant.sort();
 	completion.sort();
-
-	for(var i = 0; i < completion.length ;i++){
-		participant.splice(participant.indexOf(completion[i]),1)
+	console.log(  participant , completion )
+	for(var i = 0; i < participant.length ;i++){
+		if(participant[i] !== completion[i]) return participant[i]
 	}
 	
-	return participant[0]
+	//return participant[0]
 }
 
 
