@@ -1,5 +1,33 @@
 /*
 
+1. 문제 이해하기
+participant(참가자) 배열과 completion(완주자) 배열의 비교 해서 
+남는 배열 요소를 출력하면 될 것 같다. 
+하지만 참여한 선수의 수가 100,000명 이하로 
+주어진 것을 보아 시간 복잡도를 고려해야 할 것 같다. 
+2중으로 for 문을 돌리면 시간초과에 걸린다.
+
+
+2. 해결 방법
+participant(참가자) 배열과 completion(완주자) 배열 모두 sort()를 이용해서 정렬시키자. 
+그리고 인덱스 0부터 두 배열을 비교하면 for문 한 번으로 문제를 해결할 수 있다. 
+participant(참가자) 배열과 completion(완주자) 배열을 0번 부터 비교하다보면 
+participant(참가자) 배열에 비완주자(정답)가 나올 경우 
+두 배열 비교 연산은 불일치가 나올 것이고 
+그 때 participant(참가자) 배열의 요소를 출력하면 된다.
+
+
+function solution(participant, completion) {
+    var answer = '';
+	participant.sort();
+	completion.sort();
+
+	for(var i = 0; i < participant.length ;i++){
+		participant[i] !== completion[i]
+	}
+    return answer;
+}
+
 마라톤에 참여한 선수들의 이름이 담긴 배열 participant와 
 완주한 선수들의 이름이 담긴 배열 completion이 주어질 때, 
 완주하지 못한 선수의 이름을 return 하도록 solution 함수를 작성해주세요.
@@ -44,24 +72,17 @@ function solution(participant, completion) {
 
 function solution(participant, completion) {
     var answer = '';
-	var arr = [];
 
-	var obj = {
-		all:participant,
-		success:completion,
-		check:function(){
-			this.success.forEach(function(el){
-				if(this.indexOf( el ) != -1){
-					this.splice(this.indexOf( el ),1);
-					return this
-				}
-			},this.all)
-		}
+	participant.sort();
+	completion.sort();
+
+	for(var i = 0; i < completion.length ;i++){
+		participant.splice(participant.indexOf(completion[i]),1)
 	}
-	obj.check();
-
-	//console.log(obj.all)
-    return obj.all[0]
+	
+	return participant[0]
 }
+
+
 console.log( solution(['mislav', 'stanko', 'mislav', 'ana'], ['stanko', 'ana', 'mislav']) )
 console.log( solution(['leo', 'kiki', 'eden'], ['eden', 'kiki']) )
