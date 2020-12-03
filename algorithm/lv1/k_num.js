@@ -27,6 +27,7 @@ function solution(array, commands) {
     var answer = [];
     return answer;
 }
+
 [0][0]
 [0][1]
 [1][0]
