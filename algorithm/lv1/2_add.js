@@ -1,5 +1,6 @@
 /*
 
+
 정수 배열 numbers가 주어집니다. 
 numbers에서 서로 다른 인덱스에 있는 두 개의 수를 뽑아 더해서 
 만들 수 있는 모든 수를 배열에 오름차순으로 담아 
@@ -64,33 +65,31 @@ numbers	result
 
 function solution(numbers) {
 	var answer = [];
-	var flag = false;
+	var arr = [];
 	var num = 0;
 	var numidx;
 
-	while(numbers[num] < numbers.length){
-		console.log(numbers[num])
+	while(num < numbers.length){
+		numidx = numbers.indexOf(numbers[num],num);
+
 		numbers.forEach(function(el,i){
-			if(numbers[num] !== i){ //inedx가 서로 같지않으면
+			if(numidx !== i){ //inedx가 서로 같지않으면
 				answer.push(numbers[num] + numbers[i])
 			}
 		})
-		/*
-		for(var i = 0;i < numbers.length;i++){
-			console.log(numbers[num])
-			if(numbers[num] !== i){
-				answer.push(numbers[num] + numbers[i])
-			}
-		}*/
 
 		num += 1;
 	}
 	var filteredArray = answer.filter(function(item, pos){
 	  return answer.indexOf(item) == pos; 
 	});
-	filteredArray.sort()
 
-	console.log(filteredArray)
+	filteredArray.sort(function(a,b){
+		return a-b;
+	})
+
+	return filteredArray
 }
 
 console.log( solution([2,1,3,4,1]) )
+console.log( solution([5,0,2,7]) )
