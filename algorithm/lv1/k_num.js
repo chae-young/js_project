@@ -15,6 +15,7 @@ array의 길이는 1 이상 100 이하입니다.
 array의 각 원소는 1 이상 100 이하입니다.
 commands의 길이는 1 이상 50 이하입니다.
 commands의 각 원소는 길이가 3입니다.
+
 입출력 예
 array	                 commands	                        return
 [1, 5, 2, 6, 3, 7, 4]	[[2, 5, 3], [4, 4, 1], [1, 7, 3]]	[5, 6, 3]
@@ -46,6 +47,7 @@ var arr = array,slice()
 
 
 i번째부터 j번째까지 자른후 정렬 > k번째 뽑기
+
 */
 function solution(array, commands) {
     var answer = [];
