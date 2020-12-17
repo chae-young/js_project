@@ -60,7 +60,6 @@ numbers	result
 
 
 
-
 */
 
 function solution(numbers) {
