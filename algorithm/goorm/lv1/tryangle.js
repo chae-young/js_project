@@ -8,14 +8,15 @@ const rl = readline.createInterface({
 	output: process.stdout
 });
 
-const area = (a,b) => {
-	console.log(a,b)
-	const num = a * b / 2;
-	return num
+const area = (num) => {
+	num = num.split(' ').map(el => parseInt(el));
+	const sum = num[0] * num[1] / 2;
+
+	return sum.toFixed(1)
 }
 
-rl.on("line", function(a,b) {
-	console.log( area(a,b) );
+rl.on("line", function(num) {
+	console.log( area(num) );
 	rl.close();
 }).on("close", function() {
 	process.exit();
@@ -46,7 +47,6 @@ const area = (num) => {
 	num = num.split(' ').map(el => parseInt(el));
 	const sum = num[0] * num[1] / 2;
 
-	console.log( Number(sum.toFixed(1)) )
-	//return num
+	return sum.toFixed(1)
 }
 console.log(area('38 92'))
