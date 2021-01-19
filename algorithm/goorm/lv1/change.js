@@ -8,15 +8,44 @@ const rl = readline.createInterface({
 	output: process.stdout
 });
 
-const area = (num) => {
-	num = num.split(' ').map(el => parseInt(el));
-	const sum = num[0] * num[1] / 2;
+const change = n =>{
+	n = 1000 - n;
+	n = n.toString();
 
-	return sum.toFixed(1)
+	let digit = {
+		'500':0,
+		'100':0,
+		'50':0,
+		'10':0,
+		//sum:null,
+		account(){
+			n.split('').forEach( (el,i) => {
+				if(i == 0){
+					if(parseInt(el) < 5){
+						this[100] = parseInt(el)
+					}else{
+						this[500] += 1;
+						this[100] = parseInt(el) - 5
+					}
+				}else if(i == 1){
+					if(parseInt(el) < 5){
+						this[10] = parseInt(el)
+					}else{
+						this[50] += 1;
+						this[10] = parseInt(el) - 5
+					}
+				}
+			},this)
+
+			return `${this[500]} ` + `${this[100]} ` + `${this[50]} ` + `${this[10]}`
+		}
+	};
+	
+	return digit.account();
 }
 
-rl.on("line", function(num) {
-	console.log( area(num) );
+rl.on("line", function(n) {
+	console.log( change(n) );
 	rl.close();
 }).on("close", function() {
 	process.exit();
@@ -30,40 +59,44 @@ rl.on("line", function(num) {
 
 
 
-let array = [1, 2, 3];
-let object = {};
-
-for (let num of array) {
-  object[num] = String(num);
-}
-
-console.log(object);
-console.log(Object.keys(object));
-
-
-
-
-
-
 */
 
-function change(n){
+const change = n =>{
+	n = 1000 - n;
 	n = n.toString();
-	
-	let array = [500,100,50,10];
-	let digit = {};
+	const nArr = n.split('');
 
-	for (let num of array) {
-	  digit[num] = 0;
-	}
+	let digit = {
+		'500':0,
+		'100':0,
+		'50':0,
+		'10':0,
+		//sum:null,
+		account(){
+			nArr.forEach( (el,i) => {
+				if(i == 0){
+					if(parseInt(el) < 5){
+						this[100] = parseInt(el)
+					}else{
+						this[500] += 1;
+						this[100] = parseInt(el) - 5
+					}
+				}else if(i == 1){
+					console.log(parseInt(el))
+					if(parseInt(el) < 5){
+						this[10] = parseInt(el)
+					}else{
+						this[50] += 1;
+						this[10] = parseInt(el) - 5
+					}
+				}
+			},this)
 
-
-	n.split('').forEach(function(el,i) {
-		console.log(el)
-		if(i == 0){
-			parseInt(el) <= 5 ? digit[500] += 1 : digit[100] = el - 5
+			return `${this[500]} ` + `${this[100]} ` + `${this[50]} ` + `${this[10]}`
 		}
-	})
-	console.log(digit)
+	};
+	
+	return digit.account();
 }
-console.log( change(450) )
+
+console.log( change(990) )
