@@ -63,32 +63,47 @@ rl.on("line", function(n) {
 
 const change = n =>{
 	n = 1000 - n;
-	n = n.toString();
-	const nArr = n.split('');
+	const num = n.toString();
+	const nArr = num.split('');
+	const standard = Math.floor(num/100);
 
 	let digit = {
 		'500':0,
 		'100':0,
 		'50':0,
 		'10':0,
-		//sum:null,
+		common(el){
+
+		},
 		account(){
+
 			nArr.forEach( (el,i) => {
-				if(i == 0){
-					if(parseInt(el) < 5){
-						this[100] = parseInt(el)
-					}else{
-						this[500] += 1;
-						this[100] = parseInt(el) - 5
+				if(standard >= 1){//백의자리
+					if(i == 0){
+						if(parseInt(el) < 5){
+							this[100] = parseInt(el)
+						}else{
+							this[500] += 1;
+							this[100] = parseInt(el) - 5
+						}					
+					}else if(i == 1){
+						if(parseInt(el) < 5){
+							this[10] = parseInt(el)
+						}else{
+							this[50] += 1;
+							this[10] = parseInt(el) - 5
+						}
 					}
-				}else if(i == 1){
-					console.log(parseInt(el))
-					if(parseInt(el) < 5){
-						this[10] = parseInt(el)
-					}else{
-						this[50] += 1;
-						this[10] = parseInt(el) - 5
+				}else if(standard < 1){//10의자리
+					if(i == 0){
+						if(parseInt(el) < 5){
+							this[10] = parseInt(el)
+						}else{
+							this[50] += 1;
+							this[10] = parseInt(el) - 5
+						}
 					}
+
 				}
 			},this)
 
@@ -99,4 +114,4 @@ const change = n =>{
 	return digit.account();
 }
 
-console.log( change(990) )
+console.log( change(770) )
