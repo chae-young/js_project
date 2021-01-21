@@ -92,12 +92,15 @@ const change = n =>{
 				data[2] += 1
 				data[3] = el - 5
 			}	
+
 		}
 	})
 	
 	return data
 }
 
+
 const [a,b,c,d] = change('770')
 
 console.log( change('770'),a,b,c,d )
+
