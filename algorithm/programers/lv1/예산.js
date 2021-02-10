@@ -69,7 +69,7 @@ d	          budget	result
 
 
 
-
+d.sort( (a,b) => a - b)
 
 function solution(d, budget) {
     var answer = 0;
@@ -80,7 +80,8 @@ function solution(d, budget) {
 function solution(d, budget){
 	const arr = [];
 
-	d.reduce( (acc,v,i) => {
+	
+	d.sort((a,b) => a - b).reduce( (acc,v,i) => {
 		if(acc+v <= budget){
 			arr.push(v)
 		}
