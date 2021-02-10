@@ -43,7 +43,9 @@ d	          budget	result
 
 *최대한 많은 부서의 물품을 구매
 *각 부서가 신청한 금액만큼을 모두 지원
+*최대 몇개의 부서???
 
+>>결국엔 최대 몇개의 부서에개 줄수있냐 이소리아닙니까 ?
 
 [1,2,3,4,5]
 
@@ -66,4 +68,26 @@ d	          budget	result
 2,2,3,3 = 10  0 <-더 많이 지원한거 따 졌을때 결국엔 4
 
 
+
+
+
+function solution(d, budget) {
+    var answer = 0;
+    return answer;
+}
+
 */
+function solution(d, budget){
+	const arr = [];
+
+	d.reduce( (acc,v,i) => {
+		if(acc+v <= budget){
+			arr.push(v)
+		}
+		return acc+v;
+	},0)
+
+	return arr.length
+}
+
+console.log( solution([2,2,3,3], 10) )
