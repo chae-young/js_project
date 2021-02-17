@@ -80,11 +80,8 @@ function solution(d, budget) {
 function solution(d, budget){
 	const arr = [];
 
-	
 	d.sort((a,b) => a - b).reduce( (acc,v,i) => {
-		if(acc+v <= budget){
-			arr.push(v)
-		}
+		if(acc+v <= budget) arr.push(v)
 		return acc+v;
 	},0)
 
