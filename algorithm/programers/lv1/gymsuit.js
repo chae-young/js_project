@@ -16,7 +16,7 @@
 여벌 체육복을 가져온 학생이 체육복을 도난당했을 수 있습니다. 
 이때 이 학생은 체육복을 하나만 도난당했다고 가정하며, 
 남은 체육복이 하나이기에 다른 학생에게는 체육복을 빌려줄 수 없습니다.
-
+ㅂ
 입출력 예
 n	 lost	   reserve	    return
 5	 [2, 4]	   [1, 3, 5]	5
@@ -70,12 +70,15 @@ move   reserve           빌려줄수있는애
 3 1 0  /  1-0=1
 
 
-
 >>>
 */
 
 function solution(n, lost, reserve){
+<<<<<<< HEAD:algorithm/lv1/체육복.js
+	lost=[2,4,3]
+=======
 	//lost = [2,4,3]
+>>>>>>> 6c07c83832733d8d2705ffe63f2045c28f513a66:algorithm/lv1/gymsuit.js
     var answer = 0;
 
 	var clothes = []
@@ -115,10 +118,18 @@ function solution(n, lost, reserve){
 
 }
 
+<<<<<<< HEAD:algorithm/lv1/체육복.js
+//console.log(solution(10,[1,2,3,4,5,6,7],[1,2,3,4,5,6]))
+//console.log(solution(5,[1,2,3,4,5],[1,2,3,4,5]))
+//console.log(solution(3,[3],[1]))
+console.log(solution(5,[2,4],[1,3,5]))
+//console.log(solution(5,[2,4],[3]))
+=======
 console.log(solution(5,[2,4],[1,3,5])) //5
 console.log(solution(5,[2,4],[3])) //4
 console.log(solution(3,[3],[1])) //2
 console.log(solution(5,[1,2,3,4,5],[1,2,3,4,5])) //5
 console.log(solution(5,[4,5],[3,4])) //4
+>>>>>>> 6c07c83832733d8d2705ffe63f2045c28f513a66:algorithm/lv1/gymsuit.js
 
 
