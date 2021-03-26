@@ -1,5 +1,7 @@
 (()=>{
     let yOffset = 0;
+    let prevScrollHeight = 0;//현재 스크롤위치보다 이전에 위치한 스크롤 섹션들의 스크롤 높이의 합
+    let currentScene = 0;//현재 활성화된 씬
 
 
     
