@@ -38,11 +38,14 @@ function solution(n) {
 function solution(n){
     const nArr = Array(n).fill().map((el,i)=>i+=1);
     nArr.shift();
-    const arr = [];
 
-   for(let i = 2; i<=n; i++){
-        arr.push(i)
-   }
-   console.log(nArr,arr)
+    nArr.forEach((el,i)=>{//2,3,4,5,6,7,8,9,10
+        for(let i = 0;i<nArr.length;i++){
+            if(nArr[i]!==el && nArr[i]%el==0){//자기자신을 제외한 2의 배수를 제거
+                nArr.splice(nArr.indexOf(nArr[i]),1)
+            }
+        }
+    })
+   return nArr.length
 }
-console.log(solution(10))
+console.log(solution(5))
