@@ -31,21 +31,21 @@ function solution(n) {
 }
 
 
-소수 => 1과 약수가 아닌애들
-에라토스테네스의 체
+
 */
 
-function solution(n){
-    const nArr = Array(n).fill().map((el,i)=>i+=1);
-    nArr.shift();
+function solution(n) {
+    const nArr = new Array(n).fill(1)
+    //console.log(nArr)
+    nArr[0] = 0;
+    for(let i = 2; i*i <= n; i++){ //제곱근까지 순회
+        console.log('i',i)
 
-    nArr.forEach((el,i)=>{//2,3,4,5,6,7,8,9,10
-        for(let i = 0;i<nArr.length;i++){
-            if(nArr[i]!==el && nArr[i]%el==0){//자기자신을 제외한 2의 배수를 제거
-                nArr.splice(nArr.indexOf(nArr[i]),1)
-            }
+        for(let j = i*i; j <= n; j+=i){
+            nArr[j-1]=0;
         }
-    })
-   return nArr.length
+    }
+    console.log(nArr)
+    return nArr.filter((el)=>el==1).length
 }
 console.log(solution(5))
