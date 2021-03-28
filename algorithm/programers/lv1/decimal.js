@@ -31,25 +31,18 @@ function solution(n) {
 }
 
 
+소수 => 1과 약수가 아닌애들
+에라토스테네스의 체
 */
 
 function solution(n){
-    //약수
-    let arr = [];
-    const factor = function(k){
-        let factorArr = [];
-        for(let i = 1; i<=k; i++){
-            if(k/i % 1 === 0){
-                factorArr = [...factorArr,i] 
-            }   
-        }
-        return factorArr.length
-    }
-    for(let i = 1;i<=n;i++){
-        if(factor(i) === 2){
-            arr = [...arr,i]
-        }
-    }
-    return arr.length
+    const nArr = Array(n).fill().map((el,i)=>i+=1);
+    nArr.shift();
+    const arr = [];
+
+   for(let i = 2; i<=n; i++){
+        arr.push(i)
+   }
+   console.log(nArr,arr)
 }
-console.log(solution(4))
+console.log(solution(10))
