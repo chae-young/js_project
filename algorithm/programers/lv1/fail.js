@@ -40,3 +40,19 @@ N	stages	result
 
 [4,1,2,3]
 */
+
+
+function solution(N, stages) {
+    
+    let clearNotStage;
+    let clearStage;
+
+    for(let i = 1; i <= N; i++){
+        //1번 스테이지..
+        for(let i = 0; i < stages.length;i++){
+            console.log(stages[i])
+        }
+    }
+}
+
+console.log(solution(5, [2, 1, 2, 6, 2, 4, 3, 3]))
