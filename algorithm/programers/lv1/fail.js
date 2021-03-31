@@ -44,15 +44,22 @@ N	stages	result
 
 function solution(N, stages) {
     
-    let clearNotStage;
-    let clearStage;
+    let nowStage = new Array(stages.length).fill(0);
+    let clearPerson = 0;
+    let notClearPerson = 0;
 
     for(let i = 1; i <= N; i++){
-        //1번 스테이지..
-        for(let i = 0; i < stages.length;i++){
-            console.log(stages[i])
+        //n번 스테이지..
+        for(let j = 0; j < stages.length;j++){
+            if(i<=stages[j]){//n번 스테이지에 도전한사람 
+                nowStage[j] += 1;
+                clearPerson = nowStage.filter((el)=>el==1).length;
+            }
         }
+        console.log(nowStage,clearPerson);//스테이지에 도전한 사람
+        nowStage = nowStage.map((el)=>el=0);
     }
 }
-
+//1,0,1,1,1,1,1
+//2 , 7
 console.log(solution(5, [2, 1, 2, 6, 2, 4, 3, 3]))
