@@ -47,7 +47,7 @@ function solution(N, stages) {
     let nowStage = new Array(stages.length).fill(0);
     let clearPerson = 0;
     let notClearPerson = 0;
-
+///
     for(let i = 1; i <= N; i++){
         //n번 스테이지..
         for(let j = 0; j < stages.length;j++){
