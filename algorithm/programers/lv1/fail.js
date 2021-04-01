@@ -47,7 +47,10 @@ function solution(N, stages) {
     let nowStage = new Array(stages.length).fill(0);
     let clearPerson = 0;
     let notClearPerson = 0;
-///
+    let failArr = [
+        
+    ];
+
     for(let i = 1; i <= N; i++){
         //n번 스테이지..
         for(let j = 0; j < stages.length;j++){
@@ -56,10 +59,25 @@ function solution(N, stages) {
                 clearPerson = nowStage.filter((el)=>el==1).length;
             }
         }
-        console.log(nowStage,clearPerson);//스테이지에 도전한 사람
+        //도달하지못한사람
+        notClearPerson = stages.filter((el,index)=> i>=el && nowStage[index] == 1).length;
+        //실패율
+        let fail = notClearPerson/clearPerson;
+
+        console.log(nowStage,clearPerson,notClearPerson,i+"번째 실패율 ",fail);
+
+        failArr = [...failArr,{stage:i,fail:fail}];
+        failArr.sort((a,b)=>{
+            return b['fail'] - a['fail'];
+        })
+        console.log('정렬',failArr)
+        //초기화
         nowStage = nowStage.map((el)=>el=0);
     }
+
+    const failVal = failArr.map(el=>el.stage)
+    return failVal
 }
 //1,0,1,1,1,1,1
 //2 , 7
-console.log(solution(5, [2, 1, 2, 6, 2, 4, 3, 3]))
+console.log(solution(4, [4,4,4,4]))
