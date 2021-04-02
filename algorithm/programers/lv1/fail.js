@@ -53,7 +53,7 @@ function solution(N, stages) {
 
     for(let i = 1; i <= N; i++){
         //n번 스테이지..
-        for(let j = 0; j < stages.length;j++){
+        for(let j = 0; j < stages.length;j++){                                                                                      
             if(i<=stages[j]){//n번 스테이지에 도전한사람 
                 nowStage[j] += 1;
                 clearPerson = nowStage.filter((el)=>el==1).length;
@@ -62,9 +62,10 @@ function solution(N, stages) {
         //도달하지못한사람
         notClearPerson = stages.filter((el,index)=> i>=el && nowStage[index] == 1).length;
         //실패율
-        let fail = notClearPerson/clearPerson;
-
-        console.log(nowStage,clearPerson,notClearPerson,i+"번째 실패율 ",fail);
+        let fail = notClearPerson/clearPerson || 0;
+        if(fail == 0 || notClearPerson/clearPerson == 0) fail = 0;          
+        //스테이지에 도달한 사람이 없는 경우..
+        console.log(nowStage,"스테이지 도달한사람",clearPerson,"스테이지에 도달하지 못한사람",notClearPerson,i+"번째 실패율 ",fail);
 
         failArr = [...failArr,{stage:i,fail:fail}];
         failArr.sort((a,b)=>{
@@ -80,4 +81,5 @@ function solution(N, stages) {
 }
 //1,0,1,1,1,1,1
 //2 , 7
-console.log(solution(4, [4,4,4,4]))
+console.log(solution(5, [2,2,2,2]))
+console.log(solution(5, [2, 1, 2, 6, 2, 4, 3, 3]))
