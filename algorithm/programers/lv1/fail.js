@@ -39,47 +39,38 @@ N	stages	result
 모든 사용자가 마지막 스테이지에 있으므로 4번 스테이지의 실패율은 1이며 나머지 스테이지의 실패율은 0이다.
 
 [4,1,2,3]
+
+
+
+내림차순 , 실패율이 같으면 오름차순 정렬
 */
 
 
 function solution(N, stages) {
-    
-    let nowStage = new Array(stages.length).fill(0);
-    let clearPerson = 0;
-    let notClearPerson = 0;
-    let failArr = [
-        
-    ];
-
+    let answer = [];
+    let arrObj = [];
+    //실패율 -> 클리어x / 클리어
     for(let i = 1; i <= N; i++){
-        //n번 스테이지..
-        for(let j = 0; j < stages.length;j++){                                                                                      
-            if(i<=stages[j]){//n번 스테이지에 도전한사람 
-                nowStage[j] += 1;
-                clearPerson = nowStage.filter((el)=>el==1).length;
-            }
-        }
-        //도달하지못한사람
-        notClearPerson = stages.filter((el,index)=> i>=el && nowStage[index] == 1).length;
-        //실패율
-        let fail = notClearPerson/clearPerson || 0;
-        if(fail == 0 || notClearPerson/clearPerson == 0) fail = 0;          
-        //스테이지에 도달한 사람이 없는 경우..
-        console.log(nowStage,"스테이지 도달한사람",clearPerson,"스테이지에 도달하지 못한사람",notClearPerson,i+"번째 실패율 ",fail);
+        //1번스테이지..
+        let clearStage = stages.filter((el)=> i <= el).length;
+        let clearNotStage = stages.filter(stage => stage === i).length;
+        let fail = clearNotStage / clearStage || 0;
 
-        failArr = [...failArr,{stage:i,fail:fail}];
-        failArr.sort((a,b)=>{
-            return b['fail'] - a['fail'];
-        })
-        console.log('정렬',failArr)
-        //초기화
-        nowStage = nowStage.map((el)=>el=0);
+        arrObj = [...arrObj,{stage:i,fail:fail}]
+        //console.log(clearStage,clearNotStage)
+
     }
-
-    const failVal = failArr.map(el=>el.stage)
-    return failVal
+    answer = arrObj.sort((a,b)=>{
+        console.log()
+        if(a.fail === b.fail){
+            return a.stage - b.stage;
+        }
+        return b.fail - a.fail;
+    }).map(item => item.stage);
+    
+    return answer
 }
-//1,0,1,1,1,1,1
-//2 , 7
+
 console.log(solution(5, [2,2,2,2]))
 console.log(solution(5, [2, 1, 2, 6, 2, 4, 3, 3]))
+//console.log(solution(4, [4,4,4,4]))
