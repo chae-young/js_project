@@ -10,13 +10,15 @@ function solution(n, arr1, arr2) {
         arr2Binary.push(parseInt(element.toString(2).padStart(5,0)))
     });   
     
-    for(let i = 0; i<n; i++){
-        sumArr.push(String(arr1Binary[i] + arr2Binary[i]));
+    for(let i = 0; i<=n; i++){
+        let sumVal = String(arr1Binary[i] + arr2Binary[i]);
+        if(sumVal.length < 6) sumVal = 0+sumVal 
+        sumArr.push(sumVal);
     }
 
     const answer = sumArr.map((element)=>{
         let tag = '';
-        for(let i = 0;i<element.length;i++){
+        for(let i = 0;i<=element.length;i++){
             console.log(element)
             if(element[i]>0){
                 tag = tag.concat('#')        
@@ -27,7 +29,9 @@ function solution(n, arr1, arr2) {
         return tag
     })
 
-    console.log(arr1Binary,arr2Binary,sumArr,answer)
+    return answer
+
+    //console.log(arr1Binary,arr2Binary,sumArr,answer)
 }
 
 console.log( solution(5,[9, 20, 28, 18, 11],[30, 1, 21, 17, 28]) )
