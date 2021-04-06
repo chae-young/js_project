@@ -12,7 +12,9 @@ function solution(n, arr1, arr2) {
 
     for(let i = 0; i<n; i++){
         let sumVal = String(arr1Binary[i] + arr2Binary[i]);
-        if(sumVal.length < n) sumVal = 0+sumVal 
+        if(sumVal.length < n) {
+            sumVal = '0'.repeat(n-sumVal.length)+sumVal
+        } 
         sumArr.push(sumVal);
     }
 
@@ -34,5 +36,6 @@ function solution(n, arr1, arr2) {
     //console.log(arr1Binary,arr2Binary,sumArr,answer)
 }
 
-console.log( solution(5,[9, 20, 28, 18, 11],[30, 1, 21, 17, 28]) )
+//console.log( solution(5,[9, 20, 28, 18, 11],[30, 1, 21, 17, 28]) )
 console.log( solution(6,[46, 33, 33 ,22, 31, 50],[27 ,56, 19, 14, 14, 10]) )
+console.log( solution(5,[0,0,0,0,0],[30,1,21,17,28]))   
