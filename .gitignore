@@ -2,6 +2,7 @@ node_modules/
 dist/
 index.html
 .DS_Store
+.vscode/
 
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudio
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudi
