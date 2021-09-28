@@ -35,7 +35,7 @@
     margin-right: 40px;
     white-space: nowrap;
     letter-spacing: -0.15em;
-    font-size: 80px;
+    font-size: 160px;
     font-family: "Raleway";
     color: rgb(255, 255, 255);
 }
@@ -43,7 +43,7 @@
 /*---SECTION---*/
 .bingo__wrap {
     width: 1200px;
-    margin: 40px auto 100px;
+    margin: 40px auto 120px;
 }
 .bingo__table {
     width: 460px;
