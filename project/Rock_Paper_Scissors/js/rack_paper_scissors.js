@@ -1,165 +1,157 @@
-var computer = document.getElementById('computer');
-var me = document.getElementById('me');
+//효과
 
-var RPS = {
-	rock: 'images/noun_rock.png',
-	paper:'images/noun_paper.png',
-	scissors:'images/noun_scissors.png'
+function introEffect() {
+    document.querySelector(".intro .title").classList.add("blink");
+    setTimeout(function () {
+        document.querySelector(".radio-area").classList.add("active");
+        document.querySelector(".intro .title").classList.remove("blink");
+    }, 3300);
 }
-var RPSempty = [RPS.rock,RPS.paper,RPS.scissors];
-var RPSemptyRd = Math.floor(Math.random() * RPSempty.length);
-var imageSrc = RPSempty[RPSemptyRd]; //첫이미지
+introEffect();
 
-var interval;
-var interval2;
+var computer = document.getElementById("computer");
+var me = document.getElementById("me");
+var btnBox = document.querySelector(".rps--bottom");
 
-//컴퓨터의 랜덤이미지 
-function RPSinterval(){
-	interval = setInterval(function(){
-		if(imageSrc == RPS.rock){
-			imageSrc = RPS.scissors;
-		}else if(imageSrc == RPS.scissors){
-			imageSrc = RPS.paper;
-		}else{
-			imageSrc = RPS.rock;
-		}
-		computer.innerHTML = "<img src='" + imageSrc + "' alt=''>";	
-	},500)
-}
+var rps = [
+    "images/noun_scissors.png",
+    "images/noun_rock.png",
+    "images/noun_paper.png",
+];
 
-function meinterval(){
-	interval2 = setInterval(function(){
-		if(imageSrc == RPS.rock){
-			imageSrc = RPS.scissors;
-		}else if(imageSrc == RPS.scissors){
-			imageSrc = RPS.paper;
-		}else{
-			imageSrc = RPS.rock;
-		}
-		me.innerHTML = "<img src='" + imageSrc + "' alt=''>";	
-	},500)
-}										
-
-
-var radio = document.querySelectorAll('input');
+var radio = document.querySelectorAll("input");
 var round = 0;
 
-radio.forEach(function(el){
-
-	function radioVal(){
-		el.addEventListener('change',function(){
-			round = el.value
-			RPSinterval();
-			meinterval()
-		})
-	}
-	radioVal()
-})
-
-
-function computerSelec(imageSrc){
-	return Object.entries(RPS).find(function(el){
-		return el[1] == imageSrc; //images/noun_Paper.png
-	})[0]
+var computerImg = 0;
+var meImg = 1;
+var interval;
+function computerInterval() {
+    interval = setInterval(function () {
+        if (computerImg == 0) {
+            computerImg = 1;
+        } else if (computerImg == 1) {
+            computerImg = 2;
+        } else {
+            computerImg = 0;
+        }
+        computer.innerHTML = "<img src='" + rps[computerImg] + "' alt=''>";
+    }, 100);
 }
 
-var score = {
-	rock: 0,
-	paper: -1,
-	scissors: 1
+var interval2;
+function meInterval() {
+    interval2 = setInterval(function () {
+        if (meImg == 0) {
+            meImg = 1;
+        } else if (meImg == 1) {
+            meImg = 2;
+        } else {
+            meImg = 0;
+        }
+        me.innerHTML = "<img src='" + rps[meImg] + "' alt=''>";
+    }, 100);
 }
 
-var computerTxt = document.getElementById('computerNowScore');
-var myTxt = document.getElementById('myNowScore');
+//var radioArea = document.querySelector('.radio-area').classList.add('active')
+var result = document.getElementById("result");
 var computerNowScore = 0;
 var myNowScore = 0;
 
-var btn = document.querySelectorAll('.btn');
+Array.prototype.slice.call(radio).forEach(function (el) {
+    el.addEventListener("change", function () {
+        el.checked = true;
+        round = el.value;
+        //console.log('라운드 : ' ,round)
 
-btn.forEach(function(btn){
-	btn.addEventListener('click',function(){
-		clearInterval(interval);
-		clearInterval(interval2);
+        setTimeout(function () {
+            document.querySelector(".rps-area").classList.add("active");
+            document.querySelector(".radio-area").classList.remove("active");
+        }, 800);
 
-		round--
-		var mySelec = this.getAttribute('name');
-		var myScore = score[mySelec];
-		var computerScore = score[computerSelec(imageSrc)]
-		var scoreDifference = myScore - computerScore;
-		
-		if(scoreDifference === 0){
-			console.log('비겼습니다')
-		}else if([2,-1].includes(scoreDifference)){
-			console.log('이겼습니다');
-			myNowScore = myNowScore + 1;
-			myTxt.textContent = myNowScore;
-		}else{
-			console.log('졌습니다')		
-			computerNowScore = computerNowScore + 1;
-			computerTxt.textContent = computerNowScore;
-		}
+        //var radioArea = document.querySelector('.rps-area').classList.add('active')
+        computerInterval();
+        meInterval();
+        btnBox.classList.add("on");
+    });
+});
 
-		setTimeout(function(){
-			RPSinterval()
-			meinterval()
-			//가위바위보가 다 끝나후,승패결정
-			if(1 > round){
-				clearInterval(interval);
-				clearInterval(interval2);
-				console.log(round)
-				var result = document.getElementById('result');
-				if(computerNowScore > myNowScore){
-					result.textContent = '컴퓨터의 승!'
-				}else{
-					result.textContent = '나의 승!'
-				}
-			}
-		},1000)		
-	})
-})
+var computerTxt = document.getElementById("computerNowScore");
+var myTxt = document.getElementById("myNowScore");
+var btn = document.querySelectorAll(".btn");
+btn.forEach(function (btn, idx) {
+    console.log(btn);
+    btn.addEventListener("click", function () {
+        me.innerHTML = "<img src='" + rps[idx] + "' alt=''>";
+        clearInterval(interval);
+        clearInterval(interval2);
+        round--;
 
+        var score = idx - computerImg;
 
-//컴퓨터의 랜덤 이미지
-//나의 랜덤이미지
+        //console.log(btn,'라운드',round,'컴퓨터점수',computerNowScore, '나의점수',myNowScore,'현재점수차',score);
+        if (score == 0) {
+            console.log("비겼어요");
+        } else if ([-1, 2].includes(score)) {
+            console.log("졌어요");
+            computerNowScore = computerNowScore + 1;
+            computerTxt.textContent = computerNowScore;
+        } else {
+            console.log("이겼어요");
+            myNowScore = myNowScore + 1;
+            myTxt.textContent = myNowScore;
+        }
+        setTimeout(function () {
+            computerInterval();
+            meInterval();
 
-//버튼을클릭하면
-//컴퓨터와 나의 이미지가 같이 멈춘다.
+            //가위바위보가 다 끝나후,승패결정
+            if (1 > round) {
+                clearInterval(interval);
+                clearInterval(interval2);
+                btnBox.classList.remove("on");
+                radio.forEach(function (el) {
+                    el.checked = false;
+                });
 
+                if (computerNowScore > myNowScore) {
+                    result.textContent = "컴퓨터의 승!";
+                } else if (computerNowScore < myNowScore) {
+                    result.textContent = "나의 승!";
+                } else {
+                    result.textContent = "비겼습니다.";
+                }
+            }
+        }, 1000);
+    });
+});
 
-// 가위: 1, 바위: 0, 보: -1
-// 나\컴퓨터	  가위   바위    보
-//			가위   1 1    1 0   1 -1
-//			바위   0 1    0 0   0 -1
-//			  보  -1 1   -1 0  -1 -1
+//reset
+document.getElementById("resetBtn").addEventListener("click", function () {
+    document.querySelectorAll("section").forEach(function (el) {
+        el.classList.remove("active");
+    });
+    introEffect();
 
-/*
-1 - 1 = 0 //비김
-1 - 0 = 1 //짐
-1 - -1 = 2 // 이김
+    //모두리셋
+    computer.innerHTML = "";
+    me.innerHTML = "";
+    result.textContent = "";
+    computerNowScore = 0;
+    myNowScore = 0;
+    myTxt.textContent = "0";
+    computerTxt.textContent = "0";
+});
 
-0 - 1 = -1 //이김
-0 - 0 = 0 //비김
-0 - -1 = 1 //짐
+//나 컴퓨터
 
--1 --1 = 0 //짐
--1 - 0 = -1 //이김
--1 --1 = 0 //비김
+// 00 01 02
+// 10 11 12
+// 20 21 22
 
+// 0 비김 -1 짐 -2 이김
+// 1 이김 0 비김 -1 짐
+// 2 짐   1 이김 0 비김
 
-컴퓨터가 이긴경우 : 1,0
-내가 이긴경우 : 2,-1
-*/
-
-/*
-var 시작값 = 3;
-var 인터벌2 = setInterval(function() {
-  if (시작값 === 0) {
-    console.log('종료!!!');
-    return clearInterval(인터벌2);
-  }
-  console.log(시작값);
-  시작값 -= 1; //변수에서 1을 뺀후 다시 변수에 대입
-}, 1000);
-
-*/
-
+//비김 0
+//짐 -1 ,2
+// 이김 1,-2
