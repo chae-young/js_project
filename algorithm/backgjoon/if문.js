@@ -23,15 +23,36 @@ console.log(a > 0 && b > 0 ? 1 : a < 0 && b > 0 ? 2 : a < 0 && b < 0 ? 3 : 4);
 let a = 10;
 let b = 10;
 
-if (60 + b >= 105) {
-    // 60분 + 45분이 크면 시간이 안깎임.
-    console.log(a);
+if (b >= 45) {
+    // 45분 이랑 같거나 크면 시간이 안깎임.
+    console.log(a, b);
 } else {
     // 시간 깎임.
-    if (a === 0) {
-        a = 23;
+    a = a === 0 ? 23 : a - 1;
+    if (b === 0 || (b >= 45 && b <= 59)) {
+        b = 60 - 45;
+    } else {
+        b = 60 + b - 45;
     }
-    a -= 1;
-    console.log(a);
+    console.log(a, b);
     // 23
 }
+
+// const fs = require('fs');
+// const filePath = process.platform === 'linux' ? '/dev/stdin' : './input.txt';
+// let input = fs.readFileSync(filePath).toString().split('\n');
+// input = input[0];
+// input = input.split(' ').map((item) => +item);
+// solution(input[0], input[1]);
+// function solution(H, M) {
+//     // Write your code
+//     M -= 45; // -1
+//     if (M < 0) {
+//         M += 60;
+//         H -= 1; // -1
+//     }
+//     if (H < 0) {
+//         H = 23;
+//     }
+//     console.log(H, M);
+// }
