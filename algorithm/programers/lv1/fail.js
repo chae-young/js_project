@@ -39,20 +39,38 @@ N	stages	result
 모든 사용자가 마지막 스테이지에 있으므로 4번 스테이지의 실패율은 1이며 나머지 스테이지의 실패율은 0이다.
 
 [4,1,2,3]
+
+
+
+내림차순 , 실패율이 같으면 오름차순 정렬
 */
 
 
 function solution(N, stages) {
-    
-    let clearNotStage;
-    let clearStage;
-
+    let answer = [];
+    let arrObj = [];
+    //실패율 -> 클리어x / 클리어
     for(let i = 1; i <= N; i++){
-        //1번 스테이지..
-        for(let i = 0; i < stages.length;i++){
-            console.log(stages[i])
-        }
+        //1번스테이지..
+        let clearStage = stages.filter((el)=> i <= el).length;
+        let clearNotStage = stages.filter(stage => stage === i).length;
+        let fail = clearNotStage / clearStage || 0;
+
+        arrObj = [...arrObj,{stage:i,fail:fail}]
+        //console.log(clearStage,clearNotStage)
+
     }
+    answer = arrObj.sort((a,b)=>{
+        console.log()
+        if(a.fail === b.fail){
+            return a.stage - b.stage;
+        }
+        return b.fail - a.fail;
+    }).map(item => item.stage);
+    
+    return answer
 }
 
+console.log(solution(5, [2,2,2,2]))
 console.log(solution(5, [2, 1, 2, 6, 2, 4, 3, 3]))
+//console.log(solution(4, [4,4,4,4]))
