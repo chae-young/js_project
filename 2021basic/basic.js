@@ -21,3 +21,49 @@ console.log(!!"a");
 거짓인값
 false,0,NaN,undefined,null,""
 */
+
+//반복문
+/* while 은 false가 될때까지..
+for문
+if문 순서 -> 동작문 -> 조건문 -> 증가 (변수는 첫번째에만 실행)
+
+while문은 조건식이 흩어져 있고 for문이 더 보기편함.
+break 걸려있으면 while문은 끝!
+continue 걸려있으면 다음 실행은 건너뛰어라!
+
+무한반복할때 while문 쓴다 
+무한반복문이라도 break를 사용하면 멈추기때문에 무한반복이 아님..
+언제끝날지 모르는 반복문은 while을 쓴다!
+
+*/
+
+//구구단 출력, 짝수가 안나오도록 confinue사용
+
+for (let i = 2; i < 10; i++) {
+    if (i % 2 === 0) continue;
+    for (let j = 1; j < 10; j++) {
+        console.log(`${i} x ${j} = ${i * j}`);
+    }
+}
+
+//let 에 0을 고정한채로 별을 반대로 찍기
+//내풀이
+let j = 5;
+for (let i = 0; i <= 5; i++) {
+    console.log("*".repeat(j));
+    j -= 1;
+}
+
+//정답
+for (let i = 0; i < 5; i++) {
+    console.log("*".repeat(5 - i));
+}
+/*
+5 0
+4 1
+3 2
+2 3
+1 4
+
+둘이 합하면 5..
+*/
