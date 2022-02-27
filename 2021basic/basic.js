@@ -67,3 +67,26 @@ for (let i = 0; i < 5; i++) {
 
 둘이 합하면 5..
 */
+
+//배열
+//마지막 추가방법
+const target = [1, 2, 3];
+target[target.length] = 4;
+
+/* const는 상수지만 객체 내부는 바꿀수 있디. 통째로는 안된다! */
+
+//라를 제거하세여 indexof 와 splice 사용
+const arr = ["가", "나", "라", "라", "마", "라"];
+for (let i = 0; i < arr.length; i++) {
+    if (arr.indexOf("라", i) === i) {
+        arr.splice(i, i);
+    }
+}
+console.log(arr);
+/**
+ * 여러개,모두면 반복을 생각하라
+ * 찾을때까지 니까 while문 사용
+ */
+while (arr.indexOf("라") > -1) {
+    arr.splice(arr.indexOf("라"), 1);
+}
