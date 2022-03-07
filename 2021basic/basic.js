@@ -85,8 +85,14 @@ for (let i = 0; i < arr.length; i++) {
 console.log(arr);
 /**
  * 여러개,모두면 반복을 생각하라
- * 찾을때까지 니까 while문 사용
+ * 찾을때까지 니까 whisle문 사용
  */
 while (arr.indexOf("라") > -1) {
     arr.splice(arr.indexOf("라"), 1);
 }
+
+//함수기본
+/* 
+function 키워드 뒤에 함수이름 넣어주는건 => 함수선언문
+대입 => 함수표현식
+*/
