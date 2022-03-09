@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+
+        <style>
+            body {
+                background-color: black;
+            }
+            h1 {
+                color: #fff;
+            }
+            .cursor-item {
+                position: absolute;
+                width: 100px;
+                height: 100px;
+                background-color: red;
+                top: 0;
+                left: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>ㅗㅗ</h1>
+        <div class="cursor-item"></div>
+    </body>
+    <script>
+        let h1 = document.querySelector("h1");
+        let cursorItem = document.querySelector(".cursor-item");
+
+        window.addEventListener("mousemove", mouseFunc, false);
+
+        let x = 0;
+        let y = 0;
+        let objX = 0;
+        let objY = 0;
+        let speed = 0;
+
+        function mouseFunc(e) {
+            x = e.clientX;
+            y = e.clientY;
+
+            //console.log(e.clientX, e.clientY);
+        }
+
+        loop();
+        //자연스럽게 루프
+        function loop() {
+            console.log(objX);
+            objX += (x - objX) * 0.05;
+            objY += (y - objY) * 0.05;
+
+            h1.innerHTML = `x:${x} y:${y}`;
+            cursorItem.style.transform = `translate(${objX}px,${objY}px)`;
+            window.requestAnimationFrame(loop);
+        }
+    </script>
+</html>
