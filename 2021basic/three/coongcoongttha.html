@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>쿵쿵따</title>
+    </head>
+    <body>
+        <div><span id="order"> 1 </span> 번째 참가자</div>
+        <div>제시어 : <span id="word"> </span></div>
+        <input type="text" />
+        <button id="button">입력</button>
+
+        <script>
+            const number = parseInt(prompt("몇 명이 참가하나요?"), 10); //참가자수
+            const $button = document.querySelector("#button");
+            const $input = document.querySelector("input");
+            const $word = document.querySelector("#word");
+            const $order = document.querySelector("#order");
+            //alert(number);
+            //const yesOrNo = confirm("맞나여?");
+            let word;
+            let newWord;
+
+            /*
+            이벤트리스트너
+            콜백함수 -> 어떤 동작을 한뒤에 연이어 실행되는 함수
+            익명함수 : 이름없는 함수
+            */
+
+            //여러 태그 선택자
+            //유사배열 ! (배열은 아닌데 겉보기에 배열처럼 보이는것)
+            //document.querySelectorAll('')
+
+            const onClick = function () {
+                console.log(word, newWord);
+                if (newWord.length === 3) {
+                    if (!word || word[word.length - 1] === newWord[0]) {
+                        //제시어가 비어있는가?
+                        word = newWord; //입력한 단어가 제시어로
+                        $word.textContent = word;
+                        $input.value = "";
+                        const order = Number($order.textContent); //현재순서
+                        if (order + 1 > number) {
+                            $order.textContent = 1;
+                        } else {
+                            $order.textContent = order + 1;
+                        }
+                    } else {
+                        //비어있지않으면?
+                        alert("올바르지 않습니다");
+                        $input.value = "";
+                    }
+                    //retrun undefined
+                } else {
+                    console.log("3글자 여야 합니다");
+                }
+            };
+            const onInput = function (event) {
+                console.log("버튼클릭");
+                newWord = event.target.value;
+                //retrun undefined
+            };
+
+            //선택자 (첫번째것만)
+            $input.addEventListener("input", onInput);
+            $button.addEventListener("click", onClick); //=> 함수자리!! onClick()을 넣을경우 return undefined를 넣는것
+        </script>
+    </body>
+</html>
