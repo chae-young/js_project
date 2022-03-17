@@ -11,7 +11,8 @@ const innerFunc1 = func1;
 //innerFunc1 = console.log(1)
 
 const innerFunc2 = func1(); // console.log(1)
-const innerFunc2 = func2(); //함수를 호출한 상태 return 값이 들어감.
+//const innerFunc2 = func2(); //함수를 호출한 상태 return 값이 들어감.
+
 /* 
 1번에서 innerFunc2() 를 호출하면 에러! 
 2번에서 innerFunc2() 호출해야 정상
