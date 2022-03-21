@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="할인율계산기">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" id="caculatedInput"/>
+    <input type="number" id="disCountInput"/>
+
+    <button id="btn">계산</button>
+    <div>할인금액 : <span id="disCountAmountDiv"></span></div>
+    <div>총금액 : <span id="totalAmountDiv"></span></div>
+</body>
+<script>
+
+    const $inpuTcaculated = document.querySelector('#caculatedInput')
+    const $inpuTdisCount = document.querySelector('#disCountInput')
+    const $btn = document.querySelector('#btn')
+    const $diVdisCountAmount = document.querySelector('#disCountAmountDiv')
+    const $diVtotalAmount = document.querySelector('#totalAmountDiv')
+
+    
+
+    btn.addEventListener('click',()=>{
+        const MycaculateNum = $inpuTcaculated.value // 계산하고자 하는 금액
+        const MydisCountNum = $inpuTdisCount.value // 할인하고자 하는 할인율
+        
+        if(MycaculateNum && MydisCountNum){ // 값이 담겨있는가
+            const disCountRate = 0.01 * MydisCountNum
+            const disCountAmount = MycaculateNum * disCountRate
+            const totalAmount = MycaculateNum - disCountAmount
+
+            console.log(MycaculateNum , MydisCountNum)
+            $diVdisCountAmount.textContent = disCountAmount
+            $diVtotalAmount.textContent = totalAmount
+        }else{
+            alert('값을 입력해주세요')
+        }
+    })
+</script>
+</html>
