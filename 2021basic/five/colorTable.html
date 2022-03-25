@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button id="colorListBtn">컬러리스트 확인하기</button>
+
+    <table id="colorTable">
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>    
+        </tbody>
+    </table>
+
+    <ul id="textList">
+
+    </ul>
+
+</body>
+
+<script>
+    const $ColorTable = document.querySelector('#colorTable')
+    const $ColorTableTbody = document.querySelector('#colorTable tbody')
+    const $ColorTableTr = document.querySelector('#colorTable tr')
+
+    const colorList = [
+        'red','pink','yellow','violet','chartreuse0',
+        'aqua','tomato','skyblue','crimson','thistle',
+        'beige','coral','yellowgreen','teal','seagreen'
+    ]
+    const colorListCopy = [...colorList]
+    
+    //9개의 컬러 뽑기
+    const nineColor = [];
+    while(colorListCopy.length > 6){ 
+        const index = Math.floor(Math.random() * colorListCopy.length)
+        nineColor.push(colorListCopy[index])
+        colorListCopy.splice(index,1)
+    }
+    console.log(colorListCopy, nineColor)
+
+    //테이블에 뿌리기..
+    for(let i = 0; i < 2; i++){
+        $ColorTableTbody.appendChild($ColorTableTr.cloneNode(true))
+
+    }
+
+</script>
+
+</html>

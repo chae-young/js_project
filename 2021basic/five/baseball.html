@@ -1,0 +1,99 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>숫자야구</title>
+</head>
+<body>
+<form id="form">
+  <input type="text" id="input">
+  <button>확인</button>
+</form>
+<div id="logs"></div>
+
+<script>
+  const $input = document.querySelector('#input');
+  const $form = document.querySelector('#form');
+  const $logs = document.querySelector('#logs');
+
+  //1 - 9까지의 배열
+  const numbers = [];
+  for(let n = 0; n < 9;n += 1){
+      numbers.push(n + 1);//1,2,3,4,...
+  }
+
+  //4번 뽑기
+  const answers = [];
+  for(let n = 0; n < 4; n += 1){
+      const index = Math.floor(Math.random() * (numbers.length - n)) // 0 ~ 8 인 정수 -> n을 빼서 numbers의 길이가 같도록
+      answers.push(numbers[index])
+      numbers.splice(index,1)
+  }
+  console.log(answers)
+
+  const tries = [];
+  function checkInput(input){
+    if(input.length !== 4){//4자리수 인가
+        return alert('4자리 입력해주세영') //알럿은 undefined
+    }
+    if(new Set(input).size !== 4){ //중복된 숫자가 잇는가? new Set 중복없는 배열
+        return alert('중복되지 않게 입력해주세영')
+    }
+    if(tries.includes(input)){//이미 시도한 값은 아닌가?
+        return alert('이미 시도한 값이에영')
+    }
+    return true // 모두 맞으면
+  }
+
+  let out = 0;
+  $form.addEventListener('submit',(e)=>{
+      e.preventDefault()//기본동작 막기
+      const value = $input.value;
+      $input.value = '';
+      if(!checkInput(value)){
+        return
+      }
+      if(answers.join('') === value){ // 3,1,4,6
+        $logs.textContent = '홈런!'
+        return
+      }
+      if(tries.length >= 9 ){
+        const messege = document.createTextNode(`패배 ! 정답은 ${answer.join('')}`) // 텍스트를 아예 새로만들기
+        $logs.appendChild(messege) // 만들어서 추가
+        return
+      }
+
+      //몇 스트라이크 몇 볼 (위치가 같다 -> 스트라이크, 숫자만 같다 -> 볼)
+      let strike = 0;
+      let ball = 0;
+
+      for(let i = 0; i < answers.length; i++){
+        const index = value.indexOf(answers[i])
+
+        if(index > -1){//일치하는 숫자
+          if(index === i){//자릿수가 일치
+            strike += 1
+          }else{ //숫자만 같다
+            ball += 1
+          }
+        }
+      }
+
+      if(strike === 0 && ball === 0){
+        out++;
+        $logs.append(`${value}:아웃`, document.createElement('br'))
+      }else{
+        $logs.append(`${value}: ${strike} 스트라이크 ${ball} 볼`, document.createElement('br'))
+      }
+
+      if(out === 3){
+        const messege = document.createTextNode(`패배 ! 정답은 ${answer.join('')}`) // 텍스트를 아예 새로만들기
+        $logs.appendChild(messege) // 만들어서 추가
+        return
+      }
+
+      tries.push(value)      
+  })
+
+</script>
+</body>
+</html>
