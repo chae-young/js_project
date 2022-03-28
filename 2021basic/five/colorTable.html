@@ -5,6 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .hidden{display: none;}
+        .red{background-color: red;}
+        .pink{background-color: pink;}
+        .yellow{background-color: yellow;}
+        .violet{background-color: violet;}
+        .chartreuse{background-color: chartreuse;}
+        .aqua{background-color: aqua;}
+        .tomato{background-color: tomato;}
+        .skyblue{background-color: skyblue;}
+        .crimson{background-color: crimson;}
+        .thistle{background-color: thistle;}
+        .beige{background-color: beige;}
+        .coral{background-color: coral;}
+        .yellowgreen{background-color: yellowgreen;}
+        .teal{background-color: teal;}
+        .seagreen{background-color: seagreen;}
+    </style>
 </head>
 <body>
     
@@ -32,7 +50,7 @@
     const $ColorTableTr = document.querySelector('#colorTable tr')
 
     const colorList = [
-        'red','pink','yellow','violet','chartreuse0',
+        'red','pink','yellow','violet','chartreuse',
         'aqua','tomato','skyblue','crimson','thistle',
         'beige','coral','yellowgreen','teal','seagreen'
     ]
@@ -47,11 +65,45 @@
     }
     console.log(colorListCopy, nineColor)
 
+    function promptFunc(){
+        return window.prompt("색이름,순서를 입력해주세여 \nex:red,2").split(',')
+    }
+
     //테이블에 뿌리기..
     for(let i = 0; i < 2; i++){
-        $ColorTableTbody.appendChild($ColorTableTr.cloneNode(true))
-
+        $ColorTableTbody.appendChild($ColorTableTr.cloneNode(true))     
     }
+    let num = 0
+    for(let i = 0; i < 3; i++){
+        for(let j = 0; j < 3; j++){
+            $ColorTableTbody.children[i].children[j].textContent = nineColor[num]
+            num++
+            //클릭했을때
+            $ColorTableTbody.children[i].children[j].addEventListener('click',(e) => {
+                let flag = true;
+                let answer = promptFunc()
+                
+                while(flag){
+                    if(answer.length === 2){//쉼표가 있다!(올바르게 입력했다)
+                        if(answer[0].toLowerCase() !== e.target.textContent){ //단어일치
+                            alert('이름이 틀리셨네여 다시입력해주세여')
+                            answer = promptFunc()
+                            
+                        }else if(answer[1] != nineColor.indexOf(answer[0]) + 1){
+                            alert('순서가 틀리셨네여 다시입력해주세여')
+                            answer = promptFunc()
+                        }else{
+                            e.target.classList.add(answer[0]);
+                            flag = false;
+                        }
+                    }else{
+                        alert('올바르게 입력해주세여')
+                        answer = promptFunc()
+                    }                
+                }
+            })
+        }
+    }    
 
 </script>
 
