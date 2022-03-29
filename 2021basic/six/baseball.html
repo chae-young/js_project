@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>로또추첨기</title>
+  <style>
+    .ball {
+      display: inline-block;
+      border: 1px solid black;
+      border-radius: 20px;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      font-size: 20px;
+      text-align: center;
+      margin-right: 20px;
+    }
+  </style>
+</head>
+
+<body>
+<div id="result">추첨 결과는? </div>
+<div id="bonus">보너스: </div>
+<script>
+
+    const $result = document.querySelector('#result')
+    const $bonus = document.querySelector('#bonus')
+
+    //공을 랜덤으로 뽑아서 배치!!! 피쳐 에이셔 셔플?
+    const candidate = Array(45).fill().map((v,i) => i + 1)
+    const shuffle = [];
+    while(candidate.length > 0){
+        const random = Math.floor(Math.random() * candidate.length);
+        const spliceArray = candidate.splice(random,1)//뽑은값 배열에 넣기
+        const value = spliceArray[0]//하나씩 꺼내어서
+        shuffle.push(value)
+    }
+    
+    const winBalls = shuffle.slice(0,6).sort((a,b) => a - b) // 6개싹 잘라서 정렬
+    const bonus = shuffle[6]
+
+    const showBall = (number,$target) => {
+        const $ball = document.createElement('div')
+        $ball.className = 'ball'
+        $ball.textContent = number
+        $target.appendChild($ball)
+    }
+
+    for(let i = 0; i < 6; i++){
+        setTimeout(()=>{
+            showBall(winBalls[i],$result)
+        },(i + 1) * 1000)
+    }
+    setTimeout(()=>{
+        showBall(bonus,$bonus)
+    },7000)
+
+    /* 
+        이벤트리스트너랑 똑같이 함수자리!!!!호출하면 안되여 리턴값들어가니까 
+        알아서 호출해줍니다
+        setTimeout(함수자리,1000) 
+
+
+
+        var 클로저 해결
+        인자를 i로 받고 매개변수 j로 함수안에서 고정시키기 
+        함수안에있다!
+
+        (function(j){
+
+        })(i)
+    */
+
+</script>
+</body>
