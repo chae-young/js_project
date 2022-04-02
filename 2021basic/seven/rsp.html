@@ -1,0 +1,105 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>가위바위보</title>
+  <style>
+    #computer {
+      width: 142px;
+      height: 200px;
+    }
+  </style>
+</head>
+
+<body>
+<div id="computer"></div>
+<div>
+  <button id="scissors" class="btn">가위</button>
+  <button id="rock" class="btn">바위</button>
+  <button id="paper" class="btn">보</button>
+</div>
+<div id="score">0</div>
+<script>
+
+const $computer = document.querySelector('#computer');
+const $score = document.querySelector('#score');
+const $rock = document.querySelector('#rock');
+const $scissors = document.querySelector('#scissors');
+const $paper = document.querySelector('#paper');
+const IMG_URL = './rsp.png'
+$computer.style.background = `url(${IMG_URL}) 0 0`
+$computer.style.backgroundSize = 'auto 200px'
+
+
+const rspX = {
+    scissors : '0',
+    rock: '-220px',
+    paper: '-440px' 
+}
+
+let computerChoise = 'scissors'; //컴퓨터의 선택은 가위
+const changeComputerHand = () => {
+    if(computerChoise === 'scissors'){
+        computerChoise = 'rock'
+        
+    }else if(computerChoise === 'rock'){
+        computerChoise = 'paper'
+
+    }else if(computerChoise === 'paper'){
+        computerChoise = 'scissors'
+    }        
+    $computer.style.background = `url(${IMG_URL}) ${rspX[computerChoise]} 0`
+    $computer.style.backgroundSize = 'auto 200px'     
+}
+let intervalId = setInterval(changeComputerHand,50) //인터벌과 타임아웃의 반환값은 아이디!!!
+
+//만약 5번을 클릭할경우 인터벌을 계속불러오면 오류발생. 왜냐면 계속인터벌 호출하다가 마지막 인터벌만 남기때문..
+//그래서 마지막 인터벌만 취소해준다
+const scoreTable = {
+    rock : 0,
+    scissors: 1,
+    paper: -1
+}
+let clickable = true
+let score = 0;
+const clickButton = () =>{
+    //클릭후 인터벌 해제
+    if(clickable){ //클릭 못하게
+        clearInterval(intervalId)//아이디값 넣어서 해제
+        clickable = false //1초후에 실행될동안 false 유지
+        const myChoise = event.target.textContent === '바위' ? 'rock' : event.target.textContent === '가위' ? 'scissors' : 'paper' 
+        
+        const myScore = scoreTable[myChoise]
+        const computerScore = scoreTable[computerChoise]
+        const diff = myScore - computerScore
+        console.log( myChoise,computerChoise,myScore,computerScore)
+        let message
+        if([2,-1].includes(diff)){
+            console.log('승리')
+            score += 1
+            message = '승리'
+        }else if([1,-2].includes(diff)){
+            console.log('패배')
+            score -= 1
+            message = '패배'
+        }else{
+            console.log('무승부')
+            message = '무승부'
+        }
+        $score.textContent = `${message} 총 ${score} 점`
+        setTimeout(()=>{ //타임아웃을 해제하려면 실행되기전에 해야한다
+            clickable = true
+            clearInterval(intervalId)// 타임아웃은 1초후에 실행되기 때문에 그전에 인터벌등록된게 있으면 해제시켜준다.
+            intervalId = setInterval(changeComputerHand,50)//다시 아이디값 넣어서 재실행
+        },1000)
+    }
+    
+
+}
+
+$rock.addEventListener('click',clickButton)
+$scissors.addEventListener('click',clickButton)
+$paper.addEventListener('click',clickButton)
+
+</script>
+</body>
+</html>
