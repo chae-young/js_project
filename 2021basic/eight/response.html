@@ -31,24 +31,82 @@
 const $screen = document.querySelector('#screen');
 const $result = document.querySelector('#result');
 
+let startTime;
+let endTime;
+const records = []
+let timeoutId;
+console.log(1)
 $screen.addEventListener('click',(event) => {
     if(event.target.classList.contains('waiting')){//파랑
         $screen.classList.remove('waiting')
         $screen.classList.add('ready')
         $screen.textContent = '초록색이 되면 클릭하세욧'
 
-        setTimeout(function(){
-            $screen.classList.remove('ready')
-            $screen.classList.add('now')//초록색으로 바뀜
-            $screen.textContent = '클릭하세욧!!'
+        timeoutId = setTimeout(function(){
+          //시작시간
+          startTime = new Date()
+          $screen.classList.remove('ready')
+          $screen.classList.add('now')//초록색으로 바뀜
+          $screen.textContent = '클릭하세욧!!'
 
         },Math.floor(Math.random() * 1000) + 2000)
     }else if(event.target.classList.contains('ready')){//빨강
+          clearTimeout(timeoutId) //화면 바뀌어도 타임이 계속 돌아가므로 해제
+          $screen.classList.remove('ready')
+          $screen.classList.add('waiting')
+          $screen.textContent = '너무 성급하세욧ㅠㅠ'  
+    
+        }else if(event.target.classList.contains('now')){//초록
+      //끝시간
+          endTime = new Date()
+          const current = endTime - startTime
+          records.push(current)
+          const average = records.reduce((a,c) => a + c) / records.length
 
-    }else if(event.target.classList.contains('now')){//초록
+          $result.textContent = `현재:${current}ms , 평균:${average}ms`
 
+          endTime = null
+          startTime = null
+          $screen.classList.remove('now')
+          $screen.classList.add('ready')
+          $screen.textContent = '클릭해서 시작하세욧!!'      
     }
 })
+
+/* 
+시간계산
+
+new Date(2021,2,3) - new Date(2021,1,21)
+-> 밀리초
+( new Date(2021,2,3) - new Date(2021,1,21) ) / 1000
+-> 초
+( new Date(2021,2,3) - new Date(2021,1,21) ) / 1000 / 60
+-> 분
+( new Date(2021,2,3) - new Date(2021,1,21) ) / 1000 / 60 / 60
+-> 시간
+( new Date(2021,2,3) - new Date(2021,1,21) ) / 1000 / 60 / 60 / 24
+-> 날짜나옴.
+
+
+
+** reduce (리턴 빼먹지 말기)
+초기값 안넣으면 첫번째값이 초기값
+0 이면 0 아 초기값
+
+
+누적값,현재값
+[1,2,3,4].reduce((acc,num) => (acc + num),0)
+a : 0, num : 1
+a : 1, num : 2
+a : 3, num : 3
+a : 6, num : 4
+
+//초깃값 없을경우
+a : 1, num : 2
+a : 3  num : 3
+a : 6  num : 4
+
+*/
 
 </script>
 </body>
