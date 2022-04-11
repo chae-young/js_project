@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>틱택토</title>
+<style>
+  table {
+    border-collapse: collapse;
+  }
+
+  td {
+    border: 1px solid black;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+  }
+</style>
+</head>
+
+<body>
+  <!-- <table>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table> -->
+<script>
+    const $table = document.createElement('table');
+    const $result = document.createElement('div');
+
+    const rows = []
+    let turn = 'O'
+
+    const checkWinner = (target) => {
+      //index를 자체적으로 가지고있음
+      let rowIndex = target.parentNode.rowIndex;
+      let cellIndex = target.cellIndex;
+
+      // rows.forEach((row,ri)=>{
+      //   row.forEach((cell,ci)=>{
+      //     if(cell === target){
+      //       rowIndex = ri
+      //       cellIndex = ci
+      //     }
+      //   })
+      // })
+      //세칸이 다 채워졋나?
+      let hasWinner = false
+      if(
+        rows[rowIndex][0].textContent === turn &&
+        rows[rowIndex][1].textContent === turn &&
+        rows[rowIndex][2].textContent === turn 
+      ){
+        hasWinner = true
+      }
+      if(
+        rows[0][cellIndex].textContent === turn &&
+        rows[1][cellIndex].textContent === turn &&
+        rows[2][cellIndex].textContent === turn 
+      ){
+        hasWinner = true
+      } //대각선  
+      if(
+        rows[0][0].textContent === turn &&
+        rows[1][1].textContent === turn &&
+        rows[2][2].textContent === turn 
+      ){
+        hasWinner = true
+      } 
+      if(
+        rows[0][2].textContent === turn &&
+        rows[1][1].textContent === turn &&
+        rows[2][0].textContent === turn 
+      ){
+        hasWinner = true
+      }  
+      
+      return hasWinner
+    }
+
+    const callback = (event) => {
+        //칸에 글자가 있다면
+        if(event.target.textContent !== '') {
+          console.log('빈칸이 아닙니다')
+          return
+        }
+        event.target.textContent = turn
+        //승부 판단하기
+        if(checkWinner(event.target)){
+          $result.textContent = `${turn}님의 승리`
+          $table.removeEventListener('click',callback)//이벤트 해제
+          return
+        }
+        //무승부 검사
+        const draw = rows.flat().every((cell)=> cell.textContent) //flat은 2차원을 1차원으로
+        //비효율적!! 첫번째에 빈칸 아니면 굳이 돌필요가 없다
+/*      let draw = true
+        rows.forEach((row)=>{
+          row.forEach((cell)=>{
+            if(!cell.textContent){//한칸이라도 안채워져 있다면
+              draw = false
+            }
+          })
+        }) */
+        //every (1차원배열만 가능) 모두다 존재해야 true -> 첫번째칸 안채워있으면 바로 종료
+        //some 하나라도
+
+        if(draw){
+          $result.textContent = '무승부'
+          return
+        }
+        turn = turn === 'X' ? 'O' : "X"
+    }   
+
+    for(let i = 0; i < 3; i++){
+        const $tr = document.createElement('tr');
+        const cells = [];
+        for(let j = 0; j < 3; j++){
+            const $td = document.createElement('td');
+            cells.push($td)
+            $tr.append($td)
+        }    
+        rows.push(cells)
+        $table.append($tr)    
+    }
+    $table.addEventListener('click',callback)
+    document.body.append($table)
+    document.body.append($result)
+
+
+    /*
+
+    이벤트버블링 : td 클릭하면 tr -> table 계속 올라가는 현상
+    진짜 클릭한애를 원하면 event.currentTarget(확실)
+    event.target은 자식들중 하나라 불확실 (테이블 기준)
+
+    이벤트버블링 막기
+    event.stoPropagation
+
+    이벤트캡처링: 부모한테 발생한 이벤트가 자식한테 가는것 (주로 팝업배경 클릭하면 닫히는..)
+    
+    */
+</script>
+</body>
+</html>
