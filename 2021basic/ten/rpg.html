@@ -1,0 +1,155 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>텍스트 RPG</title>
+</head>
+
+<body>
+
+<form id="start-screen">
+  <input id="name-input" placeholder="주인공 이름을 입력하세요!" />
+  <button id="start">시작</button>
+</form>
+
+<div id="screen">
+  <!--주인공-->
+  <div id="hero-stat">
+    <span id="hero-name"></span>
+    <span id="hero-level"></span>
+    <span id="hero-hp"></span>
+    <span id="hero-xp"></span>
+    <span id="hero-att"></span>
+  </div>
+  <!--일반-->
+  <form id="game-menu" style="display: none;">
+    <legend>게임메뉴</legend>
+    <div id="menu-1">1.모험</div>
+    <div id="menu-2">2.휴식</div>
+    <div id="menu-3">3.종료</div>
+
+    <input id="menu-input" />
+
+    <button id="menu-button">입력</button>
+  </form>
+  <!--전투-->
+  <form id="battle-menu" style="display: none;">
+    <legend>전투메뉴</legend>
+    <div id="battle-1">1.공격</div>
+    <div id="battle-2">2.회복</div>
+    <div id="battle-3">3.도망</div>
+
+    <input id="battle-input" />
+
+    <button id="battle-button">입력</button>
+  </form>
+
+  <!--게임 상황 알려주는 메시지-->
+  <div id="message"></div>
+
+  <!--적-->
+  <div id="monster-stat">
+    <span id="monster-name"></span>
+    <span id="monster-hp"></span>
+    <span id="monster-att"></span>
+  </div>
+</div>
+
+<script>
+  const $startScreen = document.querySelector('#start-screen');
+  const $gameMenu = document.querySelector('#game-menu');
+  const $battleMenu = document.querySelector('#battle-menu');
+  const $heroName = document.querySelector('#hero-name');
+
+  const $heroLevel = document.querySelector('#hero-level');
+  const $heroHp = document.querySelector('#hero-hp');
+  const $heroXp = document.querySelector('#hero-xp');
+  const $heroAtt = document.querySelector('#hero-att');
+
+  const $monsterName = document.querySelector('#monster-name');
+  const $monsterHp = document.querySelector('#monster-hp');
+  const $monsterAtt = document.querySelector('#monster-att');
+  const $message = document.querySelector('#message');
+
+  const hero = {
+    name: '',
+    lev: 1,
+    maxHp: 100,
+    hp: 100,
+    xp: 0,
+    att: 10, 
+  }
+  let monster = null
+  const monsterList = [
+      { name: '슬라임', hp: 25, att: 10, xp: 10},
+      { name: '스켈레톤', hp: 50, att: 15, xp: 20},
+      { name: '마왕', hp: 100, att: 30, xp: 50},
+  ]
+
+  $startScreen.addEventListener('submit',(event)=>{
+      event.preventDefault()
+      const name = event.target['name-input'].value //submit에서 가능
+      //화면
+      $startScreen.style.display = 'none';
+      $gameMenu.style.display = 'block';
+      $heroName.textContent = name
+      //데이터
+      $heroLevel.textContent = `${hero.lev}Lev`;
+      $heroHp.textContent = `HP: ${hero.hp}/${hero.maxHp}`;
+      $heroXp.textContent = `XP: ${hero.xp}/${15 * hero.lev}`; //1lv = 15경험치
+      $heroAtt.textContent = `ATT: ${hero.att}`;
+      hero.name = name;
+  })
+
+  $gameMenu.addEventListener('submit',(event)=>{
+      event.preventDefault()
+      const input = event.target['menu-input'].value
+      if(input === '1'){//모험
+        $gameMenu.style.display = 'none';
+        $battleMenu.style.display = 'block';
+        monster = JSON.parse(JSON.stringify(monsterList[Math.floor(Math.random() * monsterList.length)]))//몬스터리스트의 카드들이 계속 바뀌면 안되기 때문에 깊은복사!!!(새로꺼내주어야함)
+      }
+      monster.maxHp = monster.hp //최고 체력이 나와야하기때문에 넣기
+      $monsterName.textContent = monster.name;
+      $monsterHp.textContent = `HP: ${monster.hp}/${monster.maxHp}`;
+      $monsterAtt.textContent = `ATT: ${monster.att}`;      
+  })
+
+  /*
+  
+  깊은복사 : 원조는 복사해도 바뀌지 않는다 (false) 
+  참조 : 원조도 바뀜 (true) , 대입하는거
+  얕은복사 : 복사하되 안에 값들은 참조되는..
+
+    const a =[]
+    const b ='hello'
+    const c = {}
+
+    const arr = [a,b,c]
+
+    //대입
+    const arr1 = arr
+    arr1[1] = 'hi'
+    -> arr 도 hi로 바뀜 ! 참조가 된다.
+    
+    //얕은복사 (slice도 얕은복사!)
+    const arr2 = [...arr]
+    arr2[0].push(0) 을 하면 원조 arr 도 바뀌고 arr2도 바뀐다!
+    왜냐하면 껍데기는 복사를 하지만 안에값은 참조가 되고 있기때문에!!!
+    대신 문자열이나 원시값 이런건 안바뀜 왜냐면 객체만 참조현상이 일어나기때문에!!!
+
+    arr2[0] === arr[0] false
+    arr2[0] === arr[0] true
+
+    //깊은복사
+    말 그대로 안바뀜
+    간단한 객체는 JSON.parse(JSON.stringfy(객체)) 사용가능
+    but 성능 느리고 date, math 복사 안됨
+    그래서 lodash 라이브러리 사용
+
+    * 배열(객체)안에 원시값만 있는경우엔 참조가 안되기 때문에 얕은복사 가능 ㅎ
+  */
+
+</script>
+</body>
+</html>
