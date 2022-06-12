@@ -78,6 +78,14 @@
     hp: 100,
     xp: 0,
     att: 10, 
+    attack(monster){
+      monster.hp -= this.att
+      this.hp -= monster.att
+    },
+    heal(monster){
+      this.hp += 20
+      this.hp -= monster.att
+    }    
   }
   let monster = null
   const monsterList = [
@@ -117,6 +125,15 @@
 
   /*
   
+  ***this
+  기본적으로 this는 윈도우!!
+  객체에 메소드를 호출할때만 함수의 this가 객체가됨
+
+  화살표함수와 그냥 함수의 가장 큰차이는 this.
+  화살표함수의 this는 함수 호출하기전 this를 의미(바깥쪽 this를 가져오는것)
+  bind함수로 this를 바꿀수있다(화살표함수는 안됨.)
+
+
   깊은복사 : 원조는 복사해도 바뀌지 않는다 (false) 
   참조 : 원조도 바뀜 (true) , 대입하는거
   얕은복사 : 복사하되 안에 값들은 참조되는..
@@ -148,6 +165,13 @@
     그래서 lodash 라이브러리 사용
 
     * 배열(객체)안에 원시값만 있는경우엔 참조가 안되기 때문에 얕은복사 가능 ㅎ
+
+
+    ** class
+    consructor 는 생성자함수임.
+    new 빼먹으면 에러남 (이것때문에 class가 생겨났다는..)
+    객체처럼 메서드 추가가능
+    클래스 안에서 this는 클래스..
   */
 
 </script>
