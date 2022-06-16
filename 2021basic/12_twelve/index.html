@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>지뢰찾기</title>
+<style>
+  table { border-collapse: collapse; }
+  td {
+    border: 1px solid #bbb;
+    text-align: center;
+    line-height: 20px;
+    width: 20px;
+    height: 20px;
+    background: #888;
+  }
+  td.opened { background: white; }
+  td.flag { background: red; }
+  td.question { background: orange; }
+</style>
+</head>
+
+<body>
+<form id="form">
+  <input placeholder="가로 줄" id="row" size="5" />
+  <input placeholder="세로 줄" id="cell" size="5" />
+  <input placeholder="지뢰" id="mine" size="5" />
+  <button>생성</button>
+</form>
+<div id="timer">0초</div>
+<table id="table">
+  <tbody></tbody>
+</table>
+<div id="result"></div>
+<script>
+/********
+열린칸 0 ~ 8 opend
+닫힌칸(지뢰x) -1 normal
+물음표칸(지뢰x) -2 question
+깃발 칸(지뢰x) -3 falg
+물음표 칸(지뢰o) -4 question mine
+깃발 칸(지뢰o) -5 flag min
+닫힌칸(지뢰o) -6 mine
+**********/
+
+const $tbody = document.querySelector('#table tbody')
+const $result = document.querySelector('#result')
+const row = 10;
+const cell = 10;
+const mine = 10;
+
+const CODE = {
+    NORMAL : -1, //닫힌칸(지뢰없음)
+    QUESTION : -2,
+    FLAG : -3,
+    QUESTION_MINE : -4, //물음표 지뢰
+    FLAG_MINE : -5, //깃발 지뢰
+    MINE : -6,
+    OPEND : 0,//0 이상이면 다 모두 열린 칸
+}
+let data; //항상 데이터를 먼저!! 후에 화면그리기(리액트처럼 ㅎㅎ)
+
+function countMine(rowIndex,cellIndex){
+  const mines = [CODE.MINE,CODE.QUESTION_MINE,CODE.FLAG_MINE]
+  let i = 0;
+  mines.includes(data[rowIndex-1]?.[cellIndex-1]) && i++; // 앞에게 존재하면 뒤에거를 실행해라!!
+  mines.includes(data[rowIndex-1]?.[cellIndex]) && i++;
+  mines.includes(data[rowIndex-1]?.[cellIndex+1]) && i++;
+  mines.includes(data[rowIndex][cellIndex-1]) && i++;
+  mines.includes(data[rowIndex][cellIndex-1]) && i++;
+  mines.includes(data[rowIndex+1]?.[cellIndex-1]) && i++;
+  mines.includes(data[rowIndex+1]?.[cellIndex]) && i++;
+  mines.includes(data[rowIndex+1]?.[cellIndex+1]) && i++;
+
+  return i
+}
+
+function onRightClick(event) {
+  event.preventDefault();
+  const target = event.target; //td
+  const rowIndex = target.parentNode.rowIndex;
+  const cellIndex = target.cellIndex;
+  const cellData = data[rowIndex][cellIndex];
+  console.log(cellData)
+  if (cellData === CODE.MINE) { // 지뢰면
+    data[rowIndex][cellIndex] = CODE.QUESTION_MINE; // 물음표 지뢰로
+    target.className = 'question';
+    target.textContent = '?';
+  } else if (cellData === CODE.QUESTION_MINE) { // 물음표 지뢰면
+    data[rowIndex][cellIndex] = CODE.FLAG_MINE; // 깃발 지뢰로
+    target.className = 'flag';
+    target.textContent = '!';
+  } else if (cellData === CODE.FLAG_MINE) { // 깃발 지뢰면
+    data[rowIndex][cellIndex] = CODE.MINE; // 지뢰로
+    target.className = '';
+    target.textContent = '';
+  } else if (cellData === CODE.NORMAL) { // 닫힌 칸이면
+    data[rowIndex][cellIndex] = CODE.QUESTION; // 물음표로
+    target.className = 'question';
+    target.textContent = '?';
+  } else if (cellData === CODE.QUESTION) { // 물음표면
+    data[rowIndex][cellIndex] = CODE.FLAG; // 깃발으로
+    target.className = 'flag';
+    target.textContent = '!';
+  } else if (cellData === CODE.FLAG) { // 깃발이면
+    data[rowIndex][cellIndex] = CODE.NORMAL; // 닫힌 칸으로
+    target.className = '';
+    target.textContent = '';
+  }
+}
+
+function onLeftClick(event){
+  const target = event.target;//td
+  const rowIndex = target.parentNode.rowIndex;
+  const cellIndex = target.cellIndex;
+  const cellData = data[rowIndex][cellIndex];
+  if(cellData === CODE.NORMAL){//닫힌 칸 이면
+    const count = countMine(rowIndex,cellIndex) //지뢰개수 세기
+    target.textContent = count || ''; //지뢰없으면 빈칸! 근데 0도 표시해주고 싶다면 ?? 사용하자 (null,undefined일경우에만 뒤에거 실행)
+    //닫힌칸 이니까 열기
+    target.className = 'opened' || '';
+    data[rowIndex][cellIndex] = count;
+  }else if(cellData === CODE.MINE){ //지뢰칸이면
+    target.textContent = '펑'
+    target.className = 'opened'
+    $tbody.removeEventListener('contextmenu',onRightClick)
+    $tbody.removeEventListener('click',onLeftClick)
+  }
+}
+//지뢰심기
+function plantMine() {
+    const condidate = Array(row * cell).fill().map((arr,i) => i)
+    const shuffle = []
+    while(condidate.length > row * cell - mine){
+        const chosen = condidate.splice(Math.floor(Math.random() * condidate.length),1)[0]
+        shuffle.push(chosen)
+    }    
+  //데이터 배열 생성
+    const data = [];
+    for(let i = 0; i < row; i++){
+        const rowData = []
+        data.push(rowData)
+        for(let j = 0;j < cell; j++){
+            rowData.push(CODE.NORMAL)
+        }
+    } 
+    //[85,14,2]..
+    for(let k = 0;k < shuffle.length; k++){
+        const ver = Math.floor(shuffle[k] / cell);
+        const hor = shuffle[k] % cell //나머지
+        data[ver][hor] = CODE.MINE
+    }
+    return data
+}
+//화면그리기
+function drawTable(){
+    data = plantMine()
+    data.forEach((row)=>{
+        const $tr = document.createElement('tr');
+        row.forEach((cell)=>{
+            const $td = document.createElement('td');
+            if(cell === CODE.MINE){
+                $td.textContent = 'X'
+            }
+            $tr.append($td)
+        })
+        $tbody.append($tr);
+        $tbody.addEventListener('contextmenu',onRightClick)//이벤트 버블링(장점:한번에 remove 가능)
+        $tbody.addEventListener('click',onLeftClick)
+    })
+}
+drawTable()
+
+
+
+
+/* 
+논리연산자 !
+
+&&
+(5>3) && (2<0) // false 앞에게 트루면? 뒤에거해라
+->뒤에가 false라 false
+(5>3) && (2>0) // true 앞에게 트루면? 뒤에거해라
+-> 뒤에 true라 true
+(5<3) && (2>0) // false 앞에게 트루면? 뒤에거해라
+-> 앞이 false라 false
+
+*/
+</script>
+</body>
+</html>
