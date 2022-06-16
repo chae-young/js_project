@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>짝맞추기</title>
+<style>
+  .card {
+    display: inline-block;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    width: 70px;
+    height: 100px;
+    perspective: 140px;
+  }
+
+  .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+
+  .card.flipped .card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .card-front {
+    background: navy;
+  }
+
+  .card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    backface-visibility: hidden;
+  }
+
+  .card-back {
+    transform: rotateY(180deg);
+  }
+</style>
+</head>
+<body>
+<div id="wrapper"></div>
+
+<script>
+  const $wrapper = document.querySelector('#wrapper');
+  
+  const total = 12;
+  const colors = ['red','orange','bule','yellow','pink','green']
+  let colorCopy = colors.concat(colors)
+  let shuffled = [];
+  let clicked = [];
+  let completed = [];
+  let clickable = false;  
+
+  function shuffle(){
+    for(let i = 0; colorCopy.length; i += 1){
+      const randomIndex = Math.floor(Math.random() * colorCopy.length)
+        shuffled = shuffled.concat(colorCopy.splice( randomIndex,1) )
+    }
+  }
+
+  function createdCard(i){
+    const card = document.createElement('div')
+    card.className = 'card'
+
+    const cardInner = document.createElement('div')
+    cardInner.className = 'card-inner'
+
+    const cardFront = document.createElement('div')
+    cardFront.className = 'card-front'   
+
+    const cardBack = document.createElement('div')
+    cardBack.className = 'card-back'
+    cardBack.style.background = shuffled[i]
+
+    cardInner.appendChild(cardBack)
+    cardInner.appendChild(cardFront)
+    card.appendChild(cardInner)
+
+    return card
+  }
+
+  function onClickCard(){
+    console.log(completed,this)
+    if(!clickable || completed.includes(this) || clicked[0] === this){//카드 클릭 못하게 방지,완성된 카드,클릭한 카드
+      return
+    }
+    //여기서 this는 card (왜냐면 그냥 함수라서)
+    this.classList.toggle('flipped')
+    clicked.push(this)
+
+    if(clicked.length !== 2){ //클릭한 카드가 2개가 아니면
+      return
+    }
+    //두개다!
+    const firstBackColor = clicked[0].querySelector('.card-back').style.backgroundColor;
+    const secondBackColor = clicked[1].querySelector('.card-back').style.backgroundColor;
+
+    //색깔이 같으면?
+    if(firstBackColor === secondBackColor){
+      completed.push(clicked[0])
+      completed.push(clicked[1])
+      clicked = [];
+      // 위의 코드 1줄로 해결 -> completed = completed.concat(clicked)
+      if(completed.length !== total){
+        return
+      }
+      setTimeout(()=>{
+        //게임끝
+        resetGame()
+        alert('축하합니다')
+      },1000)
+      return
+    }
+    //색깔이 다르다
+    setTimeout(()=>{
+      clicked[0].classList.remove('flipped')
+      clicked[1].classList.remove('flipped')
+      clicked = [];
+
+      return
+    },1000)
+  }
+
+  function startGame(){
+    shuffle()//카드섞기
+
+    for(let i = 0; i < total; i+= 1){
+      const card = createdCard(i)
+      card.addEventListener('click',onClickCard)
+      $wrapper.appendChild(card)
+    }
+
+    document.querySelectorAll('.card').forEach((card,index) => {
+      setTimeout(()=>{
+        card.classList.add('flipped')
+      },1000 + 100 * index)
+    })
+    //카드 감추기
+    setTimeout(()=>{
+      document.querySelectorAll('.card').forEach((card)=>{
+        card.classList.remove('flipped')
+      })
+      clickable = true
+    },5000)
+  }
+
+  startGame()
+
+  function resetGame(){
+    $wrapper.innerHTML = '';
+    colorCopy = colors.concat(colors);
+    shuffled = [];
+    completed = [];
+    startGame()
+  }
+
+/* 
+호출스택: 함수(메소드들도 포함)를 저장,실행 하는 공간(아래에서 쌓이고 위에서 사라짐)
+백그라운드: 타이머나 이벤트리스너 들어있는 공간
+테스크큐 : 콜백함수 공간(타이머나 이벤트리스너)
+이벤트루프: 호출스택 비어있을때 테스크큐에서 하나씩 꺼내어 실행해주는 거
+
+
+호출스택에서 함수가 실행되고 지할일 끝나면 나감
+그러다 이벤트리스너나 타이머 만나면 백그라운드에 저장
+
+*/
+</script>
+</body>
+</html>

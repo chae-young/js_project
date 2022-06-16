@@ -1,0 +1,1387 @@
+<link rel="stylesheet" href="https://image.wconcept.co.kr/images/img/publish/css/wconcept_ani.css">
+<link rel="stylesheet" href="https://image.wconcept.co.kr/images/img/publish/css/swipeslider.css"><!--220427 래플오픈 스타일 추가-->
+<style>
+/*top*/
+.fade-bg-box{
+	position:relative;
+    overflow: hidden;
+}
+.fade-bg-box .obj-img{
+	position:absolute;
+	top: 0;
+	left: 0;	
+	z-index: 5;
+    animation-name: addScale,addFade;
+    animation-duration: 2s,1s;
+    animation-timing-function: ease-in-out,ease-in;
+}
+.fade-bg-box .empty-con{
+	position: relative;
+
+}
+.fade-bg-box .empty-con img{
+	opacity: 0;
+}	
+.fade-bg-box .obj-text{
+    position:absolute;
+    top:0;
+    left: 0;
+    z-index: 7;
+    opacity: 0;
+    animation-name: addTextFade;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes addScale {
+    0% {
+    -webkit-transform: scale(1.03);
+    -ms-transform: scale(1.03);
+    transform: scale(1.03);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@keyframes addScale {
+  0% {
+    -webkit-transform: scale(1.03);
+    -ms-transform: scale(1.03);
+    transform: scale(1.03);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@-webkit-keyframes addFade {
+    0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes addFade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes addTextFade {
+  0% {
+    opacity: 0;
+    transform: translateX(-10%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0%);    
+  }
+}
+
+@keyframes addTextFade {
+0% {
+    opacity: 0;
+    transform: translateX(-10%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0%);    
+  }
+}
+/*nav*/
+.ev-wXs-con .shopping-guide-nav > ul{
+    display: flex;
+}
+.ev-wXs-con .shopping-guide-nav.fixed {position: fixed;bottom: inherit;left: 0;right: 0;z-index: 10;width: 100%;margin: 0 auto;}
+.ev-wXs-con .shopping-guide-nav.fixed{top:50px;max-width:800px;width:100%;min-width:200px;}
+.ev-wXs-con .shopping-guide-nav .nav-category-open .wXs-raffle-off,
+.ev-wXs-con .shopping-guide-nav .nav-category-open .wXs-celeb-off{
+    display: none;
+}
+.ev-wXs-con .shopping-guide-nav .nav-category-off .wXs-raffle-on,
+.ev-wXs-con .shopping-guide-nav .nav-category-off .wXs-celeb-on{
+    display: none;
+}
+/*1.collabo*/
+.wXs-collabo-con .insta-dm-con{
+    position: relative;
+}
+.wXs-collabo-con .insta-dm-con .dm__list li{
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+.wXs-collabo-con .insta-dm-con .dm__list li.ani-start.active{opacity: 0;}
+.wXs-collabo-con .insta-dm-con .dm__list li.active{opacity: 1;}
+
+/*2.wlive*/
+.wXs-live-notice {
+    position: relative;
+}
+.wXs-live-notice .wXs-live__btn{
+    position:absolute;
+    bottom:7.5%;
+    left: 0;
+}
+.wXs-live-notice .wXs-live__btn .wlive-obj{display: none;}
+.wXs-live-notice .wXs-live__btn.wlive-comming{cursor: none;}
+.wXs-live-notice .wXs-live__btn.wlive-comming .wXs-img-comming{display: block;}
+.wXs-live-notice .wXs-live__btn.wlive-view .wXs-img-view{display: block;}
+.wXs-live-notice .wXs-live__btn.wlive-replay .wXs-img-replay{display: block;}
+
+.wXs-live-con .wXs-live-alarm{
+    position: relative;
+}
+.ev-wXs-con .alarm-count-box {
+    font-family: "Noto Sans KR";  
+    font-size: 30px;
+}
+.ev-wXs-con .alarm-count-box .cnt_smple{
+    margin: 0 -1px;
+    font-family:'ProximaNova-Bold';  
+    font-size: 50px;    
+}
+.ev-wXs-con .alarm-count-box .dash{
+    margin:0 -1.5%;
+}
+.wXs-live-con .wXs-live-alarm .alarm-count-box{
+    position: absolute;
+    bottom: 46%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-weight: bold;
+}
+.wXs-live-con .wXs-live-alarm .alarm-count-box .cnt_smple{color:rgb(44,102,65)}
+.wXs-live-con .wXs-live-alarm .wXs-alarm__btn{
+    position:absolute;
+    bottom:27%;
+    left: 0;  
+}
+.wXs-live-con .wXs-live-alarm .wXs-alarm-notice{
+    position: absolute;
+    left: 35%;
+    bottom: 16%;
+    width: 30%;
+    height: 0;
+    padding-bottom: 7%;    
+    text-indent: -9999px;
+}
+/*3.raffle*/
+.wXs-raffle-box{
+    position: relative;
+}
+.wXs-raffle-box .alarm-count-box{
+    position: absolute;
+    top: 52%;    
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+.wXs-raffle-box .alarm-count-box {color:rgb(255,255,255)}
+#raffleCommingBox{
+    position: relative;
+}
+/*4.celeb*/
+.wXs-celeb-box {
+    position: relative;
+}
+.wXs-celeb-box .wXs-link__btn{
+    position: absolute;
+    left: 0;
+    bottom: 20%;
+}
+.wXs-celeb-box .wXs-link__btn .wXs-celeb-comming,
+.wXs-celeb-box .wXs-link__btn .wXs-celeb-view{
+    display: none;
+}
+.wXs-celeb-box .wXs-link__btn.celeb-comming .wXs-celeb-comming,
+.wXs-celeb-box .wXs-link__btn.celeb-view .wXs-celeb-view{
+    display: block;
+}
+/*팝업 라이트*/
+.lightbox_wrap{
+	position: absolute;
+	left: 50%;
+	z-index: 1001;
+	display: none;
+	text-align:center;
+	max-width: 715px;
+	width: 89.375%;
+}
+.lightbox{
+    position: relative;
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+}
+.closewrap{
+    position: absolute;
+    right: 0%;
+    top: 0;
+    width: 13%;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 7%;
+    z-index: 1002;
+    text-align: right;
+}
+.pop_top{
+    top: 10%;
+    transform:translateX(-50%);
+    -webkit-transform:translateX(-50%);
+    -moz-transform:translateX(-50%);
+    -o-transform:translateX(-50%);
+}
+.pop_middle {
+    top: 50%;
+    transform:translate(-50%, -50%);
+    -webkit-transform:translate(-50%, -50%);
+    -moz-transform:translate(-50%, -50%);
+    -o-transform:translate(-50%, -50%);
+}
+.lightbox-shadow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,.8);
+    opacity: 1;
+    z-index: 1000;
+    display: none;
+    overflow-y: scroll;
+}
+.close-shadow{width:100%;position:absolute;top:0;left:0;right:0;bottom:0}
+.document_overflow{overflow:hidden}
+.popimg_wrap{
+    position:relative;
+    max-width: 715px;
+    width: 89.375%;
+    margin:0 auto;
+}
+.wXs-popup-agree{
+    width: 100%;
+    height: 100vh;
+}
+.wXs-popup-agree .lightbox_wrap{
+    display: block !important;
+    padding:60px 40px 60px;
+    background: rgb(255,255,255);
+}
+.wXs-popup-agree form{margin: 0;}
+.wXs-popup-agree .tit{
+    margin-bottom: 35px;
+    text-align: left;
+    line-height: 25px;
+    letter-spacing: -0.05em;
+    font-size: 16px;
+    word-break: keep-all;
+}
+.wXs-popup-agree .agree__list{
+    text-align: left;
+    margin-bottom: 35px;
+}
+.wXs-popup-agree .agree__list > li{
+    font-family: "Noto Sans KR";
+}
+.wXs-popup-agree .agree__list > li:first-child{
+    font-size: 16px;  
+}
+.wXs-popup-agree .agree__list strong{
+    font-weight: 700;
+}
+.wXs-popup-agree .agree__list > li + li{
+    position: relative;
+    font-size: 13px;
+}
+.wXs-popup-agree .agree__list > li input{
+	position: absolute;
+	z-index: -9999999;
+	opacity: 0;
+}
+.wXs-popup-agree .agree__list > li input[type="checkbox"] + label{
+	position: relative;
+	display: inline-block;
+    width: 100%;       
+	vertical-align: top;
+    font-weight: 300;    
+}
+.wXs-popup-agree .agree__list > li + li input[type="checkbox"] + label{
+    letter-spacing: -0.05em;
+    padding: 20px 0 20px 35px;
+    font-size: 13px;
+    border-bottom:1px solid rgb(189,189,189);    
+}
+.wXs-popup-agree .agree__list > li input[type="checkbox"] + label:before{
+	content: "";
+	display: block;
+	position: absolute;
+	left: 0;
+	width: 20px;
+	height: 20px;
+	top: 50%;
+    transform: translateY(-50%);
+	background-image: url('https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/ico_check_off.png');    
+	background-repeat: no-repeat;
+	background-position: 0 0;
+    background-size: 100%;
+}
+.wXs-popup-agree .agree__list > li:first-child input[type="checkbox"] + label:before{
+    right: 0; 
+    left: auto;
+}
+.wXs-popup-agree .agree__list > li input[type="checkbox"]:checked + label:before {background-image: url('https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/ico_check_on.png'); }
+.lightbox-shadow .privacy-toggle-btn{
+    position: absolute;
+    top: 11px;
+    text-indent: -9999px;
+    width: 16.5%;
+    height: 0;
+    padding-bottom: 43px;
+    right: -10px;
+}
+.lightbox-shadow .privacy-toggle-btn:before{
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 31%;
+    width: 11px;
+    height: 7px;
+    background: url(https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/ico_arr_bottom.png);
+    background-size: 100%;
+}
+.wXs-popup-agree .desc{
+    display: none;
+    max-height: 120px;
+    overflow-y: auto;
+    padding-top: 12px;    
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 19px;
+}
+.wXs-popup-agree .agree__list .desc li{
+    padding-left: 5px;
+}
+.wXs-popup-agree .agree__list .desc li:before{
+    content: '-';
+    margin-left: -3px;
+}
+.wXs-popup-agree .agree__list li.on .desc{
+    display: block;
+}
+
+.wXs-popup__btn{
+    display:flex;
+}
+.wXs-popup__btn button{
+    flex: 1;
+    height: 60px;
+    font-size: 16px;
+}
+.wXs-popup__btn button:nth-child(1){
+    margin-right: 11px;
+    color: rgb(255,255,255);
+    background: rgb(0,0,0);
+}
+.wXs-popup__btn button:nth-child(2){
+    margin-left: 11px;
+    border: 1px solid rgb(0,0,0);
+    color: rgb(0,0,0);    
+}
+.wXs-popup-agree .closewrap{
+    width: 25px;
+    height: 25px;
+    top: 20px;
+    right: 20px;
+    padding: 0;
+}
+/*팝업활성화*/
+body.wXs-popup-open .wXs-popup-agree{
+    display: block !important;
+}
+body.wXs-popup-open{
+    overflow: hidden;
+}
+@media screen and (max-width: 800px){
+    .ev-wXs-con .alarm-count-box {
+        font-size: 3.5vw;    
+    }
+    .ev-wXs-con .alarm-count-box .cnt_smple{ 
+        font-size: 6.28vw; 
+    }
+    .wXs-popup-agree .lightbox_wrap{
+        padding:17.14vw 5.71vw 10vw;
+    }
+    .wXs-popup-agree .tit{
+        margin-bottom: 10vw;
+        line-height: 7.14vw;
+        font-size: 4.57vw;
+    }
+    .wXs-popup-agree .agree__list{
+        margin-bottom: 10vw;
+    }
+    .wXs-popup-agree .agree__list > li:first-child{
+        font-size: 4.57vw;  
+    }
+    .wXs-popup-agree .agree__list > li + li{
+        font-size: 3.71vw;
+    }
+    .wXs-popup-agree .agree__list > li + li input[type="checkbox"] + label{
+        padding: 5.71vw 0 5.71vw 8.57vw;
+        font-size: 3.71vw; 
+    }
+    .wXs-popup-agree .agree__list > li input[type="checkbox"] + label:before{
+        width: 5.71vw;
+        height: 5.71vw;
+    } 
+    .lightbox-shadow .privacy-toggle-btn{
+        padding-bottom: 15%;
+    }    
+    .lightbox-shadow .privacy-toggle-btn:before{
+        right: 25%;
+        width: 3.14vw;
+        height: 2.1vw;
+    }
+    .wXs-popup-agree .desc{
+        padding-top: 5.71vw;    
+        font-size: 3.42vw;
+        line-height: 5.14vw;
+    }
+    .wXs-popup__btn button{
+        height: 17.14vw;
+        font-size: 4.57vw;
+    }
+    .wXs-popup__btn button:nth-child(1){
+        margin-right: 1.57vw;
+    }
+    .wXs-popup__btn button:nth-child(2){
+        margin-left: 1.57vw;   
+    }    
+    .wXs-popup-agree .closewrap{
+        width: 7.14vw;
+        height: 7.14vw;
+        top: 5.71vw;
+        right: 5.71vw;
+    }    
+}
+</style>
+<!--220427 래플오픈 스타일 추가-->
+<style>
+.wXs-raffle-box .raffle-box-inner{
+    background:rgb(42,56,51);
+}
+.wXs-raffle-box .raffle-intro{
+    position: relative;
+}
+.wXs-raffle-box .raffle-intro .alarm-count-box{
+   top:auto;
+   bottom:7%;
+}
+.raffle-slide__list .swipeslide__slide{
+    /* padding-left: 19px;                 */
+    padding-bottom: 140px;
+}
+.raffle-slide__list .swiper-slide:first-child{
+    /* margin-left: -12.5vw; */
+    margin-left: -20px;
+}
+.raffle-slide__list .swiper-container-horizontal>.swiper-pagination-bullets, 
+.raffle-slide__list .swiper-pagination-custom, 
+.raffle-slide__list .swiper-pagination-fraction{
+    bottom: 5.5%;
+}
+.raffle-slide__list .swiper-pagination-bullet{background: rgb(106,116,113);opacity: 1;}
+.raffle-slide__list .swiper-pagination-bullet.swiper-pagination-bullet-active{background:rgb(255,255,255);}
+.raffle-slide__list .swiper-slide{
+    position: relative;
+    width: 520px;
+}
+.raffle-slide__list .swiper-slide:before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0;
+    z-index: -1;
+    transition: all .3s;
+}
+.raffle-slide__list .swiper-slide.off:before{
+    opacity: .6;
+    z-index: 10;
+}
+.raffle-slide__list .raffle-cut,        
+.raffle-slide__list .raffle-apply,
+.raffle-bottom{
+    position: relative;
+}            
+.raffle-slide__list .swiper-slide.off .raffle-cut{
+    z-index: -1;
+}
+.raffle-slide__list .raffle-cut .img-change-back{
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;    
+    transition: opacity .8s;                   
+} 
+.raffle-slide__list .raffle-cut .img-change-back.active{
+    opacity: 1;
+}      
+.raffle-slide__list .raffle-apply__btn{
+    position: absolute;
+    top: 47%;
+    right: 5%;
+    width: 55%;
+    height: 0;
+    padding-bottom: 19%;
+    text-indent: -9999px;
+}
+
+.raffle-slide__list .raffle-apply .img-apply-ing,  
+.raffle-slide__list .raffle-apply .img-apply-close{display: none}  
+.raffle-slide__list .raffle-apply.raffle-ing .img-apply-ing{display: block;} 
+.raffle-slide__list .raffle-apply.raffle-close .img-apply-close{display: block;} 
+
+.raffle-bottom .raffle-info__btn{
+    position: absolute;
+    width: 40%;
+    height: 0;
+    padding-bottom: 10%;
+    left: 30%;
+    top: 8%;
+    text-indent: -9999px;                
+}
+.wXs-popup-raffle{
+    width: 100%;
+    height: 100vh;
+}
+.wXs-popup-raffle .lightbox_wrap{
+    display: block !important;
+    padding:60px 40px 60px;
+    background: rgb(255,255,255);
+}
+.wXs-popup-raffle form{margin: 0;}
+.wXs-popup-raffle .tit{
+    margin-bottom: 35px;
+    text-align: left;
+    line-height: 25px;
+    letter-spacing: -0.05em;
+    font-size: 16px;
+    word-break: keep-all;
+}
+.wXs-popup-raffle .agree__list{
+    text-align: left;
+    margin-bottom: 35px;
+}
+.wXs-popup-raffle .agree__list > li{
+    font-family: "Noto Sans KR";
+}
+.wXs-popup-raffle .agree__list > li:first-child{
+    font-size: 16px;  
+}
+.wXs-popup-raffle .agree__list strong{
+    font-weight: 700;
+}
+.wXs-popup-raffle .agree__list > li + li{
+    position: relative;
+    font-size: 13px;
+}
+.wXs-popup-raffle .agree__list > li input{
+    position: absolute;
+    z-index: -9999999;
+    opacity: 0;
+}
+.wXs-popup-raffle .agree__list > li input[type="checkbox"] + label{
+    position: relative;
+    display: inline-block;
+    width: 100%;       
+    vertical-align: top;
+    font-weight: 300;    
+}
+.wXs-popup-raffle .agree__list > li + li input[type="checkbox"] + label{
+    letter-spacing: -0.05em;
+    padding: 20px 0 20px 35px;
+    font-size: 13px;
+    border-bottom:1px solid rgb(189,189,189);    
+}
+.wXs-popup-raffle .agree__list > li input[type="checkbox"] + label:before{
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-image: url('https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/ico_check_off.png');    
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: 100%;
+}
+.wXs-popup-raffle .agree__list > li:first-child input[type="checkbox"] + label:before{
+    right: 0; 
+    left: auto;
+}
+.wXs-popup-raffle .agree__list > li input[type="checkbox"]:checked + label:before {background-image: url('https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/ico_check_on.png'); }
+
+.wXs-popup-raffle .desc{
+    display: none;
+    max-height: 120px;
+    overflow-y: auto;
+    padding-top: 12px;    
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 19px;
+}
+.wXs-popup-raffle .agree__list .desc li{
+    padding-left: 5px;
+}
+.wXs-popup-raffle .agree__list .desc li:before{
+    content: '-';
+    margin-left: -3px;
+}
+.wXs-popup-raffle .agree__list li.on .desc{
+    display: block;
+}
+.wXs-popup-raffle .closewrap{
+    width: 25px;
+    height: 25px;
+    top: 20px;
+    right: 20px;
+    padding: 0;
+}
+/*팝업활성화*/
+body.wXs-raffle-popup-open .wXs-popup-raffle{
+    display: block !important;
+}
+body.wXs-raffle-popup-open{
+    overflow: hidden;
+}
+@media screen and (max-width: 800px){
+    .ev-wXs-con .alarm-count-box {
+        font-size: 3.5vw;    
+    }
+    .ev-wXs-con .alarm-count-box .cnt_smple{ 
+        font-size: 6.28vw; 
+    }
+    .wXs-popup-raffle .lightbox_wrap{
+        padding:17.14vw 5.71vw 10vw;
+    }
+    .wXs-popup-raffle .tit{
+        margin-bottom: 10vw;
+        line-height: 7.14vw;
+        font-size: 4.57vw;
+    }
+    .raffle-slide__list .swipeslide__slide{
+        padding-bottom: 20vw;
+    }        
+    .raffle-slide__list .swiper-slide{
+        
+        width: 70vw;
+    }  
+    .raffle-slide__list .swiper-slide:first-child{
+        /* margin-left: -12.5vw; */
+        margin-left: -20vw;
+    }              
+    .wXs-popup-raffle .agree__list{
+        margin-bottom: 10vw;
+    }
+    .wXs-popup-raffle .agree__list > li:first-child{
+        margin-bottom: 5px;
+        font-size: 4.57vw;  
+    }
+    .wXs-popup-raffle .agree__list > li + li{
+        font-size: 3.71vw;
+    }
+    .wXs-popup-raffle .agree__list > li + li input[type="checkbox"] + label{
+        padding: 5.71vw 0 5.71vw 8.57vw;
+        font-size: 3.71vw; 
+    }
+    .wXs-popup-raffle .agree__list > li input[type="checkbox"] + label:before{
+        width: 5.71vw;
+        height: 5.71vw;
+    }
+    .wXs-popup-raffle .desc{
+        padding-top: 5.71vw;    
+        font-size: 3.42vw;
+        line-height: 5.14vw;
+    }   
+    .wXs-popup-raffle .closewrap{
+        width: 7.14vw;
+        height: 7.14vw;
+        top: 5.71vw;
+        right: 5.71vw;
+    }    
+}            
+
+</style>
+<!--//220427 래플오픈 스타일 추가-->
+
+<div class="ev-wXs-con con_img_wrap">
+    <div class="fade-bg-box">
+        <div class="empty-con" style="background: rgb(0,0,0);">
+            <img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/img_w_x_starbucks_01-1.jpg" alt="w컨셉 x 스타벅스"/>
+        </div>                   
+        <img class="obj-img" src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/img_w_x_starbucks_01-1.jpg" alt="w컨셉 x 스타벅스"/>
+        <img class="obj-text" src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/img_w_x_starbucks_01-2.png" alt="w컨셉 x 스타벅스"/> 
+    </div>
+    <!--nav-->
+    <nav class="shopping-guide-nav" id="menu-center" style="background-color: #1a1a1a;">
+        <ul class="">
+            <li data-target=".shopping-guide_1" class="sg-nav sg-nav_1 after">
+                <a href="#wXs01">
+                    <img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/img_w_x_starbucks_nav01.jpg" alt="w컨셉 x 스타벅스"/>
+                </a>
+            </li>
+            <li data-target=".shopping-guide_2" class="sg-nav sg-nav_2 after">
+                <a href="#wXs02">
+                    <img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/img_w_x_starbucks_nav02.jpg" alt="스페셜라이브"/>
+                </a>
+            </li> 
+            <!--※220427개발: 5/10(화) 오전 6시 네비게이터 1차 변경 (해당 버튼 노출시 클래스 변경) -->
+            <li data-target=".shopping-guide_3" class="sg-nav sg-nav_3 after nav-category-off"><!-- 래플 오픈시 : nav-category-off -> nav-category-open -->
+                <a href="#wXs03">
+                    <img class="wXs-raffle-off" src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/img_w_x_starbucks_nav03.jpg" alt="커핑순 래플"/>
+                    <img class="wXs-raffle-on" src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/img_w_x_starbucks_nav03_on.jpg" alt="래플"/>
+                </a>
+            </li> 
+            <!--※220427개발: 5/13(금) 오전 10시 네비게이터 2차 변경 (해당 버튼 노출시 클래스 변경) -->
+            <li id=" dfsdf" data-target=".shopping-guide_4" class="sg-nav sg-nav_4 after nav-category-off"><!-- 컨셉바이 오픈시 : nav-category-off -> nav-category-open -->
+                <a href="#wXs04">
+                    <img class="wXs-celeb-off" src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/img_w_x_starbucks_nav04.jpg" alt="커밍순 #컨셉바이 김민규"/>
+                    <img class="wXs-celeb-on" src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/img_w_x_starbucks_nav04_on.jpg" alt="#컨셉바이 김민규"/>
+                </a>
+            </li> 
+        </ul>
+    </nav>
+    <!--1.collaboration story-->
+    <div class="wXs-collabo-con" id="wXs01">
+        <img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/img_w_x_starbucks_02.jpg" alt="w컨셉 x 스타벅스"/>
+        <div class="insta-dm-con">
+            <img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/img_w_x_starbucks_03.jpg" alt="w컨셉 x 스타벅스"/>
+            <ul class="dm__list">
+                <li class="wow-box fadeInLeft" data-wow-delay="0.2s" data-wow-duration="0.5s"><img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/dm/img_w_x_starbucks_03-1.png" alt="w컨셉 x 스타벅스"/> </li>
+                <li class="wow-box fadeInRight" data-wow-delay="1s" data-wow-duration="0.5s"><img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/dm/img_w_x_starbucks_03-2.png" alt="w컨셉 x 스타벅스"/> </li>
+                <li class="wow-box fadeInLeft" data-wow-delay="1.8s" data-wow-duration="0.5s" ><img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/dm/img_w_x_starbucks_03-3.png" alt="w컨셉 x 스타벅스"/> </li>
+                <li class="wow-box fadeInRight" data-wow-delay="2.6s" data-wow-duration="0.5s" ><img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/dm/img_w_x_starbucks_03-4.png" alt="w컨셉 x 스타벅스"/> </li>
+                <li class="wow-box fadeInLeft" data-wow-delay="3.4s" data-wow-duration="0.5s" ><img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/dm/img_w_x_starbucks_03-5.png" alt="w컨셉 x 스타벅스"/> </li>
+                <li class="wow-box fadeInUp" data-wow-delay="3.8s" data-wow-duration="0.3s" ><img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/dm/img_w_x_starbucks_03-6.png" alt="w컨셉 x 스타벅스"/> </li>
+                <li class="wow-box fadeInRight" data-wow-delay="4.6s" data-wow-duration="0.5s" ><img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/dm/img_w_x_starbucks_03-7.png" alt="w컨셉 x 스타벅스"/> </li>
+                <li class="wow-box fadeInUp" data-wow-delay="5s" data-wow-duration="0.3s" ><img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/dm/img_w_x_starbucks_03-8.png" alt="w컨셉 x 스타벅스"/> </li> 
+            </ul>
+        </div>
+        <img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/img_w_x_starbucks_04.jpg" alt="w컨셉 x 스타벅스"/>
+    </div>
+    <!--2.special live-->
+    <div class="wXs-live-con" id="wXs02">
+        <!--wlive 보러가기 영역-->
+        <div class="wXs-live-notice">
+            <img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/img_w_x_starbucks_05.jpg" alt="w컨셉 x 스타벅스"/>
+            <div class="wXs-live__btn wlive-comming"><!-- ※220427개발:
+                라이브버튼 노출 클래스(해당 버튼 노출시 클래스 변경)
+                1.라이브 보러가기 comming soon : wlive-comming
+                2.라이브 보러가기 : wlive-view
+                3.라이브 다시보기 : wlive-replay
+            -->
+                <img class="wlive-obj wXs-img-comming" src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/img_w_x_starbucks_05_btn01.png" alt="comming soon 라이브 보러가기"/>
+                <a href="" class="wlive-obj wXs-img-view"><img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/img_w_x_starbucks_05_btn02.png" alt="라이브 보러가기"/></a>
+                <a href="" class="wlive-obj wXs-img-replay"><img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/img_w_x_starbucks_05_btn03.png" alt="라이브 다시보기"/></a>
+            </div>
+        </div>
+        <!--wlive 알림신청 영역-->
+        <div class="wXs-live-alarm" id="wXsLiveAlarmArea" > <!--※220427개발: 5/9(월) 00시 diplay:none -->
+            <img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/img_w_x_starbucks_06.jpg" alt="w컨셉 x 스타벅스"/>
+            <div class="alarm-count-box">
+                <span>알림 신청 종료까지</span>
+                <span class="cnt_smple" attrdate="2022-05-08T23:59:59">
+                    <span class="number wXs_hours">00</span>
+                    <span class="dash">:</span>
+                    <span class="number wXs_minutes">00</span>
+                    <span class="dash">:</span>
+                    <span class="number wXs_seconds">00</span>
+                </span>
+                <span>남았습니다.</span>
+            </div> 
+            
+            <!--※220427개발: 알림신청 버튼 body에 wXs-popup-open 클래스 추가시 마케팅 팝업 노출-->           
+            <button class="wXs-alarm__btn" onClick="" id="agreePopupBtn" type="button">
+                <img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/img_w_x_starbucks_06_btn01.png" alt="알림 신청하기"/>
+            </button>
+
+            <button type="button" onClick="lightbox('<img src=\'https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/img_w_x_starbucks_popup-alarm.jpg\'  class=\'img-responsive\'>', null,'wXs-popup-alarm')" class="wXs-alarm-notice">알림신청 유의사항</button>
+        </div>        
+    </div>
+    <!--3.raffle -->
+    <div class="wXs-raffle-box" id="wXs03">
+
+        <!--220427 래플오픈 영역 추가-->
+        <div id="raffleBox" class="raffle-box-inner" style="display: none;"><!-- ※220502개발: 5/10 ~ 5/12 23:59 까지 노출 -->
+            <div class="raffle-intro">
+                <img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_raffle_01.png" alt="w컨셉 x 스타벅스"/>
+                <div class="alarm-count-box">
+                    <span>응모 마감까지</span>
+                    <span class="cnt_smple" attrdate="2022-05-12T23:59:59">
+                        <span class="number wXs_hours">00</span>
+                        <span class="dash">:</span>
+                        <span class="number wXs_minutes">00</span>
+                        <span class="dash">:</span>
+                        <span class="number wXs_seconds">00</span>
+                    </span>
+                    <span>남았습니다.</span>
+                </div>  
+            </div>
+            <div id="raffleSlideList" class="raffle-slide__list">
+                <div class="swipeslide__slide swiper-container">
+                    <div class="swiper-wrapper">
+                        <div id="raffleSlideList01" class="swiper-slide off">
+                            <div class="raffle-cut">
+                                <img class="img-change-front" src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_raffle_slide_01-1.jpg" alt="frrw" />
+                                <img class="img-change-back" src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_raffle_slide_01-2.jpg" alt="frrw" />
+                            </div>
+                            <div class="raffle-apply raffle-ing"><!-- ※220502개발:
+                                응모하기버튼 노출 클래스(해당 버튼 노출시 클래스 변경)
+                                1.응모하기 : raffle-ing
+                                2.응모완료 : raffle-close
+                            -->
+                                <div class="img-apply-ing">
+                                    <img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_raffle_slide_01-text-on.jpg" alt="frrw" />
+                                    <button type="button" id="raffleApplyBtn" class="raffle-apply__btn">응모하기</button><!--※220502개발 body에 wXs-raffle-popup-open 클래스 추가시 마케팅/수신동의 팝업 노출-->
+                                </div>
+                                <img class="img-apply-close" src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_raffle_slide_01-text-off.jpg" alt="frrw" />
+                            </div>
+                        </div>
+                        <div id="raffleSlideList02" class="swiper-slide off">
+                            <div class="raffle-cut">
+                                <img class="img-change-front" src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_raffle_slide_02-1.jpg" alt="and you" />
+                                <img class="img-change-back" src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_raffle_slide_02-2.jpg" alt="and you" />
+                            </div>
+                            <div class="raffle-apply raffle-close"><!-- ※220502개발:
+                                응모하기버튼 노출 클래스(해당 버튼 노출시 클래스 변경)
+                                1.응모하기 : raffle-ing
+                                2.응모완료 : raffle-close
+                            -->
+                                <div class="img-apply-ing">
+                                    <img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_raffle_slide_02-text-on.jpg" alt="and you" />
+                                    <button type="button" id="raffleApplyBtn" class="raffle-apply__btn">응모하기</button><!--※220502개발 body에 wXs-raffle-popup-open 클래스 추가시 마케팅/수신동의 팝업 노출-->
+                                </div>
+                                <img class="img-apply-close" src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_raffle_slide_02-text-off.jpg" alt="and you" />
+                            </div>
+                        </div> 
+                        <div id="raffleSlideList03" class="swiper-slide off">
+                            <div class="raffle-cut">
+                                <img class="img-change-front" src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_raffle_slide_03-1.jpg" alt="nilby p" />
+                                <img class="img-change-back" src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_raffle_slide_03-2.jpg" alt="nilby p" />
+                            </div>
+                            <div class="raffle-apply raffle-ing"><!-- ※220502개발:
+                                응모하기버튼 노출 클래스(해당 버튼 노출시 클래스 변경)
+                                1.응모하기 : raffle-ing
+                                2.응모완료 : raffle-close
+                            -->
+                                <div class="img-apply-ing">
+                                    <img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_raffle_slide_03-text-on.jpg" alt="nilby p" />
+                                    <button type="button" id="raffleApplyBtn" class="raffle-apply__btn">응모하기</button><!--※220502개발 body에 wXs-raffle-popup-open 클래스 추가시 마케팅/수신동의 팝업 노출-->
+                                </div>
+                                <img class="img-apply-close" src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_raffle_slide_03-text-off.jpg" alt="nilby p" />
+                            </div>
+                        </div> 
+                        <div id="raffleSlideList04" class="swiper-slide off">
+                            <div class="raffle-cut">
+                                <img class="img-change-front" src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_raffle_slide_04-1.jpg" alt="you name here" />
+                                <img class="img-change-back" src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_raffle_slide_04-2.jpg" alt="you name here" />
+                            </div>
+                            <div class="raffle-apply raffle-ing"><!-- ※220502개발:
+                                응모하기버튼 노출 클래스(해당 버튼 노출시 클래스 변경)
+                                1.응모하기 : raffle-ing
+                                2.응모완료 : raffle-close
+                            -->
+                                <div class="img-apply-ing">
+                                    <img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_raffle_slide_04-text-on.jpg" alt="you name here" />
+                                    <button type="button" id="raffleApplyBtn" class="raffle-apply__btn">응모하기</button><!--※220502개발 body에 wXs-raffle-popup-open 클래스 추가시 마케팅/수신동의 팝업 노출-->
+                                </div>
+                                <img class="img-apply-close" src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_raffle_slide_04-text-off.jpg" alt="you name here" />
+                            </div>
+                        </div> 
+                        <div id="raffleSlideList05" class="swiper-slide off">
+                            <div class="raffle-cut">
+                                <img class="img-change-front" src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_raffle_slide_05-1.jpg" alt="grove" />
+                                <img class="img-change-back" src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_raffle_slide_05-2.jpg" alt="grove" />
+                            </div>
+                            <div class="raffle-apply raffle-ing"><!-- ※220502개발:
+                                응모하기버튼 노출 클래스(해당 버튼 노출시 클래스 변경)
+                                1.응모하기 : raffle-ing
+                                2.응모완료 : raffle-close
+                            -->
+                                <div class="img-apply-ing">
+                                    <img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_raffle_slide_05-text-on.jpg" alt="grove" />
+                                    <button type="button" id="raffleApplyBtn" class="raffle-apply__btn">응모하기</button><!--※220502개발 body에 wXs-raffle-popup-open 클래스 추가시 마케팅/수신동의 팝업 노출-->
+                                </div>
+                                <img class="img-apply-close" src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_raffle_slide_05-text-off.jpg" alt="grove" />
+                            </div>
+                        </div> 
+                        <div id="raffleSlideList06" class="swiper-slide off">
+                            <div class="raffle-cut">
+                                <img class="img-change-front" src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_raffle_slide_06-1.jpg" alt="dunst" />
+                                <img class="img-change-back" src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_raffle_slide_06-2.jpg" alt="dunst" />
+                            </div>
+                            <div class="raffle-apply raffle-ing"><!-- ※220502개발:
+                                응모하기버튼 노출 클래스(해당 버튼 노출시 클래스 변경)
+                                1.응모하기 : raffle-ing
+                                2.응모완료 : raffle-close
+                            -->
+                                <div class="img-apply-ing">
+                                    <img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_raffle_slide_06-text-on.jpg" alt="dunst" />
+                                    <button type="button" id="raffleApplyBtn" class="raffle-apply__btn">응모하기</button><!--※220502개발 body에 wXs-raffle-popup-open 클래스 추가시 마케팅/수신동의 팝업 노출-->
+                                </div>
+                                <img class="img-apply-close" src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_raffle_slide_06-text-off.jpg" alt="dunst" />
+                            </div>
+                        </div>
+                        <div id="raffleSlideList07" class="swiper-slide off">
+                            <div class="raffle-cut">
+                                <img class="img-change-front" src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_raffle_slide_07-1.jpg" alt="instantfunk" />
+                                <img class="img-change-back" src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_raffle_slide_07-2.jpg" alt="instantfunk" />
+                            </div>
+                            <div class="raffle-apply raffle-ing"><!-- ※220502개발:
+                                응모하기버튼 노출 클래스(해당 버튼 노출시 클래스 변경)
+                                1.응모하기 : raffle-ing
+                                2.응모완료 : raffle-close
+                            -->
+                                <div class="img-apply-ing">
+                                    <img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_raffle_slide_07-text-on.jpg" alt="instantfunk" />
+                                    <button type="button" id="raffleApplyBtn" class="raffle-apply__btn">응모하기</button><!--※220502개발 body에 wXs-raffle-popup-open 클래스 추가시 마케팅/수신동의 팝업 노출-->
+                                </div>
+                                <img class="img-apply-close" src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_raffle_slide_07-text-off.jpg" alt="instantfunk" />
+                            </div>
+                        </div>                                                                                                                                                                                                                       
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>            
+            </div>
+            <div class="raffle-bottom">
+                <img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_raffle_02.jpg" alt="w컨셉 x 스타벅스"/>
+                <button class="raffle-info__btn" type="button" onClick="lightbox('<img src=\'https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/raffle/img_w_x_starbucks_popup-alarm2.jpg\'  class=\'img-responsive\'>', null,'wXs-popup-alarm')">래플 이벤트 응모 유의사항</button>
+            </div>
+        </div> 
+        <!--//220427 래플오픈 영역 추가-->
+
+        <div id="raffleCommingBox"><!-- ※220427개발: 5/2(월) ~ 5/10(화) 오전 05:59 까지 COMING SOON 페이지 노출 -->
+            <img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/img_w_x_starbucks_07.jpg" alt="w컨셉 x 스타벅스"/>
+            <div class="alarm-count-box">
+                <span>응모 시작까지</span>
+                <span class="cnt_smple" attrdate="2022-05-10T05:59:59">
+                    <span class="number wXs_hours">00</span>
+                    <span class="dash">:</span>
+                    <span class="number wXs_minutes">00</span>
+                    <span class="dash">:</span>
+                    <span class="number wXs_seconds">00</span>
+                </span>
+                <span>남았습니다.</span>
+            </div>         
+        </div>
+    </div>    
+    <!--4.celeb's pick(김민규)-->
+    <div class="wXs-celeb-box" id="wXs04">
+        <img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/img_w_x_starbucks_08.jpg" alt="w컨셉 x 스타벅스"/>
+        <div class="wXs-link__btn celeb-comming"><!-- ※220427개발:
+            5/13(금) 오전 10시 김민규 화보보러가기 버튼 활성화 (해당 버튼 노출시 클래스 변경)
+            1.5/13 open : celeb-comming
+            2.김민규 화보보러가기 : celeb-view
+        -->
+            <img class="wXs-celeb-comming" src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/img_w_x_starbucks_08_btn01.png" alt="5.13 open"/>
+            <a href="https://www.wconcept.co.kr/issue/20356" class="wXs-celeb-view"><img src="https://image.wconcept.co.kr/images/img/event/20220422_w_x_starbucks/img_w_x_starbucks_08_btn02.png" alt="김민규 화보보러가기"/></a>     
+        </div>
+    </div>       
+</div>
+
+<!--220427 래플오픈 영역 추가-->
+<!-- 팝업 : (래플)개인정보/마케팅 수신동의 -->
+<div id="lightbox-shadow-agree3" class="lightbox-shadow wXs-popup-raffle">
+	<div id="close-shadow3" class="close-shadow"></div>
+	<div id="lightbox_wrap3" class="lightbox_wrap pop_middle">
+		<div id="lightbox3" class="lightbox">
+            <!--※220502개발: 래플 응모하기 프로세스 -->
+            <form> 
+                <p class="tit">본 래플  이벤트는 개인정보 수집 이용 및 <br>마케팅 수신에 동의한 회원에 한해 응모 가능합니다.</p>
+                <ul class="agree__list">
+                    <li>
+                        <input type="checkbox" name="raffleAgree1" id="raffleAgree1">
+                        <label for="raffleAgree1"><strong>모두 동의합니다.</strong></label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="raffleAgree2" id="raffleAgree2">
+                        <label for="raffleAgree2">[필수]  개인 정보 수집 및 이용에 관한 동의<button type="button" class="privacy-toggle-btn">열기</button></label>    
+                        <ul class="desc">
+                            <li>수집항목: 성명, 연락처, 주소, E-mail</li>
+                            <li>수집/이용 목적: 래플 이벤트 참여, 당첨자 선정, 경품 발송 등 이벤트 운영</li>
+                            <li>보유 및 이용 기간: 이벤트 종료 후 최대 2개월까지</li>
+                                
+                            <li>고객님께서는 개인정보 수집/이용에 대한 동의를 거부할 수 있으나, 미 동의 시 이벤트 참여가 불가합니다.</li>
+                            <li>(주)더블유컨셉코리아는 본 이벤트를 진행함에 있어 개인정보보호법 등 관련 법령상의 개인정보보호 관련 규정을 준수하고 있습니다. </li>
+                            <li>고객님의 동의 하에 수집된 개인정보는 개인정보보호법령 및 당사 개인정보보호정책에 따라 안전하게 보관되며 명시된 목적 외 다른 목적으로는 이용되지 않습니다. 또한, 수집/이용 목적 달성 시 또는 보유/이용 기간 만료 시 즉시 파기됩니다.</li>
+                        </ul>                    
+                    </li>
+                    <li>
+                        <input type="checkbox" name="raffleAgree3" id="raffleAgree3">
+                        <label for="raffleAgree3">[필수]  마케팅 정보 수신 동의<button type="button" class="privacy-toggle-btn">열기</button></label>    
+                        <ul class="desc">
+                            <li>W컨셉에서 제공하는 상품 및 서비스 홍보 등의 마케팅 활용에 동의합니다. (<span id="raffleMarketingAgree">SMS, E-MAIL, APP PUSH</span>)</li><!--※220502개발: APP PUSH 텍스트 분기처리-->
+                            <li>고객님께서는 마케팅 활용에 대한 동의를 거부할 권리가 있으나 미동의 시 참여가 불가합니다.</li>
+                        </ul>                     
+                    </li>                    
+                </ul>
+                <div class="wXs-popup__btn">
+                    <button type="button" id="raffleAgreeOkBtn">확인</button>
+                    <button type="button" id="agreepopUpClose2" class="popup__btn-cancel">취소</button>
+                </div>
+            </form>
+        </div>
+		<div id="closewrap3" class="closewrap">
+            <img src="https://image.wconcept.co.kr/images/img/event/20220415_wuycbig/img/pc/pop_close.png"  style="width: 100%;" alt=""/>          
+		</div>
+	</div>
+</div>
+<!-- //팝업 : (래플)개인정보/마케팅 수신동의 -->
+<!--//220427 래플오픈 영역 추가-->
+
+<!-- 팝업 : 알림신청 정보 유의사항 -->
+<div id="lightbox-shadow2" class="lightbox-shadow wXs-popup-alarm">
+	<div id="close-shadow2" class="close-shadow"></div>
+	<div id="lightbox_wrap2" class="lightbox_wrap">
+		<div id="lightbox2" class="lightbox"></div>
+		<div id="closewrap2" class="closewrap">
+			<!-- <div id="closepop" class="closepop">
+				<img src="https://image.wconcept.co.kr/images/img/event/20220415_wuycbig/img/pc/pop_close.png" alt=""  class="img-responsive"/>
+			</div> -->
+		</div>
+	</div>
+</div>
+<!-- //팝업 : 알림신청 정보 유의사항 -->
+
+<!-- 팝업 : 개인정보/마케팅 수신동의 -->
+<div id="lightbox-shadow-agree" class="lightbox-shadow wXs-popup-agree">
+	<div id="close-shadow" class="close-shadow"></div>
+	<div id="lightbox_wrap" class="lightbox_wrap pop_middle">
+		<div id="lightbox" class="lightbox">
+            <!--※220427개발: 사전 알림 신청하기 프로세스 -->
+            <form>
+                <p class="tit">알림 신청은 개인정보 수집 이용 및 마케팅 <br> 수신에 동의한 회원에 한해 응모 가능합니다.</p>
+                <ul class="agree__list">
+                    <li>
+                        <input type="checkbox" name="agree1" id="agree1">
+                        <label for="agree1"><strong>모두 동의합니다.</strong></label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="agree2" id="agree2">
+                        <label for="agree2">[필수]  개인 정보 수집 및 이용에 관한 동의<button type="button" class="privacy-toggle-btn">열기</button></label>    
+                        <ul class="desc">
+                            <li>수집항목: 성명, 연락처, 주소, E-mail</li>
+                            <li>수집/이용 목적: 알림 신청 이벤트 참여, 당첨자 선정, 경품 발송 등 이벤트 운영</li>
+                            <li>보유 및 이용 기간: 이벤트 종료 후 최대 2개월까지</li>
+                                
+                            <li>고객님께서는 개인정보 수집/이용에 대한 동의를 거부할 수 있으나, 미 동의 시 이벤트 참여가 불가합니다.</li>
+                            <li>(주)더블유컨셉코리아는 본 이벤트를 진행함에 있어 개인정보보호법 등 관련 법령상의 개인정보보호 관련 규정을 준수하고 있습니다. </li>
+                            <li>고객님의 동의 하에 수집된 개인정보는 개인정보보호법령 및 당사 개인정보보호정책에 따라 안전하게 보관되며 명시된 목적 외 다른 목적으로는 이용되지 않습니다. 또한, 수집/이용 목적 달성 시 또는 보유/이용 기간 만료 시 즉시 파기됩니다.</li>
+                        </ul>                    
+                    </li>
+                    <li>
+                        <input type="checkbox" name="agree3" id="agree3">
+                        <label for="agree3">[필수]  마케팅 정보 수신 동의<button type="button" class="privacy-toggle-btn">열기</button></label>    
+                        <ul class="desc">
+                            <li>W컨셉에서 제공하는 상품 및 서비스 홍보 등의 마케팅 활용에 동의합니다. (<span id="marketingAgree">SMS, E-MAIL, APP PUSH</span>)</li><!--※220427개발: APP PUSH 텍스트 분기처리-->
+                            <li>고객님께서는 마케팅 활용에 대한 동의를 거부할 권리가 있으나 미동의 시 참여가 불가합니다.</li>
+                        </ul>                     
+                    </li>                    
+                </ul>
+                <div class="wXs-popup__btn">
+                    <button type="button" id="agreeOkBtn">확인</button>
+                    <button type="button" id="agreepopUpClose" class="popup__btn-cancel">취소</button>
+                </div>
+            </form>
+        </div>
+		<div id="closewrap" class="closewrap">
+            <img src="https://image.wconcept.co.kr/images/img/event/20220415_wuycbig/img/pc/pop_close.png"  style="width: 100%;" alt=""/>          
+		</div>
+	</div>
+</div>
+<!-- //팝업 : 개인정보/마케팅 수신동의 -->
+
+<script type="text/javascript">
+// 카운트다운
+$(".ev-wXs-con .alarm-count-box").each(function(idx, itm){
+    $(itm).addClass("count_" + idx);
+    $(itm).find(".cnt_smple").addClass("cnt_smple_" + idx);
+
+    var countAttr = $(".cnt_smple_" + idx).attr('attrdate');
+
+    // 카운트다운하고 싶은 날짜
+    var targetDate = new Date(countAttr);   
+
+    // 날짜 관련 변수
+    var wc_days;
+    var wc_hrs;
+    var wc_min;
+    var wc_sec;
+
+    $(function() {
+        // 목표일까지의 시간 계산
+        timeToLaunch();
+        // 카운트다운 시작
+        setTimeout(countDownTimer,1001);
+    });
+
+    function timeToLaunch(){
+        // 현재 날짜 가져오기
+        var currentDate = new Date();
+
+        // 목표날짜와의 차이 찾기
+        var diff = (currentDate - targetDate)/1000;
+        var diff = Math.abs(Math.floor(diff));  
+
+        // 목표까지 남은 일수 확인
+        wc_days = Math.floor(diff/(24*60*60));
+        wc_sec = diff - wc_days * 24*60*60;
+
+        // 목표까지 남은 시간 확인
+        wc_hrs = Math.floor(wc_sec/(60*60));
+        wc_sec = wc_sec - wc_hrs * 60*60;
+
+        // 목표까지 남은 시간(분) 확인
+        wc_min = Math.floor(wc_sec/(60));
+        wc_sec = wc_sec - wc_min * 60;
+        // 카운트다운 종료 시 해당 타이머의 디스플레이 처리
+        // if (targetDate < currentDate) {
+        //     $(".draw_prod_count_" + idx).hide();
+        // } else {
+        //     $(".draw_prod_count_" + idx).show();
+        // }
+    }
+    function countDownTimer(){  
+        // 개시 시간 파악
+        timeToLaunch();
+        // 카운트다운 구성 요소에 초 단위로 쓰기
+        //$( ".cnt_smple_" + idx + " .wc_days .number" ).text(wc_days);
+        $( ".cnt_smple_" + idx + " .wXs_hours" ).text(wc_hrs + wc_days*24);
+        $( ".cnt_smple_" + idx + " .wXs_minutes" ).text(wc_min);
+        $( ".cnt_smple_" + idx + " .wXs_seconds" ).text(wc_sec);
+        
+        // 1초마다 확인을 반복하는 영역
+        setTimeout(countDownTimer,1000);
+    }
+});
+
+</script>
+
+<script src="https://image.wconcept.co.kr/images/img/publish/js/wconcept_fade.js"></script>
+<script>
+//인스타 dm 페이드
+wow = new WOW(
+  {
+	boxClass : 'wow-box',
+	animateClass: 'ani-start',
+	offset:       100,
+	callback:     function(box) {
+        $(box).addClass('active')
+	// console.log("WOW: animating <" + box.tagName.toLowerCase() + ">")
+	}
+  }
+);
+wow.init();
+</script>
+
+<script>
+//팝업 라이트박스
+var popupParents = $('.lightbox')
+function lightboxInner(insertContent,ajaxContentUrl,popupParents){
+    //popupParents = $('.'+ popupName)
+    var popupLightBox = popupParents.find('.lightbox')
+    var popupLightBoxWrap = popupParents.find('.lightbox_wrap')
+
+    // HTML 콘텐츠 삽입
+    if(insertContent != null){
+        popupLightBox.empty()
+        popupLightBox.append(insertContent);
+    }
+    // AJAX 콘텐츠 삽입
+    if(ajaxContentUrl != null){
+        // 라이트박스에 일시적으로 "로드 중..." 메시지 추가
+        popupLightBox.append('<p class="loading">로드 중...</p>');
+
+        // AJAX 콘텐츠 요청
+        $.ajax({
+            type: 'GET',
+            url: ajaxContentUrl,
+            success:function(data){
+                // "로드 중..." 메시지 제거 및 AJAX 콘텐츠 추가
+                //popupLightBox.empty();
+                //popupLightBox.append(data);
+            },
+            error:function(){
+                alert('팝업 로드 실패!');
+            }
+        });
+    }
+
+    // 라이트박스 표시
+    popupLightBoxWrap.show(0, 	
+        function(){
+            if(popupLightBoxWrap.height() > window.innerHeight){
+                popupLightBoxWrap.removeClass("pop_middle");
+                popupLightBoxWrap.addClass("pop_top");
+            }
+            else if(popupLightBoxWrap.height() < window.innerHeight) {
+                popupLightBoxWrap.removeClass("pop_top");
+                popupLightBoxWrap.addClass("pop_middle");
+            }
+        }
+    );
+    popupParents.show();
+    $('body').addClass('document_overflow');  
+
+    $(window).resize( funcThisSize );
+    funcThisSize();    
+}
+//팝업:알림신청안내
+function lightbox(insertContent, ajaxContentUrl,popupName){
+    popupParents = $('.'+ popupName)
+    lightboxInner(insertContent,ajaxContentUrl,popupParents)
+}
+//팝업:마케팅수신동의
+// function lightbox2(insertContent, ajaxContentUrl,popupName){
+//     popupParents = $('.'+ popupName)
+//     lightboxInner(insertContent,ajaxContentUrl,popupParents)
+// }
+// 라이트박스 닫기
+function closeLightbox(){
+    // 라이트박스와 뒷배경 쉐도우 <div> 숨기기
+    $('.lightbox-shadow').find('.lightbox_wrap').hide(500);
+    $('.lightbox-shadow').hide(0);
+
+    // 라이트박스 내부의 모든 콘텐츠를 제거합니다.
+    // popupParents.find('.lightbox').empty();
+    $('body').removeClass('document_overflow');
+    $('body').removeClass('wXs-popup-open');
+    $('body').removeClass('wXs-raffle-popup-open');
+}
+//확인용 팝업
+//$('body').addClass('wXs-raffle-popup-open');
+//닫기
+$('.lightbox-shadow').find('.close-shadow').click(function(e){
+    closeLightbox();
+});
+$('.lightbox-shadow').find('.closewrap').click(function(e){
+    closeLightbox();
+});
+$('.popup__btn-cancel').click(function(e){
+    closeLightbox();
+});
+function funcThisSize() {
+    popupParents.css( 'width', window.innerWidth );
+    popupParents.css( 'height', window.innerHeight );
+    popupParents.find(".close-shadow").css( 'height', $('.lightbox img').height );
+}
+
+//수신동의 팝업 toggle
+$('.lightbox-shadow .privacy-toggle-btn').click(function(){
+    $(this).parents('li').toggleClass('on')
+    $(this).parents('li').siblings('li').removeClass('on')
+})
+</script>
+
+<script>
+// 고정네비
+$(document).ready(function(e) {
+
+    var stickyNav_start = $('.ev-wXs-con .shopping-guide-nav').offset().top;
+    console.log(stickyNav_start)
+    var stickyNav = function() {
+        var scrollTop = $(window).scrollTop();
+
+        if (scrollTop > stickyNav_start) {
+            $('.ev-wXs-con .shopping-guide-nav').addClass('fixed');
+        } else {
+            $('.ev-wXs-con .shopping-guide-nav').removeClass('fixed');
+        }
+    };
+    stickyNav();
+    $(window).scroll(function() {
+        stickyNav();
+    });
+
+    $('.ev-wXs-con .shopping-guide-nav a[href^="#"]').on('click', function (e) {
+        e.preventDefault();
+    
+        var target = this.hash,
+            menu = target;
+            $target = $(target);
+            console.log($target.offset().top,$target.offset().top - ( $('.ev-wXs-con .shopping-guide-nav').height() + 50 ))
+        $('html, body').stop().animate({
+            'scrollTop': $target.offset().top - ( $('.ev-wXs-con .shopping-guide-nav').height() + 50 )
+        }, 0, 'swing',);
+    });
+});
+     
+</script>
+
+<!--220427 래플오픈 스크립트 추가-->
+<script src="https://image.wconcept.co.kr/images/img/publish/js/jquery.swiper.js"></script>
+<script>
+var raffleSlide = new Swiper('.swipeslide__slide.swiper-container', {
+    slidesPerView: 'auto',
+    //centeredSlides: true,
+    autoHeight : true,
+    spaceBetween: 20,
+    centeredSlides: true,
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true
+    },        
+});
+
+var currentSlide = $(raffleSlide.slides[raffleSlide.activeIndex])
+var prevSlide;
+var nextSlide
+currentSlide.removeClass('off')
+
+//슬라이드 컷 전환
+function cutFunction(){
+    $('.img-change-back').toggleClass('active');           
+}
+var aniFade = setInterval(cutFunction,3000)
+
+raffleSlide.on('slideChange', function () {
+    currentSlide = $(raffleSlide.slides[raffleSlide.activeIndex])
+    prevSlide = raffleSlide.slides[raffleSlide.activeIndex-1]
+    nextSlide = raffleSlide.slides[raffleSlide.activeIndex+1]
+    currentSlide.removeClass('off')
+    if(!$(nextSlide).hasClass('off') || !$(prevSlide).hasClass('off')){
+        $(nextSlide).addClass('off')
+        $(prevSlide).addClass('off')
+       // clearInterval(aniFade)
+    }else{
+        $(currentSlide).removeClass('off')
+        //aniFade = setInterval(cutFunction,3000)
+    }
+});
+
+</script>
+<!--//220427 래플오픈 스크립트 추가-->

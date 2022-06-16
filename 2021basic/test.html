@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <table id="table">
+        <tbody>
+            <tr>
+                <td>클릭1</td>
+            </tr>
+            <tr>
+                <td>클릭2</td>
+            </tr>
+            <tr>
+                <td>클릭3</td>
+            </tr>                        
+        </tbody>
+    </table>    
+
+    <div id='outer' style='background-color:red;display:inline-block;padding:50px;'>
+        Outer Div
+        <div id='inner' style='background-color:yellow;display:inline-block;padding:50px;'>
+            Inner Div
+        </div>
+     </div>
+</body>
+
+<script>
+
+const $table = document.querySelector('#table')
+
+$table.addEventListener('click',function(e){
+    console.log(e.target)
+})
+// document.querySelector('#outer').addEventListener('click', e => {
+//    console.log('Outer div is clicked');
+// }, false);
+// document.querySelector('#inner').addEventListener('click', e => {
+//    console.log('Inner div is clicked');
+// }, false);
+
+document.querySelector('#outer').addEventListener('click', e => {
+   console.log('Outer div is clicked');
+}, true);
+document.querySelector('#inner').addEventListener('click', e => {
+   console.log('Inner div is clicked');
+}, true);
+</script>
+</html>
